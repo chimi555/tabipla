@@ -3,9 +3,9 @@
     <%= link_to "Trilog", root_path, id: "logo" %>
     <nav>
       <ul class="header-nav">
-        <li><%= link_to"ログイン", "#" %></li>
-        <li><%= link_to"ログアウト", "#" %></li>
-        <li><%= link_to"ユーザー登録", "#" %></li>  
+        <li><%= link_to"ログイン", login_path %></li>
+        <li><%= link_to"ログアウト", logout_path, method: :delete %></li>
+        <li><%= link_to"ユーザー登録", signup_path %></li>  
       </ul>
     </nav>
   </div>
