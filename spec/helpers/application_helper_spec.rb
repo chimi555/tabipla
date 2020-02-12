@@ -10,7 +10,7 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
 
     it "正しいfulltitleを返すこと" do
-      expect(full_title('Test')).to eq 'Test - Trilog'
+      expect(full_title('Test')).to eq 'Test-Trilog'
     end
   end
 end
