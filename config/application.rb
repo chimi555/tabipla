@@ -21,5 +21,8 @@ module Myapp
                        helper_specs: false,
                        routing_specs: false
     end
+
+    # デフォルトの言語を日本語に設定
+    config.i18n.default_locale = :ja
   end
 end
