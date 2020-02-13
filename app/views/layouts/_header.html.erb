@@ -3,9 +3,29 @@
     <%= link_to "Trilog", root_path, id: "logo" %>
     <nav>
       <ul class="header-nav">
-        <li><%= link_to"ログイン", login_path %></li>
-        <li><%= link_to"ログアウト", logout_path, method: :delete %></li>
-        <li><%= link_to"ユーザー登録", signup_path %></li>  
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to users_path do %>
+              マイページ
+            <% end %>
+          </li>
+          <li>
+            <%= link_to logout_path, method: :delete do %>
+              ログアウト
+            <% end %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to login_path do %>
+              ログイン
+            <% end %>
+          </li>
+          <li>
+            <%= link_to signup_path do %>
+              新規登録
+            <% end %>
+          </li> 
+        <% end %>
       </ul>
     </nav>
   </div>
