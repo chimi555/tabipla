@@ -5,7 +5,7 @@
       <ul class="header-nav">
         <% if user_signed_in? %>
           <li>
-            <%= link_to users_path do %>
+            <%= link_to user_path(current_user)  do %>
               マイページ
             <% end %>
           </li>
