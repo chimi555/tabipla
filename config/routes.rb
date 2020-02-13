@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/show'
   root 'static_pages#home'
   get '/about', to: 'static_pages#about' 
   devise_for :users, controllers: {
@@ -12,4 +13,6 @@ Rails.application.routes.draw do
     post '/login', to: 'users/sessions#create'
     delete '/logout', to: 'users/sessions#destroy'
   end
+
+  resources :users, only: [:show]
 end

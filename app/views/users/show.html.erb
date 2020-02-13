@@ -1,0 +1,14 @@
+<%= provide(:title, @user.user_name)%>
+<div class="usershow_info row">
+  <div class="user_info-namebox row">
+    <span>
+      <div class="user-name">
+        <%= @user.user_name %>
+      </div>
+    </span>
+    <span>
+      <%= link_to "プロフィール編集",  edit_user_registration_path, class: "btn" %>
+    </span>
+  </div>
+</div>
+
