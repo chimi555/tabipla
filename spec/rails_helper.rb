@@ -83,6 +83,9 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :system
 
+  # factoryを省略してcreate出来るための設定
+  config.include FactoryBot::Syntax::Methods
+
   # headless chrome 設定
   config.before(:each, type: :system) do
     driven_by :rack_test
