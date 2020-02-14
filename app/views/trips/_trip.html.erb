@@ -1,0 +1,6 @@
+<li id="trip-<%= trip.id %>">
+  <span class="name"><%= link_to trip.name, "#" %></span>
+  <span class="timestamp">
+    <%= time_ago_in_words(trip.created_at) %>前に投稿
+  </span>
+</li>
