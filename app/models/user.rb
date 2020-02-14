@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :login
+  has_many :trips, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable,
          authentication_keys: [:login]
