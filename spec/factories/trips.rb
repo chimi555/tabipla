@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :trip do
-    name { "MyString" }
-    user { nil }
+    name { "MyTrip" }
+    association :user
   end
 end
