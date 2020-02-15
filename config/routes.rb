@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'users/show'
   root 'static_pages#home'
   get '/about', to: 'static_pages#about'
+
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     registrations: 'users/registrations',
@@ -17,6 +17,6 @@ Rails.application.routes.draw do
     delete '/logout', to: 'users/sessions#destroy'
   end
 
-  resources :users, only: [:show]
+  resources :users, only: [:show, :index]
   resources :trips
 end
