@@ -1,0 +1,11 @@
+<%= form_for(@trip) do |trip_f|%>
+  <%# プラン概要フォーム %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= trip_f.label :旅行名 %>
+      <%= trip_f.text_field :name, class: 'form-control' %>
+
+      <%= trip_f.submit "登録する", class: 'btn btn-default' %>
+    </div>
+  </div>
+<% end %>
