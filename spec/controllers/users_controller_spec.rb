@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  let!(:user) { create(:user) }
+  let(:user) { create(:user) }
 
   describe 'GET #show' do
     context 'ログイン済ユーザー' do
@@ -25,8 +25,6 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'GET #index' do
-    let!(:users) { create_list(:user, 5) }
-
     context 'ログイン済ユーザー' do
       before do
         sign_in user
