@@ -12,3 +12,19 @@ AllCops:
   - 'lib/tasks/*'
   - 'vendor/**/*'
   - 'path/ruby'
+
+Airbnb/DefaultScope:
+  Enabled: false
+
+Airbnb/OptArgParameters:
+  Enabled: false
+
+Lint/AssignmentInCondition:
+  Enabled: false
+
+Lint/DuplicateMethods:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
