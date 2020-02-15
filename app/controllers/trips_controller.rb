@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TripsController < ApplicationController
   def create
     @trip = current_user.trips.build(trip_params)
