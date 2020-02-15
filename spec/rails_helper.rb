@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
@@ -5,7 +7,9 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+if Rails.env.production?
+  abort('The Rails environment is running in production mode!')
+end
 require 'rspec/rails'
 require 'capybara/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -35,13 +39,20 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 # headless chrome 設定
-Capybara.server_host = Socket.ip_address_list.detect { |addr| addr.ipv4_private? }.ip_address
+Capybara.server_host = Socket.ip_address_list.detect(&:ipv4_private?).ip_address
 Capybara.server_port = 3002
 
 Capybara.register_driver :selenium_remote do |app|
-  url = "http://chrome:4444/wd/hub"
+  url = 'http://chrome:4444/wd/hub'
   opts = { desired_capabilities: :chrome, browser: :remote, url: url }
   Capybara::Selenium::Driver.new(app, opts)
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end
 
 RSpec.configure do |config|
@@ -75,6 +86,9 @@ RSpec.configure do |config|
 
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :system
+
+  # factoryを省略してcreate出来るための設定
+  config.include FactoryBot::Syntax::Methods
 
   # headless chrome 設定
   config.before(:each, type: :system) do

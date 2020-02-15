@@ -10,5 +10,12 @@
       <%= link_to "プロフィール編集",  edit_user_registration_path, class: "btn" %>
     </span>
   </div>
+  <div class="trips_box">
+    <% if @user.trips.any? %>
+      <ol class="trips">
+        <%= render @trips %>
+      </ol>
+    <% end %>
+  </div>
 </div>
 
