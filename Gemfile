@@ -23,9 +23,13 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 # サンプルユーザー
 gem 'faker'
+# 画像投稿
+gem 'carrierwave'
+# 画像リサイズ
+gem 'mini_magick'
 
 group :development, :test do
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'byebug', platforms: %i(mri mingw x64_mingw)
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
@@ -47,4 +51,8 @@ group :test do
   gem 'webdriver'
 end
 
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+group :proguction do
+  gem 'fog'
+end
+
+gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)

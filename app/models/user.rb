@@ -1,12 +1,14 @@
-# frozen_string_literal: true
-
 class User < ApplicationRecord
   attr_accessor :login
+  attr_accessor :current_password
+  mount_uploader :image, ImageUploader
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable,
          authentication_keys: [:login]
 
   has_many :trips, dependent: :destroy
+  validates :user_name, presence: true, length: { maximum: 20 }
+  validates :email, uniqueness: true, presence: true 
 
   def login
     @login || user_name || email
@@ -16,7 +18,9 @@ class User < ApplicationRecord
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-      where(conditions.to_h).where(['lower(user_name) = :value OR lower(email) = :value', { value: login.downcase }]).first
+      where(conditions.to_h).
+        where(['lower(user_name) = :value OR lower(email) = :value', { value: login.downcase }]).
+        first
     elsif conditions.key?(:user_name) || conditions.key?(:email)
       where(conditions.to_h).first
     end
