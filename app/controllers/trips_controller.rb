@@ -1,4 +1,5 @@
 class TripsController < ApplicationController
+  before_action :authenticate_user!
   def create
     @trip = current_user.trips.build(trip_params)
     if @trip.save
@@ -16,6 +17,6 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:name, :content)
+    params.require(:trip).permit(:name, :content, :picture)
   end
 end
