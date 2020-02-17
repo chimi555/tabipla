@@ -15,7 +15,7 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   # アップロード可能な拡張子のリスト
   def extension_whitelist
-    %w[jpg jpeg gif png]
+    %w(jpg jpeg gif png)
   end
 
   # デフォルト画像

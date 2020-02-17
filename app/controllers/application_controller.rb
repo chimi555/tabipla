@@ -6,7 +6,11 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i(user_name email remember_me))
-    devise_parameter_sanitizer.permit(:account_update, keys: %i(user_name email password image image_cache remove_image profile))
+    devise_parameter_sanitizer.permit(
+      :sign_up, keys: %i(user_name email remember_me)
+    )
+    devise_parameter_sanitizer.permit(
+      :account_update, keys: %i(user_name email password image image_cache remove_image profile)
+    )
   end
 end

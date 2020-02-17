@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   has_many :trips, dependent: :destroy
   validates :user_name, presence: true, length: { maximum: 20 }
-  validates :email, uniqueness: true, presence: true 
+  validates :email, uniqueness: true, presence: true
 
   def login
     @login || user_name || email
