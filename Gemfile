@@ -23,6 +23,10 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 # サンプルユーザー
 gem 'faker'
+# 画像投稿
+gem 'carrierwave'
+# 画像リサイズ
+gem 'mini_magick'
 
 group :development, :test do
   gem 'byebug', platforms: %i(mri mingw x64_mingw)
