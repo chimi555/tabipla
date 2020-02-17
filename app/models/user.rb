@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   attr_accessor :login
   attr_accessor :current_password
+  mount_uploader :image, ImageUploader
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable,
          authentication_keys: [:login]
