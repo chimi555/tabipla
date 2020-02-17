@@ -1,11 +1,9 @@
-# frozen_string_literal: true
-
 class TripsController < ApplicationController
   def create
     @trip = current_user.trips.build(trip_params)
     if @trip.save
       flash[:success] = '新しい旅行プランが登録されました'
-      redirect_to root_url
+      redirect_to trip_path(@trip.id)
     else
       render 'static_pages/home'
     end
@@ -18,6 +16,6 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:name)
+    params.require(:trip).permit(:name, :content)
   end
 end
