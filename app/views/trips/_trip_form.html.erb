@@ -6,11 +6,11 @@
         <%= trip_f.file_field :picture, accept: 'image/jpeg, image/gif, image/png' %>
       </span>
       <span class="tripform-info">
-        <%= trip_f.label :旅行名 %>
+        <%= trip_f.label :name, '旅行名' %>
         <%= trip_f.text_field :name, class: 'form-control' %>
       </span>
       <span class="tripform-info">
-        <%= trip_f.label :旅行概要 %>
+        <%= trip_f.label :content, '旅行概要' %>
         <%= trip_f.text_area :content, class: 'form-control' %>
       </span>
       <%= trip_f.submit "登録する", class: 'btn btn-default' %>

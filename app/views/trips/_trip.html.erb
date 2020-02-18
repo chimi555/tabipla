@@ -4,7 +4,7 @@
       <div class="eachtrip-info row">
         <div class= "col-md-5">
           <div class="eachtrip-picture">
-              <%= image_tag trip.picture.to_s, class: "img-responsive" %>
+            <%= image_tag trip.picture.thumb300.to_s, class: "img-responsive" %>
           </div>
         </div>
         <div class="col-md-7">
@@ -17,6 +17,14 @@
           <span class="timestamp">
             <%= time_ago_in_words(trip.created_at) %>前に投稿
           </span>
+          <% if current_user?(trip.user) %>
+            <span class="delete-icon">
+              <%= link_to trip, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+                旅行プランを削除
+              <% end %>
+            </span>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>
