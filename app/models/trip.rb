@@ -2,6 +2,7 @@ class Trip < ApplicationRecord
   #モデルの関連定義
   belongs_to :user
   has_many :schedules, dependent: :destroy
+  accepts_nested_attributes_for :schedules
   #scope
   default_scope -> { order(created_at: :desc) }
   #バリデーション
