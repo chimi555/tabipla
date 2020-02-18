@@ -1,11 +1,16 @@
 class Trip < ApplicationRecord
+  #モデルの関連定義
   belongs_to :user
+  has_many :schedules, dependent: :destroy
+  #scope
   default_scope -> { order(created_at: :desc) }
-  mount_uploader :picture, PictureUploader
+  #バリデーション
   validates :user_id, presence: true
   validates :name, presence: true, length: { maximum: 30 }
   validates :content, length: { maximum: 140 }
   validate :picture_size
+  #ファイルアップローダー
+  mount_uploader :picture, PictureUploader
 
   private
 
