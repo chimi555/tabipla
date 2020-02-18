@@ -27,6 +27,8 @@ gem 'faker'
 gem 'carrierwave'
 # 画像リサイズ
 gem 'mini_magick'
+# ページネーション
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', platforms: %i(mri mingw x64_mingw)
