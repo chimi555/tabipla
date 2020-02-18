@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_action :authenticate_user!, only: [:update, :destroy]
+  before_action :authenticate_user!, only: [:create, :update, :destroy, :new]
   def show
     @trip = Trip.find(params[:id])
   end
