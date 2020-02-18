@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe TripsController, type: :controller do
   let(:user) { create(:user) }
-  let(:trip) { create(:trip) }
+  let(:other_user)  { create(:user) }
+  let!(:trip) { create(:trip, user: user) }
 
   describe 'GET #show' do
     context '全てのユーザー' do
@@ -43,6 +44,37 @@ RSpec.describe TripsController, type: :controller do
     context 'ログインしていないユーザー' do
       it 'ログインページにリダイレクトされる' do
         get :new
+        expect(response).to have_http_status '302'
+        expect(response).to redirect_to '/users/sign_in'
+      end
+    end
+  end
+
+  describe '#destroy' do
+    context 'ログインしているユーザー' do
+      it '自分の旅行プランを削除できる' do
+        sign_in user
+        expect do
+          delete :destroy, params: { id: trip.id }
+        end.to change(user.trips, :count).by(-1)
+        redirect_to user_path(user)
+      end
+
+      it '他人の旅行プランは削除できない' do
+        sign_in other_user
+        expect do
+          delete :destroy, params: { id: trip.id }
+        end.to_not change(user.trips, :count)
+        expect(response).to have_http_status '302'
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context 'ログインしていないユーザー' do
+      it '旅行プランは削除できない' do
+        expect do
+          delete :destroy, params: { id: trip.id }
+        end.to_not change(user.trips, :count)
         expect(response).to have_http_status '302'
         expect(response).to redirect_to '/users/sign_in'
       end
