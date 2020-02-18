@@ -5,7 +5,21 @@ RSpec.describe TripsController, type: :controller do
   let(:other_user)  { create(:user) }
   let!(:trip) { create(:trip, user: user) }
 
-  describe 'GET #show' do
+  describe '#index' do
+    before do
+      get :index
+    end
+
+    it 'レスポンスが正常に表示されること' do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'showページが正常に読み込まれること' do
+      expect(response).to render_template :index
+    end
+  end
+
+  describe '#show' do
     context '全てのユーザー' do
       before do
         get :show, params: { id: trip.id }
@@ -19,13 +33,13 @@ RSpec.describe TripsController, type: :controller do
         expect(response).to render_template :show
       end
 
-      it ' インスタンス変数@userが存在する' do
+      it ' インスタンス変数@tripが存在する' do
         expect(assigns(:trip)).to eq trip
       end
     end
   end
 
-  describe 'GET #new' do
+  describe '#new' do
     context 'ログイン済ユーザー' do
       before do
         sign_in user
