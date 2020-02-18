@@ -42,6 +42,6 @@ class TripsController < ApplicationController
 
   def correct_user
     @trip = current_user.trips.find_by(id: params[:id])
-		redirect_to root_url if @trip.nil?
+    redirect_to root_url if @trip.nil?
   end
 end

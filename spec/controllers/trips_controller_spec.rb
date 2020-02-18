@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe TripsController, type: :controller do
   let(:user) { create(:user) }
-  let(:other_user)  { create(:user) }
+  let(:other_user) { create(:user) }
   let!(:trip) { create(:trip, user: user) }
 
   describe '#index' do
@@ -78,7 +78,7 @@ RSpec.describe TripsController, type: :controller do
         sign_in other_user
         expect do
           delete :destroy, params: { id: trip.id }
-        end.to_not change(user.trips, :count)
+        end.not_to change(user.trips, :count)
         expect(response).to have_http_status '302'
         expect(response).to redirect_to root_path
       end
@@ -88,7 +88,7 @@ RSpec.describe TripsController, type: :controller do
       it '旅行プランは削除できない' do
         expect do
           delete :destroy, params: { id: trip.id }
-        end.to_not change(user.trips, :count)
+        end.not_to change(user.trips, :count)
         expect(response).to have_http_status '302'
         expect(response).to redirect_to '/users/sign_in'
       end
