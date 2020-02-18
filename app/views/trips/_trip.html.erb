@@ -1,6 +1,23 @@
 <li id="trip-<%= trip.id %>">
-  <span class="name"><%= link_to trip.name, "#" %></span>
-  <span class="timestamp">
-    <%= time_ago_in_words(trip.created_at) %>前に投稿
-  </span>
+  <div class="eachtrip">
+    <%= link_to trip do  %>
+      <div class="eachtrip-info row">
+        <div class= "col-md-5">
+          <div class="eachtrip-picture">
+              <%= image_tag trip.picture.to_s, class: "img-responsive" %>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="eachtrip-name">
+            <%= trip.name %>
+          </div>
+          <div class="eachtrip-content">
+            <%= trip.content %>
+          </div>
+          <span class="timestamp">
+            <%= time_ago_in_words(trip.created_at) %>前に投稿
+          </span>
+      </div>
+    <% end %>
+  </div>
 </li>

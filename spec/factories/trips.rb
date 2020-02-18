@@ -1,8 +1,7 @@
-# frozen_string_literal: true
-
 FactoryBot.define do
   factory :trip do
-    name { 'MyTrip' }
+    sequence(:name) { |n| "testrip#{n}" }
+    sequence(:content) { "test_tripです" }
     association :user
   end
 end
