@@ -1,0 +1,9 @@
+<% provide(:title, '旅行プラン一覧') %>
+
+<ul class="users">
+  <% @trips.each do |trip| %>
+    <%= render trip %>
+  <% end %>
+</ul>
+
+<%= paginate @trips %>

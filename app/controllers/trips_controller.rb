@@ -2,6 +2,10 @@ class TripsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :update, :destroy, :new]
   before_action :correct_user, only: :destroy
 
+  def index
+    @trips = Trip.page(params[:page]).per(10)
+  end
+
   def show
     @trip = Trip.find(params[:id])
   end
