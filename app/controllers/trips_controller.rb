@@ -30,7 +30,7 @@ class TripsController < ApplicationController
 
   def update
     @trip = Trip.find(params[:id])
-    if  @trip.update_attributes(trip_update_params)
+    if @trip.update_attributes(trip_update_params)
       flash[:success] = "旅行情報が更新されました！"
       redirect_to @trip
     else
@@ -57,7 +57,7 @@ class TripsController < ApplicationController
   def trip_update_params
     params.require(:trip).permit(
       :name, :content, :picture,
-      schedules_attributes: [:id, :date, :place, :action, :memo, :_destroy]
+      schedules_attributes: [:id, :time, :place, :action, :memo, :_destroy]
     )
   end
 
