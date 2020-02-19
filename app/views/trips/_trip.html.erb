@@ -18,6 +18,11 @@
             <%= time_ago_in_words(trip.created_at) %>前に投稿
           </span>
           <% if current_user?(trip.user) %>
+            <span class="edit-icon">
+              <%= link_to edit_trip_path(trip) do %>
+                旅行プランを編集
+              <% end %>
+            </span>
             <span class="delete-icon">
               <%= link_to trip, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
                 旅行プランを削除

@@ -1,13 +1,26 @@
-<div>
+<div class="eachtrip-head">
   <%= image_tag @trip.picture.to_s, class: "img-responsive" %>
+  <div class="eachtrip-name">
+    <%= @trip.name %>
+  </div>
+  <div class="eachtrip-content">
+    <%= @trip.content %>
+  </div>
 </div>
-<div>
-  <%= @trip.name %>
-</div>
-<div class="eachtrip-content">
-  <%= @trip.content %>
+<div class="eachtrip-info">
+  <% @trip.schedules.each do |schedule| %>
+    <div class="row">
+      <%= schedule.time %>
+      <%= schedule.place %>
+    </div>
+  <% end %>
 </div>
 <% if current_user?(@trip.user) %>
+  <span class="edit-icon">
+    <%= link_to edit_trip_path(@trip) do %>
+      旅行プランを編集
+    <% end %>
+  </span>
   <span class="delete-icon">
     <%= link_to @trip, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
       旅行プランを削除
