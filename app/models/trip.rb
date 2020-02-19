@@ -1,16 +1,16 @@
 class Trip < ApplicationRecord
-  #モデルの関連定義
+  # モデルの関連定義
   belongs_to :user
   has_many :schedules, dependent: :destroy
   accepts_nested_attributes_for :schedules, allow_destroy: true
-  #scope
+  # scope
   default_scope -> { order(created_at: :desc) }
-  #バリデーション
+  # バリデーション
   validates :user_id, presence: true
   validates :name, presence: true, length: { maximum: 30 }
   validates :content, length: { maximum: 140 }
   validate :picture_size
-  #ファイルアップローダー
+  # ファイルアップローダー
   mount_uploader :picture, PictureUploader
 
   private
