@@ -15,26 +15,32 @@
       <%= trip_f.label :content, '旅行概要' %>
       <%= trip_f.text_area :content, class: 'form-control' %>
     </span>
+    <%# スケジュールフォーム %>
     <div class="schedule-form">
-      <%= trip_f.fields_for :schedules, @trip.schedules.build do |s| %>
-        <div class="row">
-          <div class="col-md-3">
-            <div class = 'form-group'>
-              <%= s.datetime_field :date, class: 'form-control', placeholder: "月：日：時間" %>
+      <%= trip_f.nested_fields_for :schedules, wrapper_tag: :div do |s| %>
+        <div class="each-schedule">
+          <div class="row">
+            <div class="col-md-3">
+              <div class = 'form-group'>
+                <%= s.datetime_field :date, class: 'form-control', placeholder: "月：日：時間" %>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class = 'form-group'>
+                <%= s.text_field :place, class: 'form-control' %>
+              </div>
             </div>
           </div>
-          <div class="col-md-9">
-            <div class = 'form-group'>
-              <%= s.text_field :place, class: 'form-control' %>
-            </div>
+          <div class="tripform-info">
+            <%= s.label :memo, 'memo' %>
+            <%= s.text_field :memo, class: 'form-control' %>
           </div>
+          <%= s.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
         </div>
-        <span class="tripform-info">
-          <%= s.label :memo, 'memo' %>
-          <%= s.text_field :memo, class: 'form-control' %>
-        </span>
       <% end %>
+      <%= trip_f.add_nested_fields_link :schedules, 'Add new', class: 'btn btn-primary', role: 'button' %>
     </div>
+    <%# スケジュールフォームここまで %>
     <%= trip_f.submit "更新する", class: 'btn btn-default' %>
   </div>
 <% end %>
