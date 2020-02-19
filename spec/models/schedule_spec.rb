@@ -14,16 +14,16 @@ RSpec.describe Schedule, type: :model do
       expect(schedule.errors[:trip_id]).to include("を入力してください")
     end
 
-    it '日時がなければ無効であること' do
-      schedule = build(:schedule, date: nil)
-      schedule.valid?
-      expect(schedule.errors[:date]).to include('を入力してください')
-    end
-
     it '場所名がなければ無効であること' do
       schedule = build(:schedule, place: nil)
       schedule.valid?
       expect(schedule.errors[:place]).to include('を入力してください')
+    end
+
+    it '場所名が31文字以上は無効であること' do
+      schedule = build(:schedule, place: "a" * 31)
+      schedule.valid?
+      expect(schedule.errors[:place]).to include('は30文字以内で入力してください')
     end
 
     it 'メモが141文字以上は無効であること' do
