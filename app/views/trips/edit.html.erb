@@ -25,6 +25,9 @@
                 <%= s.time_field :time, class: 'form-control', placeholder: "時" %>
               </div>
             </div>
+              <div class = 'form-group'>
+                <%= s.select :action, [["出発", "出発"], ["観光", "観光"], ["食事", "食事"], ["宿泊", "宿泊"], ["その他", "その他"]] %>
+              </div>
             <div class="col-md-9">
               <div class = 'form-group'>
                 <%= s.text_field :place, class: 'form-control' %>
@@ -38,7 +41,7 @@
           <%= s.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
         </div>
       <% end %>
-      <%= trip_f.add_nested_fields_link :schedules, 'Add new', class: 'btn btn-primary', role: 'button' %>
+      <%= trip_f.add_nested_fields_link :schedules, '追加', class: 'btn btn-primary', role: 'button' %>
     </div>
     <%# スケジュールフォームここまで %>
     <%= trip_f.submit "更新する", class: 'btn btn-default' %>
