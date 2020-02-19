@@ -1,6 +1,6 @@
 class TripsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :update, :destroy, :new]
-  before_action :correct_user, only: :destroy
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy, :new]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @trips = Trip.page(params[:page]).per(10)
@@ -20,7 +20,7 @@ class TripsController < ApplicationController
       flash[:success] = '新しい旅行プランが登録されました'
       redirect_to trip_path(@trip.id)
     else
-      render 'static_pages/home'
+      redirect_to root_url
     end
   end
 
