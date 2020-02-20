@@ -1,0 +1,30 @@
+<%# スケジュールフォーム %>
+<%= form_for(trip) do |trip_f|%>
+  <div class="schedules-form">
+    <%= trip_f.nested_fields_for :schedules, wrapper_tag: :div do |s| %>
+      <div class="eachschedule-form">
+        <div class="row">
+          <div class="col-md-3">
+            <div class = 'form-group'>
+              <%= s.time_field :time, class: 'form-control', placeholder: "時" %>
+            </div>
+          </div>
+            <div class = 'form-group'>
+              <%= s.select :action, [["出発", "出発"], ["観光", "観光"], ["食事", "食事"], ["宿泊", "宿泊"], ["その他", "その他"]] %>
+            </div>
+          <div class="col-md-9">
+            <div class = 'form-group'>
+              <%= s.text_field :place, class: 'form-control' %>
+            </div>
+          </div>
+        </div>
+        <div class="tripform-info">
+          <%= s.label :memo, 'memo' %>
+          <%= s.text_field :memo, class: 'form-control' %>
+        </div>
+        <%= s.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
+      </div>
+    <% end %>
+    <%= trip_f.add_nested_fields_link :schedules, '追加', class: 'btn btn-primary', role: 'button' %>
+  </div>
+<% end %>

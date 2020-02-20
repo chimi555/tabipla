@@ -1,7 +1,10 @@
+<%# プラン概要フォーム %>
 <%= form_for(@trip) do |trip_f|%>
-  <%# プラン概要フォーム %>
   <div class="panel panel-default">
     <div class="panel-body">
+      <div class="trip-picture">
+        <%= image_tag @trip.picture.to_s, class: "img-responsive" %>
+      </div>
       <span class="tripform-info">
         <%= trip_f.file_field :picture, accept: 'image/jpeg, image/gif, image/png' %>
       </span>
