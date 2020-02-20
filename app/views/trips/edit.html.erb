@@ -15,8 +15,24 @@
       <%= trip_f.label :content, '旅行概要' %>
       <%= trip_f.text_area :content, class: 'form-control' %>
     </span>
+    <%# noteフォーム %>
+    <div class="notes-form">
+      <p class="note-tit">旅行メモ</p>
+      <%= trip_f.nested_fields_for :notes, wrapper_tag: :div do |n| %>
+        <div class="each-note">
+          <span class="noteform-info">
+            <%= n.text_field :subject, class: 'form-control' %>
+          </span>
+          <span class="noteform-info">
+            <%= n.text_area :content, class: 'form-control' %>
+          </span>
+          <%= n.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
+        </div>
+      <% end %>
+      <%= trip_f.add_nested_fields_link :notes, '追加', class: 'btn btn-primary', role: 'button' %>
+    </div>
     <%# スケジュールフォーム %>
-    <div class="schedule-form">
+    <div class="schedules-form">
       <%= trip_f.nested_fields_for :schedules, wrapper_tag: :div do |s| %>
         <div class="each-schedule">
           <div class="row">
