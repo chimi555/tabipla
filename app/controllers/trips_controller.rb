@@ -15,7 +15,7 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = current_user.trips.build(trip_create_params)
+    @trip = current_user.trips.build(trip_params)
     if @trip.save
       flash[:success] = '新しい旅行プランが登録されました'
       redirect_to trip_path(@trip.id)
@@ -30,7 +30,7 @@ class TripsController < ApplicationController
 
   def update
     @trip = Trip.find(params[:id])
-    if @trip.update_attributes(trip_update_params)
+    if @trip.update_attributes(trip_params)
       flash[:success] = "旅行情報が更新されました！"
       redirect_to @trip
     else
@@ -50,11 +50,7 @@ class TripsController < ApplicationController
 
   private
 
-  def trip_create_params
-    params.require(:trip).permit(:name, :content, :picture)
-  end
-
-  def trip_update_params
+  def trip_params
     params.require(:trip).permit(
       :name, :content, :picture,
       schedules_attributes: [:id, :time, :place, :action, :memo, :_destroy],

@@ -1,4 +1,12 @@
 <% provide(:title, '新規旅行プラン作成') %> 
-<div class="trip_form">
-  <%= render 'trip_form'%>
-</div>
+<%= form_for(@trip) do |trip_f|%>
+  <div class="whitebox">
+    <%# プラン概要フォーム %>
+    <%= render 'trip_form', trip: @trip %>
+    <%# noteフォーム %>
+    <%= render 'note_form', trip: @trip %>
+    <%# スケジュールフォーム %>
+    <%= render 'schedule_form', trip: @trip %>
+    <%= trip_f.submit "更新する", class: 'btn btn-default' %>
+  </div>
+<% end %>
