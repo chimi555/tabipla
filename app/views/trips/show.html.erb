@@ -7,7 +7,19 @@
     <%= @trip.content %>
   </div>
 </div>
-<div class="eachtrip-info">
+<div class="eachtrip-note">
+  <% @trip.notes.each do |note| %>
+    <div class="row">
+      <div class="col-md-12 note-subject">
+        <%= note.subject %>
+      </div>
+      <div class="col-md-12 note-content">
+        <%= note.content %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="eachtrip-schedule">
   <% @trip.schedules.each do |schedule| %>
     <div class="row">
       <%= schedule.time %>

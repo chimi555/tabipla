@@ -19,7 +19,7 @@
     <div class="notes-form">
       <p class="note-tit">旅行メモ</p>
       <%= trip_f.nested_fields_for :notes, wrapper_tag: :div do |n| %>
-        <div class="each-note">
+        <div class="eachnote-form">
           <span class="noteform-info">
             <%= n.text_field :subject, class: 'form-control' %>
           </span>
@@ -34,7 +34,7 @@
     <%# スケジュールフォーム %>
     <div class="schedules-form">
       <%= trip_f.nested_fields_for :schedules, wrapper_tag: :div do |s| %>
-        <div class="each-schedule">
+        <div class="eachschedule-form">
           <div class="row">
             <div class="col-md-3">
               <div class = 'form-group'>
