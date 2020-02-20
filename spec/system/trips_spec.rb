@@ -14,7 +14,7 @@ RSpec.describe 'Trips', type: :system do
         expect do
           fill_in '旅行名', with: 'testTrip'
           fill_in '旅行概要', with: 'これはtestTripです'
-          click_button '登録する'
+          click_button '登録'
         end.to change(Trip, :count).by(1)
         expect(page).to have_content '新しい旅行プランが登録されました'
       end
