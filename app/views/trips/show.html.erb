@@ -7,7 +7,7 @@
     <%= @trip.content %>
   </div>
 </div>
-<% if current_user?(@trip.user) %>
+<% if user_signed_in? %>
   <div class="eachtrip-like">
     <%= render "likes/like_form", trip: @trip %>
     <span id="liked-countshow">
