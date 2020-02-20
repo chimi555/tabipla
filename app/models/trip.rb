@@ -3,6 +3,8 @@ class Trip < ApplicationRecord
   belongs_to :user
   has_many :schedules, dependent: :destroy
   accepts_nested_attributes_for :schedules, allow_destroy: true
+  has_many :notes, dependent: :destroy
+  accepts_nested_attributes_for :notes, allow_destroy: true
   # scope
   default_scope -> { order(created_at: :desc) }
   # バリデーション
