@@ -7,9 +7,14 @@
     <%= @trip.content %>
   </div>
 </div>
-<div class="eachtrip-like">
-  <%= render "likes/like_form", trip: @trip %>
-</div>
+<% if current_user?(@trip.user) %>
+  <div class="eachtrip-like">
+    <%= render "likes/like_form", trip: @trip %>
+    <span id="liked-countshow">
+      <%= @trip.likes.count %>
+    </span>
+  </div>
+<% end %>
 <div class="eachtrip-note">
   <% @trip.notes.each do |note| %>
     <div class="row">
