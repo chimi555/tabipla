@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :note do
-    subject { "MyString" }
-    content { "MyText" }
-    trip { nil }
+    subject { "持ち物" }
+
+    content { "パスポート" }
+    association :trip
   end
 end
