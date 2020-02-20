@@ -8,18 +8,6 @@ RSpec.describe Schedule, type: :model do
       expect(schedule).to be_valid
     end
 
-    it "tripIDがなければ無効な状態であること" do
-      schedule = build(:schedule, trip_id: nil)
-      schedule.valid?
-      expect(schedule.errors[:trip_id]).to include("を入力してください")
-    end
-
-    it '場所名がなければ無効であること' do
-      schedule = build(:schedule, place: nil)
-      schedule.valid?
-      expect(schedule.errors[:place]).to include('を入力してください')
-    end
-
     it '場所名が31文字以上は無効であること' do
       schedule = build(:schedule, place: "a" * 31)
       schedule.valid?

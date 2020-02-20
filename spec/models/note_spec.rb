@@ -8,12 +8,6 @@ RSpec.describe Note, type: :model do
       expect(note).to be_valid
     end
 
-    it "tripIDがなければ無効な状態であること" do
-      note = build(:note, trip_id: nil)
-      note.valid?
-      expect(note.errors[:trip_id]).to include("を入力してください")
-    end
-
     it '旅行メモタイトルが31文字以上は無効であること' do
       note = build(:note, subject: "a" * 31)
       note.valid?

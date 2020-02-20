@@ -71,9 +71,22 @@ RSpec.describe TripsController, type: :controller do
       end
 
       it '新しい旅行プランが登録できる' do
-        trip_create_params = attributes_for(:trip)
+        trip_params = attributes_for(:trip, {
+          name: "旅行プラン",
+          content: "テスト旅行プランです。",
+          schedules_attributes: [
+            time: "12:00:00",
+            place: "レストラン",
+            action: "食事",
+            memo: "昼食1時間",
+          ],
+          notes_attributes: [
+            subject: "持ち物",
+            context: "パスポート",
+          ],
+        })
         expect do
-          post :create, params: { trip: trip_create_params }
+          post :create, params: { trip: trip_params }
         end.to change(user.trips, :count).by(1)
         redirect_to trip_path(trip)
       end
@@ -81,9 +94,22 @@ RSpec.describe TripsController, type: :controller do
 
     context 'ログインしていないユーザー' do
       it '新しい旅行プランが登録できない' do
-        trip_create_params = attributes_for(:trip)
+        trip_params = attributes_for(:trip, {
+          name: "旅行プラン",
+          content: "テスト旅行プランです。",
+          schedules_attributes: [
+            time: "12:00:00",
+            place: "レストラン",
+            action: "食事",
+            memo: "昼食1時間",
+          ],
+          notes_attributes: [
+            subject: "持ち物",
+            context: "パスポート",
+          ],
+        })
         expect do
-          post :create, params: { trip: trip_create_params }
+          post :create, params: { trip: trip_params }
         end.not_to change(user.trips, :count)
         expect(response).to redirect_to '/users/sign_in'
       end
@@ -117,7 +143,7 @@ RSpec.describe TripsController, type: :controller do
   describe '#update' do
     context 'ログイン済ユーザー' do
       it '自分の旅行プランを編集できる' do
-        trip_update_params = attributes_for(:trip, {
+        trip_params = attributes_for(:trip, {
           name: "旅行プラン",
           content: "テスト旅行プランです。",
           schedules_attributes: [
@@ -126,15 +152,19 @@ RSpec.describe TripsController, type: :controller do
             action: "食事",
             memo: "昼食1時間",
           ],
+          notes_attributes: [
+            subject: "持ち物",
+            context: "パスポート",
+          ],
         })
         sign_in user
-        patch :update, params: { id: trip.id, trip: trip_update_params }
+        patch :update, params: { id: trip.id, trip: trip_params }
         expect(trip.reload.name).to eq "旅行プラン"
         redirect_to trip_path(trip)
       end
 
       it '他人の旅行プランは編集できない' do
-        trip_update_params = attributes_for(:trip, {
+        trip_params = attributes_for(:trip, {
           name: "旅行プラン",
           content: "テスト旅行プランです。",
           schedules_attributes: [
@@ -143,9 +173,13 @@ RSpec.describe TripsController, type: :controller do
             action: "食事",
             memo: "昼食1時間",
           ],
+          notes_attributes: [
+            subject: "持ち物",
+            context: "パスポート",
+          ],
         })
         sign_in other_user
-        patch :update, params: { id: trip.id, trip: trip_update_params }
+        patch :update, params: { id: trip.id, trip: trip_params }
         expect(trip.reload.name).not_to eq "旅行プラン"
         expect(response).to redirect_to root_path
       end
@@ -153,7 +187,7 @@ RSpec.describe TripsController, type: :controller do
 
     context 'ログイン済ユーザー' do
       it '旅行プランは編集できない' do
-        trip_update_params = attributes_for(:trip, {
+        trip_params = attributes_for(:trip, {
           name: "旅行プラン",
           content: "テスト旅行プランです。",
           schedules_attributes: [
@@ -162,8 +196,12 @@ RSpec.describe TripsController, type: :controller do
             action: "食事",
             memo: "昼食1時間",
           ],
+          notes_attributes: [
+            subject: "持ち物",
+            context: "パスポート",
+          ],
         })
-        patch :update, params: { id: trip.id, trip: trip_update_params }
+        patch :update, params: { id: trip.id, trip: trip_params }
         expect(trip.reload.name).not_to eq "旅行プラン"
         expect(response).to have_http_status '302'
         expect(response).to redirect_to '/users/sign_in'
