@@ -1,9 +1,6 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
   root 'static_pages#home'
   get '/about', to: 'static_pages#about'
-
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     registrations: 'users/registrations',
@@ -24,4 +21,5 @@ Rails.application.routes.draw do
     end
   end
   resources :trips
+  resources :likes, only: [:create, :destroy]
 end

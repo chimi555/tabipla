@@ -44,4 +44,19 @@ class User < ApplicationRecord
       # user.skip_confirmation!
     end
   end
+
+  # お気に入り
+  def like(trip)
+    likes.create(trip_id: trip.id)
+  end
+
+  # お気に入りを解除する
+  def unlike(trip)
+    likes.find_by(trip_id: trip.id).destroy
+  end
+
+  # すでにお気に入りしていたらtrueを返す
+  def already_liked?(trip)
+    liked_trips.include?(trip)
+  end
 end
