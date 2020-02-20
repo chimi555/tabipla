@@ -1,15 +1,21 @@
 class User < ApplicationRecord
-  attr_accessor :login
-  attr_accessor :current_password
-  mount_uploader :image, ImageUploader
+  # モデルの関連定義
+  has_many :trips, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_trips, through: :likes, source: :trip
+  # devise
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable,
          authentication_keys: [:login]
-
-  has_many :trips, dependent: :destroy
+  # 追加のattribute
+  attr_accessor :login
+  attr_accessor :current_password
+  # バリデーション
   validates :user_name, presence: true, length: { maximum: 20 }
   validates :email, uniqueness: true, presence: true
-
+  # ファイルアップローダー
+  mount_uploader :image, ImageUploader
+  
   def login
     @login || user_name || email
   end
