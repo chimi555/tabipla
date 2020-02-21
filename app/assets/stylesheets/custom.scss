@@ -6,7 +6,7 @@
 body{
   padding-top: 100px;
   padding-bottom: 50px;
-  background-color: #f5f5f5;
+  background-color: #f0f9ff;
 }
 
 section{
@@ -105,7 +105,7 @@ p{
 
 header {
   padding: 15px 0 15px;
-  background-color: #fc6b23
+  background-color: #4a82c7;
 }
 #logo{
   float: left;
@@ -133,12 +133,64 @@ header {
   }
 }
 
+/*static_page*/
+
+.top-imgarea{
+  position: relative;
+  .top-img{
+    width: 100%;
+  }
+  .top-tit{
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    -ms-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    h1{
+      font-size: 2.5em;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: bold;
+    }
+    .signup-btn{
+      margin-top: 10px;
+      padding-top: 20px;
+      a{
+        font-size: 20px;
+        font-weight: bold;
+        border: solid white 2px;
+        border-radius: 4px;
+        padding: 7px;
+        color: white;
+        text-decoration: none;
+        }
+      a:hover{
+        background: rgba(255, 255, 255, 0.3);
+      }
+    }
+  }
+}
+
+.section{
+  padding-top: 50px;
+  .section-inbox{
+    background-color: #fff;
+  }
+}
+.section-tit{
+  color: #5589c9;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  font-size: 27px;
+  padding: 15px;
+}
+
 /*footer*/
 
 footer {
   margin-top: 45px;
   padding: 10px 0;
-  background-color: #fc6b23;
   .post-icon{
     text-align: center;
     i{

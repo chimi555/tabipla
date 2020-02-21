@@ -1,11 +1,58 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
-<div class= "recent-trips">
-  <div class= "section-tit">最新の旅行プラン</div>
-    <ol class="trips">
-      <%= render @trip_recent %>
-    </ol>
-    <%= link_to trips_path do %>
-      MORE
-    <% end %>
-</div>
+<% if user_signed_in? %>
+  <div class="center">
+    <div class="top-imgarea">
+      <div class="top-img">
+        <%= image_tag "top01.jpg", class: "top-img" %>
+      </div>
+      <div class="top-tit" >
+        <h1>あなたの旅を共有しよう。</h1>
+      </div>   
+    </div>
+  </div>
+  <div class="section">
+    <div class="container" >
+      <div class="recent-trips">
+        <div class="section-tit">NEW TRIP</div>
+        <div class="section-inbox">
+          <ol class="trips">
+            <%= render @trip_recent %>
+          </ol>
+          <%= link_to trips_path do %>
+            MORE
+          <% end %>
+        <div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="center">
+    <div class="top-imgarea">
+      <div class="top-img">
+        <%= image_tag "top01.jpg", class: "top-img" %>
+      </div>
+      <div class="top-tit" >
+        <h1>あなたの旅を共有しよう。</h1>
+        <div class="signup-btn">
+          <%= link_to signup_path do %>
+            新規登録
+          <% end %>
+        </div>
+      </div>   
+    </div>
+  </div>
+  <div class="section">
+    <div class="container" >
+      <div class="recent-trips">
+        <div class="section-tit">NEW TRIP</div>
+        <div class="section-inbox">
+          <ol class="trips">
+            <%= render @trip_recent %>
+          </ol>
+          <%= link_to trips_path do %>
+            MORE
+          <% end %>
+        <div>
+      </div>
+    </div>
+  </div>
+<% end %>
