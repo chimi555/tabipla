@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def like
-    @user_likes = current_user.liked_trips.page(params[:page]).per(10)
+    @user_likes = current_user.liked_trips_list.page(params[:page]).per(10)
   end
 
   private

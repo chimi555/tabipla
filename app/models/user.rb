@@ -59,4 +59,10 @@ class User < ApplicationRecord
   def already_liked?(trip)
     liked_trips.include?(trip)
   end
+
+  #自分のtrip以外のliked_trips
+  def liked_trips_list
+    liked_trips.where.not(user_id: id)
+  end
+
 end
