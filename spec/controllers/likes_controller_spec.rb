@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe LikesController, type: :controller do
   let!(:user) { create(:user) }
   let!(:trip) { create(:trip) }
-  
 
   describe '#create' do
     context 'ログイン済ユーザー' do
@@ -18,7 +17,7 @@ RSpec.describe LikesController, type: :controller do
      #  expect do
      #    post :create, params: { like: like_params }
      #  end.to change(user.likes, :count).by(1)
-     # end
+     #end
     end
 
     context 'ログインしていないユーザー' do
