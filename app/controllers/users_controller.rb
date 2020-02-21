@@ -21,6 +21,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def like
+    @user_likes = current_user.liked_trips.page(params[:page]).per(10)
+  end
+
   private
 
   def password_params

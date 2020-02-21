@@ -13,11 +13,11 @@ Rails.application.routes.draw do
     post '/login', to: 'users/sessions#create'
     delete '/logout', to: 'users/sessions#destroy'
   end
-  resources :users, only: [:show, :index]
-  resources :users do
+  resources :users, only: [:show, :index] do
     member do
       get 'password_edit', to: 'users#password_edit'
       patch 'password_update', to: 'users#password_update'
+      get 'like', to: 'users#like'
     end
   end
   resources :trips
