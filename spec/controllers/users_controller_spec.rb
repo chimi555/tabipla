@@ -4,7 +4,7 @@ RSpec.describe UsersController, type: :controller do
   let!(:user) { create(:user) }
   let(:other_user) { create(:user) }
   let!(:trip) { create(:trip, user: other_user) }
-  let!(:like) { create(:like, user: user, trip: trip)}
+  let!(:like) { create(:like, user: user, trip: trip) }
 
   describe 'GET #show' do
     context 'ログイン済ユーザー' do

@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, presence: true
   # ファイルアップローダー
   mount_uploader :image, ImageUploader
-  
+
   def login
     @login || user_name || email
   end
@@ -60,9 +60,8 @@ class User < ApplicationRecord
     liked_trips.include?(trip)
   end
 
-  #自分のtrip以外のliked_trips
+  # 自分のtrip以外のliked_trips
   def liked_trips_list
     liked_trips.where.not(user_id: id)
   end
-
 end

@@ -5,20 +5,20 @@ RSpec.describe LikesController, type: :controller do
   let!(:trip) { create(:trip) }
 
   describe '#create' do
-    context 'ログイン済ユーザー' do
-      before do
-        sign_in user
-      end
+    # context 'ログイン済ユーザー' do
+    #  before do
+    #    sign_in user
+    #  end
 
-     # it 'お気に入り登録できる' do
-     #  like_params = attributes_for(:like, {
-     #    trip_id: trip.id,
-     #  })
-     #  expect do
-     #    post :create, params: { like: like_params }
-     #  end.to change(user.likes, :count).by(1)
-     #end
-    end
+    # it 'お気に入り登録できる' do
+    #  like_params = attributes_for(:like, {
+    #    trip_id: trip.id,
+    #  })
+    #  expect do
+    #    post :create, params: { like: like_params }
+    #  end.to change(user.likes, :count).by(1)
+    # end
+    # end
 
     context 'ログインしていないユーザー' do
       it 'お気に入り登録できない' do
@@ -31,5 +31,4 @@ RSpec.describe LikesController, type: :controller do
       end
     end
   end
-
 end
