@@ -1,0 +1,12 @@
+<% if current_user.already_liked?(trip) %> 
+  <%= form_for(current_user.likes.find_by(trip_id: trip.id),
+                                  html: { method: :delete },
+                                  ) do |l| %>
+    <%= l.submit "お気に入り解除", class: "btn btn-primary" %>
+  <% end %>
+<% else %>
+  <%= form_for(current_user.likes.build) do |l| %>
+    <div><%= hidden_field_tag :trip_id, trip.id %></div>
+    <%= l.submit "行きたい！", class: "btn btn-primary" %>
+  <% end %>
+<% end %>

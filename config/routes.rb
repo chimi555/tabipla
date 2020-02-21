@@ -1,9 +1,6 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
   root 'static_pages#home'
   get '/about', to: 'static_pages#about'
-
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     registrations: 'users/registrations',
@@ -16,12 +13,13 @@ Rails.application.routes.draw do
     post '/login', to: 'users/sessions#create'
     delete '/logout', to: 'users/sessions#destroy'
   end
-  resources :users, only: [:show, :index]
-  resources :users do
+  resources :users, only: [:show, :index] do
     member do
       get 'password_edit', to: 'users#password_edit'
       patch 'password_update', to: 'users#password_update'
+      get 'like', to: 'users#like'
     end
   end
   resources :trips
+  resources :likes, only: [:create, :destroy]
 end
