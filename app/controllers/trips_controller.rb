@@ -55,7 +55,7 @@ class TripsController < ApplicationController
 
   def trip_params
     params.require(:trip).permit(
-      :name, :content, :picture,
+      :name, :content, :picture, :picture_cache, :remove_picture,
       schedules_attributes: [:id, :time, :place, :action, :memo, :_destroy],
       notes_attributes: [:id, :subject, :content, :_destroy]
     )

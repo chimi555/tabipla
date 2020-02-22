@@ -1,5 +1,6 @@
 class PictureUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
+  process resize_to_limit: [600, 250]
 
   if Rails.env.production?
     storage :fog
@@ -20,7 +21,7 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   # デフォルト画像
   def default_url(*args)
-    "default_trip.png"
+    [version_name, "default_trip.png"].compact.join('_')
   end
 
   version :thumb300 do
