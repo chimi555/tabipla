@@ -1,7 +1,7 @@
 <% provide(:title, '行きたいリスト一覧') %>
 <div class="page-tit">行きたい！旅行リスト</div>
-<ul class="user-likes"> 
+<ol class="trips">
   <%= render @user_likes %>  
-</ul>
+</ol>
 
 <%= paginate @user_likes %>

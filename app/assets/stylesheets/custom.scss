@@ -6,7 +6,7 @@
 body{
   padding-top: 100px;
   padding-bottom: 50px;
-  background-color: #f0f9ff;
+  background-color: #fff;
 }
 
 section{
@@ -91,11 +91,11 @@ p{
 .btn{
   display: inline-block;
   text-align: center;
-  background-color: #fff;
-  border: solid 1px #000;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 10px;
   font-weight: bold;
   font-size: 14px;
-  color: #525252
+  color: rgba(0,0,0,0.6);
 }
 .actions{
   text-align: center;
@@ -159,7 +159,7 @@ header {
         font-size: 20px;
         font-weight: bold;
         border: solid white 2px;
-        border-radius: 4px;
+        border-radius: 2px;
         padding: 7px;
         color: white;
         text-decoration: none;
@@ -184,6 +184,32 @@ header {
   letter-spacing: 0.08em;
   font-size: 27px;
   padding: 15px;
+}
+
+/*user_show*/
+.user-info-box{
+  margin:50px 150px;
+  .user-left{
+    text-align: right;
+    padding-right: 50px;
+  }
+  .user-right{
+    text-align: left;
+    padding-left: 50px;
+  }
+}
+.user-name{
+  font-size: 20px;
+  font-weight: bold;
+  color: #3d3d3d;
+  padding: 20px 0 10px;
+}
+.user-prof{
+  padding: 20px;
+}
+.trip-show-box{
+  padding:50px 0;
+  background-color: #fffeeb;
 }
 
 /*footer*/

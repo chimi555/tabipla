@@ -1,13 +1,11 @@
-<li id="trip-<%= trip.id %>">
-  <div class="eachtrip">
-    <%= link_to trip do  %>
-      <div class="eachtrip-info row">
-        <div class= "col-md-5">
+<div class= "col-md-4">
+  <li id="trip-<%= trip.id %>">
+    <div class="eachtrip">
+      <%= link_to trip do  %>
+        <div class="eachtrip-info">
           <div class="eachtrip-picture">
-            <%= image_tag trip.picture.thumb300.to_s, class: "img-responsive" %>
+            <%= image_tag trip.picture.to_s, class: "img-responsive" %>
           </div>
-        </div>
-        <div class="col-md-7">
           <div class="eachtrip-name">
             <%= trip.name %>
           </div>
@@ -30,7 +28,7 @@
             </span>
           <% end %>
         </div>
-      </div>
-    <% end %>
-  </div>
-</li>
+      <% end %>
+    </div>
+  </li>
+</div>
