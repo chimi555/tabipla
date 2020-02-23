@@ -1,49 +1,98 @@
-<div class="eachtrip-head">
-  <%= image_tag @trip.picture.to_s, class: "img-responsive" %>
-  <div class="eachtrip-name">
-    <%= @trip.name %>
-  </div>
-  <div class="eachtrip-content">
-    <%= @trip.content %>
-  </div>
-</div>
-<% if user_signed_in? %>
-  <div class="eachtrip-like">
-    <%= render "likes/like_form", trip: @trip %>
-    <span id="liked-countshow">
-      <%= @trip.likes.count %>
-    </span>
-  </div>
-<% end %>
-<div class="eachtrip-note">
-  <% @trip.notes.each do |note| %>
-    <div class="row">
-      <div class="col-md-12 note-subject">
-        <%= note.subject %>
+<% provide(:title, @trip.name) %>
+<div class="container">
+  <div class="row trip-show-head">
+    <div class="col-md-8">
+      <div class="trip-show">
+        <div class="trip-show-picture">
+          <%= image_tag @trip.picture.to_s, class: "img-responsive" %>
+          <div class="trip-show-head">
+            <p class="trip-show-info trip-show-name">
+              <%= @trip.name %>
+            </p>
+            <p class="trip-show-info trip-show-subname">
+              <%= @trip.content %>
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="col-md-12 note-content">
-        <%= note.content %>
+    </div>
+    <div class="col-md-4">
+      <div class="trip-show-user">
+        ここにユーザー情報かく
       </div>
+    </div>
+  </div>
+  <% if user_signed_in? %>
+    <div class="trip-show-like">
+      <%= render "likes/like_form", trip: @trip %>
+      <span id="liked-countshow">
+        <%= @trip.likes.count %>
+      </span>
+    </div>
+  <% end %>
+  <div class="trip-show-out">
+    <p class="trip-show-tit"><i class="fas fa-pencil-alt"></i>旅行メモ</p>
+    <div class="trip-show-in">
+      <div class="trip-note">
+        <% @trip.notes.each do |note| %>
+          <div class="row trip-note-each">
+            <span class="col-md-12 trip-note-subject">
+              <%= note.subject %>
+            </span>
+            <div class="col-md-12 trip-note-content">
+              <%= note.content %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="trip-show-out">
+    <p class="trip-show-tit"><i class="fas fa-clock"></i>スケジュール</p>
+    <div class="trip-show-in">
+      <div class="trip-schedule">
+        <% @trip.schedules.each do |schedule| %>
+          <div class="trip-schedule-each row">  
+            <div class="col-md-2 col-sm-2">
+              <div class="trip-schedule-time">
+                <%= schedule.time %>
+              </div>
+            </div>
+            <div class="col-md-10 col-sm-10 trip-schedule-right">
+              <span class="trip-schedule-action">
+                <%= image_tag('action/' + schedule.action + '.png', class: "img-responsive") %>
+              </span>
+              <div class="trip-schedule-info">
+                <p class="trip-schedule-place">
+                  <%= schedule.place %>
+                </p>
+                <p class="trip-schedule-memo">
+                  <%= schedule.memo %>
+                </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% if user_signed_in? %>
+    <div class="trip-show-like">
+      <%= render "likes/like_form", trip: @trip %>
+    </div>
+  <% end %>
+  <% if current_user?(@trip.user) %>
+    <div class="trip-show-user">
+      <span class="edit-icon btn">
+        <%= link_to edit_trip_path(@trip) do %>
+          <i class="fas fa-edit"></i>編集
+        <% end %>
+      </span>
+      <span class="delete-icon btn">
+        <%= link_to @trip, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+          <i class="far fa-trash-alt"></i>削除
+        <% end %>
+      </span>
     </div>
   <% end %>
 </div>
-<div class="eachtrip-schedule">
-  <% @trip.schedules.each do |schedule| %>
-    <div class="row">
-      <%= schedule.time %>
-      <%= schedule.place %>
-    </div>
-  <% end %>
-</div>
-<% if current_user?(@trip.user) %>
-  <span class="edit-icon">
-    <%= link_to edit_trip_path(@trip) do %>
-      旅行プランを編集
-    <% end %>
-  </span>
-  <span class="delete-icon">
-    <%= link_to @trip, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
-      旅行プランを削除
-    <% end %>
-  </span>
-<% end %>
