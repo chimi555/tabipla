@@ -32,6 +32,8 @@ gem 'kaminari'
 # 動的な入力フォーム
 gem 'nested_form_fields'
 gem 'jquery-rails'
+# fontawesome
+gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'byebug', platforms: %i(mri mingw x64_mingw)
