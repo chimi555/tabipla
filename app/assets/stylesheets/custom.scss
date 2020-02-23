@@ -1,5 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 /*universal*/
 
@@ -22,11 +24,6 @@ li{
   padding: 5px 0;
 }
 
-button{
-  border: none;
-  background-color: none;
-}
-
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -39,8 +36,17 @@ button{
     margin-bottom: 10px;
   }
 }
+
 .whitebox{
   background-color: #fff;
+}
+
+.yellow-box{
+  background-color: #fffeeb;
+}
+
+.panel-body{
+  padding:0 200px;
 }
 
 .position-fixed{
@@ -95,7 +101,7 @@ p{
   border-radius: 10px;
   font-weight: bold;
   font-size: 14px;
-  color: rgba(0,0,0,0.6);
+  color: rgba(0,0,0,0.7);
 }
 .actions{
   text-align: center;
@@ -207,10 +213,100 @@ header {
 .user-prof{
   padding: 20px;
 }
-.trip-show-box{
-  padding:50px 0;
-  background-color: #fffeeb;
+
+/*form*/
+.btn-submit{
+  display: inline-block;
+  padding: 0.5em 1em;
+  background-color: rgba(0,0,0,0.4);
+  color: #FFF;
+  border-radius: 4px;
+  border: dashed 1px #FFF;
+  box-shadow: 0px 0px 0px 5px rgba(0,0,0,0.4);
+  font-size: 14px;
+  padding:10px 20px;
+  margin-top: 15px;
 }
+
+.page-tit{
+  padding:30px 0;
+  text-align: center;
+  font-size: 25px;
+  color: #9c9c9c;
+}
+.trip-picture{
+  position: relative;
+  img{
+    border-radius: 10px;
+    width: 100%;
+  }
+  .trip-tit{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+  }
+  .tripform-picture{
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
+  }
+  .form-wide{
+    width: 450px;
+    margin: 25px;
+  }
+}
+.form-out{
+  margin: 25px 0;
+  background-color: #fffee2;
+  border-radius: 10px;
+  padding: 20px 15px 15px;
+  .form-tit{
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffb30f;
+  }
+  .form-in{
+    border: dashed 2px #ffc870;
+    border-radius: 10px;
+    padding: 25px 25px 60px;
+    position: relative;
+    .each-form-add{
+      position: absolute;
+      bottom: 8px;
+      right: 50%;
+      text-align: center;
+      font-size: 22px;
+      i{
+        color: #9c9c9c;
+      }
+    }
+    .each-form{
+      margin: 10px 0;
+    }
+  }
+  .each-form-out{
+    border-bottom: dashed 1px #9c9c9c;
+    margin-top: 20px;
+    padding: 10px 0 10px;
+    position: relative;
+    padding-top: 10px;
+    .each-form-delete{
+      position: absolute;
+      top: 0px;
+      right: 8px;
+      i{
+        color: #9c9c9c;
+      }
+    }
+  }
+}
+
+
 
 /*footer*/
 

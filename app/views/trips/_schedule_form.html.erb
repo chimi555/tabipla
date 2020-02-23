@@ -1,28 +1,38 @@
 <%# スケジュールフォーム %>
-<div class="schedules-form">
-  <%= trip_f.nested_fields_for :schedules, wrapper_tag: :div do |s| %>
-    <div class="eachschedule-form">
-      <div class="row">
-        <div class="col-md-3">
-          <div class = 'form-group'>
-            <%= s.time_field :time, class: 'form-control', placeholder: "時" %>
+<div class="form-out">
+  <p class="form-tit">スケジュール</p>
+  <div class="form-in">
+    <%= trip_f.nested_fields_for :schedules, wrapper_tag: :div do |s| %>
+      <div class="each-form-out">
+        <span class="each-form-delete">
+          <%= s.remove_nested_fields_link do %>
+            <i class="fas fa-times"></i>
+          <% end %>
+        </span>
+        <div class = 'form-group'>
+          <%= s.select :action, [["出発", "出発"], ["観光", "観光"], ["食事", "食事"], ["宿泊", "宿泊"], ["その他", "その他"]] %>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class = 'form-group'>
+              <%= s.time_field :time, class: 'form-control', placeholder: "時", value: "schedules.time" %>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class = 'form-group'>
+              <%= s.text_field :place, placeholder: "場所名", class: 'form-control' %>
+            </div>
           </div>
         </div>
-          <div class = 'form-group'>
-            <%= s.select :action, [["出発", "出発"], ["観光", "観光"], ["食事", "食事"], ["宿泊", "宿泊"], ["その他", "その他"]] %>
-          </div>
-        <div class="col-md-9">
-          <div class = 'form-group'>
-            <%= s.text_field :place, class: 'form-control' %>
-          </div>
+        <div class="tripform-info">
+          <%= s.text_field :memo,  placeholder: "memo", class: 'form-control' %>
         </div>
       </div>
-      <div class="tripform-info">
-        <%= s.label :memo, 'memo' %>
-        <%= s.text_field :memo, class: 'form-control' %>
-      </div>
-      <%= s.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
-    </div>
-  <% end %>
-  <%= trip_f.add_nested_fields_link :schedules, '追加', class: 'btn btn-primary', role: 'button' %>
+    <% end %>
+    <span class="each-form-add">
+      <%= trip_f.add_nested_fields_link :schedules do %>
+        <i class="fas fa-plus-circle"></i>
+      <% end %>
+    </span>
+  </div>
 </div>

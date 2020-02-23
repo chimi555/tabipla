@@ -1,29 +1,34 @@
 <% provide(:title, "旅行プランの編集") %>
 <%= form_for(@trip) do |trip_f|%>
-  <div class="whitebox">
-    <%# プラン概要フォーム %>
-    <div class="panel panel-default">
-      <div class="panel-body">
+  <div class="container panel-body">
+    <div class="page-tit">
+      旅行プラン編集
+    </div>
+    <div class="whitebox">
+      <%# プラン概要フォーム %>
+      <div class="trip-form">
         <div class="trip-picture">
           <%= image_tag @trip.picture.to_s, class: "img-responsive" %>
-        </div>
-        <span class="tripform-info">
-          <%= trip_f.file_field :picture, accept: 'image/jpeg, image/gif, image/png' %>
-        </span>
-        <span class="tripform-info">
-          <%= trip_f.label :name, '旅行名' %>
-          <%= trip_f.text_field :name, class: 'form-control' %>
-        </span>
-        <span class="tripform-info">
-          <%= trip_f.label :content, '旅行概要' %>
-          <%= trip_f.text_area :content, class: 'form-control' %>
-        </span>
+          <div class="trip-tit">
+            <span class="tripform-info">
+              <%= trip_f.text_field :name, placeholder: "旅行名", class: 'form-wide form-control' %>
+            </span>
+            <span class="tripform-info">
+              <%= trip_f.text_area :content, placeholder: "サブタイトル", class: 'form-wide form-control' %>
+            </span>
+          </div>
+          <span class="tripform-picture">
+              <%= trip_f.file_field :picture, accept: 'image/jpeg, image/gif, image/png' %>
+            </span>
+         </div>
+      </div>
+      <%# noteフォーム %>
+      <%= render "note_form", trip_f: trip_f %>
+      <%# スケジュールフォーム %>
+      <%= render "schedule_form", trip_f: trip_f %>
+      <div class="center">
+        <%= trip_f.submit "更新", class: 'btn-submit' %>
       </div>
     </div>
-    <%# noteフォーム %>
-    <%= render "note_form", trip_f: trip_f %>
-    <%# スケジュールフォーム %>
-    <%= render "schedule_form", trip_f: trip_f %>
-    <%= trip_f.submit "更新する", class: 'btn btn-default' %>
   </div>
 <% end %>
