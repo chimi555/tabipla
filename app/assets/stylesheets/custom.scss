@@ -43,6 +43,7 @@ li{
 
 .yellow-box{
   background-color: #fffeeb;
+  padding: 20px 0;
 }
 
 .panel-body{
@@ -219,6 +220,13 @@ header {
 
 .user-prof{
   padding: 20px;
+}
+
+/*_trip*/
+.eachtrip-picture{
+  img{
+    border-radius: 10px;
+  }
 }
 
 /*form*/

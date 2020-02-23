@@ -6,24 +6,18 @@
           <div class="eachtrip-picture">
             <%= image_tag trip.picture.to_s, class: "img-responsive" %>
           </div>
-          <div class="eachtrip-name">
-            <%= trip.name %>
-          </div>
-          <div class="eachtrip-content">
-            <%= trip.content %>
-          </div>
           <span class="timestamp">
             <%= time_ago_in_words(trip.created_at) %>前に投稿
           </span>
           <% if current_user?(trip.user) %>
             <span class="edit-icon">
               <%= link_to edit_trip_path(trip) do %>
-                旅行プランを編集
+                <i class="fas fa-edit"></i>
               <% end %>
             </span>
             <span class="delete-icon">
               <%= link_to trip, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
-                旅行プランを削除
+                <i class="far fa-trash-alt"></i>
               <% end %>
             </span>
           <% end %>
