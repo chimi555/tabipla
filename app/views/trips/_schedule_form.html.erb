@@ -10,7 +10,7 @@
           <% end %>
         </span>
         <div class = 'form-group'>
-          <%= s.select :action, [["出発", "出発"], ["観光", "観光"], ["食事", "食事"], ["宿泊", "宿泊"], ["その他", "その他"]] %>
+          <%= s.select :action, [["出発:車", "car"], ["出発:電車", "train"], ["出発:飛行機", "plane"], ["出発:徒歩", "walk"], ["到着", "point"], [ "観光", "sightseeing"], ["食事", "eat"], ["宿泊", "stay"], ["その他" ,"other"]] %>
         </div>
         <div class="row">
           <div class="col-md-3">
@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="tripform-info">
-          <%= s.text_field :memo,  placeholder: "memo", class: 'form-control' %>
+          <%= s.text_area :memo,  placeholder: "memo", class: 'form-control' %>
         </div>
       </div>
     <% end %>
