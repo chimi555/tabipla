@@ -1,8 +1,7 @@
 <%# スケジュールフォーム %>
-<div class="form-out">
-  <p class="form-tit">スケジュール</p>
-  <div class="form-in">
-    <%= trip_f.nested_fields_for :schedules, wrapper_tag: :div do |s| %>
+<div class="">
+  <div class="">
+    <%= day.nested_fields_for :schedules, wrapper_tag: :div do |s| %>
       <div class="each-form-out">
         <span class="each-form-delete">
           <%= s.remove_nested_fields_link do %>
@@ -15,7 +14,7 @@
         <div class="row">
           <div class="col-md-3">
             <div class = 'form-group'>
-              <%= s.time_select :time, class: 'form-control', value: Time.current %>
+              <%= s.time_select :time, class: 'form-control' %>
               <%= hidden_field_tag :schedules %>
             </div>
           </div>
@@ -30,9 +29,9 @@
         </div>
       </div>
     <% end %>
-    <span class="each-form-add">
-      <%= trip_f.add_nested_fields_link :schedules do %>
-        <i class="fas fa-plus-circle"></i>
+    <span class="each-sche-add">
+      <%= day.add_nested_fields_link :schedules do %>
+        <i class="fas fa-plus-circle"></i>スケジュール追加
       <% end %>
     </span>
   </div>

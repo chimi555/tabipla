@@ -23,9 +23,11 @@
          </div>
       </div>
       <%# noteフォーム %>
-      <%= render "note_form", trip_f: trip_f %>
+      <div class="note-form">
+        <%= render "note_form", trip_f: trip_f %>
+      </div>
       <%# スケジュールフォーム %>
-      <%= render "schedule_form", trip_f: trip_f %>
+      <%= render "day_form", trip_f: trip_f %>
       <div class="center">
         <%= trip_f.submit "登録", class: 'btn-submit' %>
       </div>
