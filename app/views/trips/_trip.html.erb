@@ -1,18 +1,10 @@
-<li id="trip-<%= trip.id %>">
-  <div class="eachtrip">
-    <%= link_to trip do  %>
-      <div class="eachtrip-info row">
-        <div class= "col-md-5">
+<div class= "col-md-4">
+  <li id="trip-<%= trip.id %>">
+    <div class="eachtrip">
+      <%= link_to trip do  %>
+        <div class="eachtrip-info">
           <div class="eachtrip-picture">
-            <%= image_tag trip.picture.thumb300.to_s, class: "img-responsive" %>
-          </div>
-        </div>
-        <div class="col-md-7">
-          <div class="eachtrip-name">
-            <%= trip.name %>
-          </div>
-          <div class="eachtrip-content">
-            <%= trip.content %>
+            <%= image_tag trip.picture.to_s, class: "img-responsive" %>
           </div>
           <span class="timestamp">
             <%= time_ago_in_words(trip.created_at) %>前に投稿
@@ -20,17 +12,17 @@
           <% if current_user?(trip.user) %>
             <span class="edit-icon">
               <%= link_to edit_trip_path(trip) do %>
-                旅行プランを編集
+                <i class="fas fa-edit"></i>
               <% end %>
             </span>
             <span class="delete-icon">
               <%= link_to trip, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
-                旅行プランを削除
+                <i class="far fa-trash-alt"></i>
               <% end %>
             </span>
           <% end %>
         </div>
-      </div>
-    <% end %>
-  </div>
-</li>
+      <% end %>
+    </div>
+  </li>
+</div>

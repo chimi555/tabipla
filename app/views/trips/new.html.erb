@@ -1,12 +1,34 @@
 <% provide(:title, "新規旅行プランの登録") %>
 <%= form_for(@trip) do |trip_f|%>
-  <div class="whitebox">
-    <%# プラン概要フォーム %>
-    <%= render "trip_form", trip: @trip %>
-    <%# noteフォーム %>
-    <%= render "note_form", trip_f: trip_f %>
-    <%# スケジュールフォーム %>
-    <%= render "schedule_form", trip_f: trip_f %>
-    <%= trip_f.submit "登録", class: 'btn btn-default' %>
+  <div class="container panel-body">
+    <div class="page-tit">
+      旅行プラン登録
+    </div>
+    <div class="whitebox">
+      <%# プラン概要フォーム %>
+      <div class="trip-form">
+        <div class="trip-picture">
+          <%= image_tag @trip.picture.to_s, class: "img-responsive" %>
+          <div class="trip-tit">
+            <span class="tripform-info">
+              <%= trip_f.text_field :name, placeholder: "旅行名", class: 'form-wide form-control' %>
+            </span>
+            <span class="tripform-info">
+              <%= trip_f.text_area :content, placeholder: "サブタイトル", class: 'form-wide form-control' %>
+            </span>
+          </div>
+          <span class="tripform-picture">
+              <%= trip_f.file_field :picture, accept: 'image/jpeg, image/gif, image/png' %>
+            </span>
+         </div>
+      </div>
+      <%# noteフォーム %>
+      <%= render "note_form", trip_f: trip_f %>
+      <%# スケジュールフォーム %>
+      <%= render "schedule_form", trip_f: trip_f %>
+      <div class="center">
+        <%= trip_f.submit "登録", class: 'btn-submit' %>
+      </div>
+    </div>
   </div>
 <% end %>
