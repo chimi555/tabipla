@@ -1,6 +1,8 @@
 class Trip < ApplicationRecord
   # モデルの関連定義
   belongs_to :user
+  has_many :days, dependent: :desytroy
+  accepts_nested_attributes_for :days, allow_destroy: true
   has_many :schedules, dependent: :destroy
   accepts_nested_attributes_for :schedules, allow_destroy: true
   has_many :notes, dependent: :destroy
