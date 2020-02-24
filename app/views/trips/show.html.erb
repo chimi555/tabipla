@@ -50,10 +50,17 @@
   <div class="trip-show-out">
     <p class="trip-show-tit"><i class="fas fa-clock"></i>スケジュール</p>
     <div class="trip-show-in">
-      <% @trip.days.each do |day| %>
-        <% unless day.date.nil? %>
-          <%= day.date.strftime("%Y年%m月%d日") %>
-        <% end %>
+      <% @trip.days.each.with_index(1) do |day, i| %>
+        <div class="trip-day">
+          <% unless day.date.nil? %>
+            <div class="day-count">
+              <%= i %>日目
+            </div>
+            <div class="day-date">
+              <%= day.date.strftime("%Y年%m月%d日") %>
+            </div>
+          <% end %>
+        </div>
         <div class="trip-schedule">
           <% day.schedules.each do |schedule| %>
             <div class="trip-schedule-each row">  
