@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_24_052555) do
+ActiveRecord::Schema.define(version: 2020_02_24_051851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 2020_02_24_052555) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "day_id"
-    t.index ["day_id"], name: "index_notes_on_day_id"
+    t.bigint "trip_id"
+    t.index ["trip_id"], name: "index_notes_on_trip_id"
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2020_02_24_052555) do
   end
 
   add_foreign_key "days", "trips"
-  add_foreign_key "notes", "days"
+  add_foreign_key "notes", "trips"
   add_foreign_key "schedules", "days"
   add_foreign_key "trips", "users"
 end
