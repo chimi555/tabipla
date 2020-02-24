@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_24_044810) do
+ActiveRecord::Schema.define(version: 2020_02_24_051851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,10 +37,9 @@ ActiveRecord::Schema.define(version: 2020_02_24_044810) do
   create_table "notes", force: :cascade do |t|
     t.string "subject"
     t.text "content"
-    t.bigint "trip_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["trip_id", "created_at"], name: "index_notes_on_trip_id_and_created_at"
+    t.bigint "trip_id"
     t.index ["trip_id"], name: "index_notes_on_trip_id"
   end
 
@@ -48,12 +47,11 @@ ActiveRecord::Schema.define(version: 2020_02_24_044810) do
     t.string "place"
     t.string "action"
     t.text "memo"
-    t.bigint "trip_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.time "time"
-    t.index ["trip_id", "created_at"], name: "index_schedules_on_trip_id_and_created_at"
-    t.index ["trip_id"], name: "index_schedules_on_trip_id"
+    t.bigint "day_id"
+    t.index ["day_id"], name: "index_schedules_on_day_id"
   end
 
   create_table "trips", force: :cascade do |t|
@@ -86,6 +84,6 @@ ActiveRecord::Schema.define(version: 2020_02_24_044810) do
 
   add_foreign_key "days", "trips"
   add_foreign_key "notes", "trips"
-  add_foreign_key "schedules", "trips"
+  add_foreign_key "schedules", "days"
   add_foreign_key "trips", "users"
 end
