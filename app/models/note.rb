@@ -1,6 +1,6 @@
 class Note < ApplicationRecord
   # モデルの関連定義
-  belongs_to :trip
+  belongs_to :day
   # scope
   default_scope -> { order(id: :asc) }
   # バリデーション
