@@ -15,7 +15,8 @@
         <div class="row">
           <div class="col-md-3">
             <div class = 'form-group'>
-              <%= s.time_field :time, class: 'form-control', placeholder: "時", value: "schedules.time" %>
+              <%= s.time_select :time, class: 'form-control', value: Time.current %>
+              <%= hidden_field_tag :schedules %>
             </div>
           </div>
           <div class="col-md-9">
