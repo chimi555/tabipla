@@ -12,8 +12,9 @@ class TripsController < ApplicationController
 
   def new
     @trip = Trip.new
-    @trip.schedules.build
-    @trip.notes.build
+    @note = @trip.notes.build
+    @day = @trip.days.build
+    @schedule = @day.schedules.build
   end
 
   def create
@@ -56,8 +57,9 @@ class TripsController < ApplicationController
   def trip_params
     params.require(:trip).permit(
       :name, :content, :picture, :picture_cache, :remove_picture,
-      schedules_attributes: [:id, :time, :place, :action, :memo, :_destroy],
-      notes_attributes: [:id, :subject, :content, :_destroy]
+      notes_attributes: [:id, :subject, :content, :_destroy],
+      days_attributes: [:id, :date, :_destroy,
+        schedules_attributes: [:id, :time, :place, :action, :memo, :_destroy]]
     )
   end
 

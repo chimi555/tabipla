@@ -4,6 +4,6 @@ FactoryBot.define do
     sequence(:place) { |n| "TestPlace#{n}" }
     action { "TestAction" }
     memo { "TestScheduleです。" }
-    association :trip
+    association :day
   end
 end

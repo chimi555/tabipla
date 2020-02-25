@@ -20,4 +20,13 @@ RSpec.describe Note, type: :model do
       expect(note.errors[:content]).to include('は140文字以内で入力してください')
     end
   end
+
+  context 'アソシエーションのテスト' do
+    it 'tripが削除されると、noteも削除される' do
+      expect {note}.to change {Note.count}.by(+1)
+      note.trip.destroy
+      expect(Trip.count).to eq 0
+      expect(Note.count).to eq 0
+    end
+  end
 end

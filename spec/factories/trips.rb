@@ -4,11 +4,11 @@ FactoryBot.define do
     sequence(:content) { "test_tripです" }
     association :user
 
-    trait :schedules do
-      schedules_attributes do
+    trait :days do
+      days_attributes do
         [
-          { time: "10:00:00", place: "テスト駅", action: "出発", memo: "集合です" },
-          { time: "12:00:00", place: "テストレストラン", action: "食事", memo: "昼食です" },
+          { date: "2020-02-24" },
+          { date: "2020-02-25" },
         ]
       end
     end

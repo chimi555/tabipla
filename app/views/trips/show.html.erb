@@ -50,30 +50,42 @@
   <div class="trip-show-out">
     <p class="trip-show-tit"><i class="fas fa-clock"></i>スケジュール</p>
     <div class="trip-show-in">
-      <div class="trip-schedule">
-        <% @trip.schedules.each do |schedule| %>
-          <div class="trip-schedule-each row">  
-            <div class="col-md-2 col-sm-2">
-              <div class="trip-schedule-time">
-                <%= schedule.time.strftime("%H:%M") %>
+      <% @trip.days.each.with_index(1) do |day, i| %>
+        <div class="trip-day">
+          <% unless day.date.nil? %>
+            <div class="day-count">
+              <%= i %>日目
+            </div>
+            <div class="day-date">
+              <%= day.date.strftime("%Y年%m月%d日") %>
+            </div>
+          <% end %>
+        </div>
+        <div class="trip-schedule">
+          <% day.schedules.each do |schedule| %>
+            <div class="trip-schedule-each row">  
+              <div class="col-md-2 col-sm-2">
+                <div class="trip-schedule-time">
+                  <%= schedule.time.strftime("%H:%M") %>
+                </div>
+              </div>
+              <div class="col-md-10 col-sm-10 trip-schedule-right">
+                <span class="trip-schedule-action">
+                  <%= image_tag('action/' + schedule.action + '.png', class: "img-responsive") %>
+                </span>
+                <div class="trip-schedule-info">
+                  <p class="trip-schedule-place">
+                    <%= schedule.place %>
+                  </p>
+                  <p class="trip-schedule-memo">
+                    <%= schedule.memo %>
+                  </p>
+                </div>
               </div>
             </div>
-            <div class="col-md-10 col-sm-10 trip-schedule-right">
-              <span class="trip-schedule-action">
-                <%= image_tag('action/' + schedule.action + '.png', class: "img-responsive") %>
-              </span>
-              <div class="trip-schedule-info">
-                <p class="trip-schedule-place">
-                  <%= schedule.place %>
-                </p>
-                <p class="trip-schedule-memo">
-                  <%= schedule.memo %>
-                </p>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
+      <% end %>  
     </div>
   </div>
   <% if user_signed_in? %>
