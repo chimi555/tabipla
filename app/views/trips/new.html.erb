@@ -1,13 +1,13 @@
 <% provide(:title, "新規旅行プランの登録") %>
 <%= form_for(@trip) do |trip_f|%>
-  <div class="container panel-body">
+  <div class="container">
     <div class="page-tit">
       旅行プラン登録
     </div>
     <div class="whitebox">
       <%# プラン概要フォーム %>
-      <div class="trip-form">
-        <div class="trip-picture">
+      <div class="trip-form row">
+        <div class="trip-picture col-md-8">
           <%= image_tag @trip.picture.to_s, class: "img-responsive" %>
           <div class="trip-tit">
             <span class="tripform-info">
@@ -18,9 +18,17 @@
             </span>
           </div>
           <span class="tripform-picture">
-              <%= trip_f.file_field :picture, accept: 'image/jpeg, image/gif, image/png' %>
-            </span>
-         </div>
+            <%= trip_f.file_field :picture, accept: 'image/jpeg, image/gif, image/png' %>
+          </span>
+        </div>
+        <div class="trip-info col-md-4">
+          <div class="tripform-info">
+            <%= trip_f.country_select :country, selected: "JP", priority_countries: ["JP"], class: 'form-control' %>
+          </div>
+          <div class="tripform-info">
+            <%= trip_f.text_field :area, placeholder: "エリア、都市名など", class: 'form-control' %>
+          </div>
+        </div>
       </div>
       <%# noteフォーム %>
       <div class="note-form">
