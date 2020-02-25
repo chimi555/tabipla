@@ -23,7 +23,7 @@ RSpec.describe Note, type: :model do
 
   context 'アソシエーションのテスト' do
     it 'tripが削除されると、noteも削除される' do
-      expect {note}.to change {Note.count}.by(+1)
+      expect { note }.to change(Note, :count).by(+1)
       note.trip.destroy
       expect(Trip.count).to eq 0
       expect(Note.count).to eq 0

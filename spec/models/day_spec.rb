@@ -11,7 +11,7 @@ RSpec.describe Day, type: :model do
 
   context 'アソシエーションのテスト' do
     it 'tripが削除されると、dayも削除される' do
-      expect {day}.to change {Day.count}.by(+1)
+      expect { day }.to change(Day, :count).by(+1)
       day.trip.destroy
       expect(Trip.count).to eq 0
       expect(Day.count).to eq 0
