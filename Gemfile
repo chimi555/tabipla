@@ -34,6 +34,8 @@ gem 'nested_form_fields'
 gem 'jquery-rails'
 # fontawesome
 gem 'font-awesome-sass'
+# 国選択
+gem 'country_select', require: 'country_select_without_sort_alphabetical'
 
 group :development, :test do
   gem 'byebug', platforms: %i(mri mingw x64_mingw)
