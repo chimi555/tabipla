@@ -2,6 +2,8 @@ FactoryBot.define do
   factory :trip do
     sequence(:name) { |n| "TestTrip#{n}" }
     sequence(:content) { "test_tripです" }
+    country { '日本' }
+    area { '愛知県' }
     association :user
 
     trait :days do
