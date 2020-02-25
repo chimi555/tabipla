@@ -24,5 +24,5 @@ RSpec.describe 'Sign in', type: :system do
       click_button 'ログイン'
       expect(page).to have_content 'アカウント情報またはパスワードが違います。'
     end
-  end 
+  end
 end

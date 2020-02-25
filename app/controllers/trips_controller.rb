@@ -58,8 +58,10 @@ class TripsController < ApplicationController
     params.require(:trip).permit(
       :name, :content, :picture, :picture_cache, :remove_picture,
       notes_attributes: [:id, :subject, :content, :_destroy],
-      days_attributes: [:id, :date, :_destroy,
-        schedules_attributes: [:id, :time, :place, :action, :memo, :_destroy]]
+      days_attributes: [
+        :id, :date, :_destroy,
+        schedules_attributes: [:id, :time, :place, :action, :memo, :_destroy],
+      ]
     )
   end
 

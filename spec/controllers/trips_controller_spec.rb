@@ -108,8 +108,8 @@ RSpec.describe TripsController, type: :controller do
               place: "レストラン",
               action: "食事",
               memo: "昼食1時間",
-            ]
-          ]
+            ],
+          ],
         })
         expect do
           post :create, params: { trip: trip_params }
@@ -160,8 +160,8 @@ RSpec.describe TripsController, type: :controller do
               place: "レストラン",
               action: "食事",
               memo: "昼食1時間",
-            ]
-          ]
+            ],
+          ],
         })
         sign_in user
         patch :update, params: { id: trip.id, trip: trip_params }
@@ -184,8 +184,8 @@ RSpec.describe TripsController, type: :controller do
               place: "レストラン",
               action: "食事",
               memo: "昼食1時間",
-            ]
-          ]
+            ],
+          ],
         })
         sign_in other_user
         patch :update, params: { id: trip.id, trip: trip_params }
@@ -210,8 +210,8 @@ RSpec.describe TripsController, type: :controller do
               place: "レストラン",
               action: "食事",
               memo: "昼食1時間",
-            ]
-          ]
+            ],
+          ],
         })
         patch :update, params: { id: trip.id, trip: trip_params }
         expect(trip.reload.name).not_to eq "旅行プラン"

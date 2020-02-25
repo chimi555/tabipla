@@ -23,7 +23,7 @@ RSpec.describe Schedule, type: :model do
 
   context 'アソシエーションのテスト' do
     it 'dayが削除されると、scheduleも削除される' do
-      expect {schedule}.to change {Schedule.count}.by(+1)
+      expect { schedule }.to change(Schedule, :count).by(+1)
       schedule.day.destroy
       expect(Day.count).to eq 0
       expect(Schedule.count).to eq 0

@@ -28,5 +28,5 @@ RSpec.describe 'Sign up', type: :system do
       expect(page).to have_content 'ユーザーネームが入力されていません。'
       expect(page).to have_content 'エラーが発生したため ユーザ は保存されませんでした。'
     end
-  end 
+  end
 end
