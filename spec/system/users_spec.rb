@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
-  let!(:user) { create(:user) }
+  let(:user) { create(:user) }
+  let(:other_user) { create(:user) }
 
   describe "ユーザー編集ページ" do
     before do
@@ -88,6 +89,53 @@ RSpec.describe 'Users', type: :system do
         fill_in '現在のパスワード', with: ''
         expect(page).to have_current_path password_edit_user_path(user.id)
         expect(user.reload.password).not_to eq 'newpass'
+      end
+    end
+  end
+
+  describe "ユーザー個別ページ" do
+    before do
+      sign_in_as(user)
+    end
+
+    context '自分のページ' do
+      before do
+        create_list(:trip, 2, user: user)
+        visit user_path(user.id)
+      end
+
+      it "プロフィール編集ボタンが表示されること" do
+        expect(page).to have_link "プロフィール編集", href: edit_user_registration_path
+      end
+
+      it "tripプラン編集・削除ボタンが表示されること" do
+        expect(page).to have_selector '.edit-icon'
+        expect(page).to have_selector '.delete-icon'
+      end
+
+      xit "tripプランが削除できること", js: true do
+        link = find('.delete-icon', match: :first)
+        link.click
+        page.driver.browser.switch_to.alert.accept
+        sign_in_as(user)
+        visit user_path(user.id)
+        expect(user.trips.count).to eq 1
+      end
+    end
+
+    context '他人のページ' do
+      before do
+        visit user_path(other_user.id)
+        create_list(:trip, 2, user: other_user)
+      end
+
+      it "プロフィール編集ボタンが表示されないこと" do
+        expect(page).not_to have_link "プロフィール編集", href: edit_user_registration_path
+      end
+
+      it "tripプラン編集・削除ボタンが表示されないこと" do
+        expect(page).not_to have_selector '.edit-icon'
+        expect(page).not_to have_selector '.delete-icon'
       end
     end
   end
