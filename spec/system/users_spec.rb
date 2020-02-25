@@ -52,4 +52,43 @@ RSpec.describe 'Users', type: :system do
       end
     end
   end
+
+  describe "パスワード変更ページ" do
+    before do
+      sign_in_as(user)
+      within(".user-info") do
+        click_link 'プロフィール編集'
+      end
+      click_link "パスワード変更"
+    end
+
+    context 'ページレイアウト' do
+      it "正しいパスワード変更ページが表示されること" do
+        expect(page).to have_current_path password_edit_user_path(user.id)
+        expect(page).to have_content "新しいパスワード"
+        expect(page).to have_content "新しいパスワード(確認)"
+        expect(page).to have_content "現在のパスワード"
+      end
+    end
+
+    context '有効なユーザー' do
+      it "パスワード更新に成功すること" do
+        fill_in '新しいパスワード', with: 'newpass'
+        fill_in '新しいパスワード(確認)', with: 'newpass'
+        fill_in '現在のパスワード', with: 'foobar'
+        click_button 'パスワード更新'
+        expect(page).to have_current_path user_path(user.id)
+        # expect(user.reload.password).to eq 'newpass'
+        expect(page).to have_content "パスワードを更新しました"
+      end
+
+      it "パスワード更新に失敗すること" do
+        fill_in '新しいパスワード', with: 'newpass'
+        fill_in '新しいパスワード(確認)', with: 'newpass'
+        fill_in '現在のパスワード', with: ''
+        expect(page).to have_current_path password_edit_user_path(user.id)
+        expect(user.reload.password).not_to eq 'newpass'
+      end
+    end
+  end
 end
