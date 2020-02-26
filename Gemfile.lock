@@ -538,6 +538,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   carrierwave
   coffee-rails (~> 4.2)
+  countries
   country_select
   devise
   devise-i18n
