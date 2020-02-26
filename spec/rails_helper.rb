@@ -90,6 +90,9 @@ RSpec.configure do |config|
   # factoryを省略してcreate出来るための設定
   config.include FactoryBot::Syntax::Methods
 
+  # ApplicationHelperを使えるようにする
+  config.include ApplicationHelper
+
   # headless chrome 設定
   config.before(:each, type: :system) do
     driven_by :rack_test
