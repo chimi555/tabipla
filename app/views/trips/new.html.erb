@@ -23,7 +23,7 @@
         </div>
         <div class="trip-info col-md-4">
           <div class="tripform-info">
-            <%= trip_f.country_select :country, selected: "JP", priority_countries: ["JP"], class: 'form-control' %>
+            <%= trip_f.country_select :country_code, selected: "JP", priority_countries: ["JP"] %>
           </div>
           <div class="tripform-info">
             <%= trip_f.text_field :area, placeholder: "エリア、都市名など", class: 'form-control' %>
