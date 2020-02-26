@@ -20,6 +20,14 @@
       <div class="trip-show-user">
         ここにユーザー情報かく
       </div>
+      <div class="trip-show-info">
+        <p class="trip-show-info trip-show-country">
+          <%= @trip.country_name%>
+        </p>
+        <p class="trip-show-info trip-show-area">
+          <%= @trip.area %>
+        </p>
+      </div>
     </div>
   </div>
   <% if user_signed_in? %>
