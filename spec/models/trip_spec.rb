@@ -32,12 +32,6 @@ RSpec.describe Trip, type: :model do
       expect(trip.errors[:content]).to include('は140文字以内で入力してください')
     end
 
-    it '国名がなければ無効であること' do
-      trip = build(:trip, country: nil)
-      trip.valid?
-      expect(trip.errors[:country]).to include('を入力してください')
-    end
-
     it 'エリア名が30文字以上は無効であること' do
       trip = build(:trip, area: "a" * 31)
       trip.valid?
