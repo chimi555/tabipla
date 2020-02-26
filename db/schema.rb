@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2020_02_25_092526) do
     t.datetime "updated_at", null: false
     t.text "content"
     t.string "picture"
-    t.string "country"
+    t.string "country_code"
     t.string "area"
     t.index ["user_id", "created_at"], name: "index_trips_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_trips_on_user_id"
