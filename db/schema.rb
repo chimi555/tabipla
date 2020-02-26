@@ -37,9 +37,10 @@ ActiveRecord::Schema.define(version: 2020_02_25_092526) do
   create_table "notes", force: :cascade do |t|
     t.string "subject"
     t.text "content"
+    t.bigint "trip_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "trip_id"
+    t.index ["trip_id", "created_at"], name: "index_notes_on_trip_id_and_created_at"
     t.index ["trip_id"], name: "index_notes_on_trip_id"
   end
 
