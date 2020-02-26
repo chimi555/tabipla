@@ -35,7 +35,9 @@
         <%= render "note_form", trip_f: trip_f %>
       </div>
       <%# スケジュールフォーム %>
-      <%= render "day_form", trip_f: trip_f %>
+      <div class="day-form">
+        <%= render "day_form", trip_f: trip_f %>
+      </div>
       <div class="center">
         <%= trip_f.submit "登録", class: 'btn-submit' %>
       </div>

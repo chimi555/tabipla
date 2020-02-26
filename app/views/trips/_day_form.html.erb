@@ -1,28 +1,26 @@
 <%# スケジュールフォーム %>
-<div class="day-form">
-  <div class="form-out">
-    <p class="form-tit">スケジュール</p>
-    <%# dayフォーム %>
-    <div class="form-in">
-      <%= trip_f.nested_fields_for :days, wrapper_tag: :div do |day| %>
-        <div class=eachday-form-date>
-          <span class="each-form-delete">
-            <%= day.remove_nested_fields_link do %>
-              <i class="fas fa-times"></i>
-            <% end %>
-          </span>
-          <span class="each-form-in">
-            <%= day.date_select :date %>
-          </span>
-        </div>
-        <%# 個別スケジュールフォーム %>
-        <%= render "schedule_form", day: day %>
+<div class="form-out">
+  <p class="form-tit">スケジュール</p>
+  <%# dayフォーム %>
+  <div class="form-in">
+    <%= trip_f.nested_fields_for :days, wrapper_tag: :div do |day| %>
+      <div class=eachday-form-date>
+        <span class="each-day-delete">
+          <%= day.remove_nested_fields_link do %>
+            <i class="fas fa-times"></i>
+          <% end %>
+        </span>
+        <span class="each-form-in">
+          <%= day.date_select :date %>
+        </span>
+      </div>
+      <%# 個別スケジュールフォーム %>
+      <%= render "schedule_form", day: day %>
+    <% end %>
+    <span class="each-day-add">
+      <%= trip_f.add_nested_fields_link :days do %>
+        <i class="fas fa-plus-circle"></i>日付追加
       <% end %>
-      <span class="each-day-add">
-        <%= trip_f.add_nested_fields_link :days do %>
-          <i class="fas fa-plus-circle"></i>日付追加
-        <% end %>
-      </span>
-    </div>
+    </span>
   </div>
 </div>
