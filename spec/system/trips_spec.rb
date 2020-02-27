@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Trips', type: :system do
   let(:user) { create(:user) }
+  let(:other_user) { create(:user) }
 
   describe "新規旅行プラン登録ページ" do
     before do
@@ -10,12 +11,12 @@ RSpec.describe 'Trips', type: :system do
     end
 
     describe "ページレイアウト" do
-      it '正しいページが表示されること' do
+      it '正しいタイトルが表示されること' do
         expect(page).to have_title full_title('新規旅行プランの登録')
-        expect(page).to have_content "旅行プラン登録"
       end
 
-      it '正しいセクション名が表示されること' do
+      it '正しいページが表示されること' do
+        expect(page).to have_content "旅行プラン登録"
         expect(page).to have_content "旅行メモ"
         expect(page).to have_content "スケジュール"
       end
@@ -200,6 +201,123 @@ RSpec.describe 'Trips', type: :system do
             end
             expect(page).to have_css '.nested_trip_days', count: 1
           end
+        end
+      end
+    end
+  end
+
+  describe "旅行プラン個別ページ" do
+    let(:trip) { create(:trip, :notes, user: user) }
+    let!(:day) { create(:day, :schedules, trip: trip) }
+
+    describe "ページレイアウト" do
+      before do
+        visit trip_path(trip.id)
+      end
+
+      it '正しいタイトルが表示されること' do
+        expect(page).to have_title full_title(trip.name)
+      end
+
+      it '正しいページが表示されること' do
+        expect(page).to have_content trip.name
+        expect(page).to have_content trip.content
+      end
+
+      context '旅行infoセクション' do
+        it '正しい情報が表示されること' do
+          within(".trip-show-info") do
+            expect(page).to have_content trip.country_name
+            expect(page).to have_content trip.area
+          end
+        end
+      end
+
+      context '旅行infoセクション' do
+        it '正しい情報が表示されること' do
+          within(".trip-show-info") do
+            expect(page).to have_content trip.country_name
+            expect(page).to have_content trip.area
+          end
+        end
+      end
+
+      context '旅行メモセクション' do
+        it '正しいセクション名(旅行メモ)が表示されること' do
+          expect(page).to have_content "旅行メモ"
+        end
+
+        it '正しい旅行メモが表示されること' do
+          within(".trip-show-note") do
+            trip.notes.each do |note|
+              expect(page).to have_content note.subject
+              expect(page).to have_content note.content
+            end
+          end
+        end
+      end
+
+      context 'スケジュールセクション' do
+        it '正しいセクション名(スケジュール)が表示されること' do
+          expect(page).to have_content "スケジュール"
+        end
+
+        it '正しい日付が表示されること' do
+          within(".trip-show-day") do
+            expect(page).to have_content day.date
+          end
+        end
+        it '正しいスケジュールが表示されること' do
+          within(".trip-show-schedule") do
+            day.schedules.each do |schedule|
+              expect(page).to have_content schedule.time.strftime("%H:%M")
+              expect(page).to have_content schedule.place
+              expect(page).to have_content schedule.memo
+            end
+          end
+        end
+      end
+    end
+
+    describe "編集・削除機能" do
+      context '自分の旅行ページ' do
+        before do
+          sign_in user
+          visit trip_path(trip.id)
+        end
+
+        it "編集・削除ボタンが表示されること" do
+          expect(page).to have_link "編集", href: edit_trip_path(trip.id)
+          expect(page).to have_link "削除"
+        end
+
+        it "編集ページに移動できること" do
+          within(".trip-show-btn") do
+            click_on "編集"
+          end
+          expect(page).to have_current_path edit_trip_path(trip.id)
+        end
+
+        it "旅行プランが削除できること", js: true do
+          within(".trip-show-btn") do
+            click_on "削除"
+          end
+          page.driver.browser.switch_to.alert.accept
+          expect(page).to have_content '旅行プランが削除されました'
+          expect(current_path).to eq user_path(user.id)
+          expect(user.trips.count).to eq 0
+        end
+      end
+
+      context '他人の旅行ページ' do
+        before do
+          sign_in other_user
+          visit trip_path(trip.id)
+        end
+
+        it "編集・削除ボタンが表示されない" do
+          expect(page).not_to have_link "編集", href: edit_trip_path(trip.id)
+          expect(page).not_to have_link "削除"
         end
       end
     end
