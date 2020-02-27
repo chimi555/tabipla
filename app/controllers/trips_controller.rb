@@ -24,7 +24,7 @@ class TripsController < ApplicationController
       redirect_to trip_path(@trip.id)
     else
       flash[:alert] = '新しい旅行プランの登録に失敗しました'
-      render 'new'
+      render 'trips/new'
     end
   end
 
@@ -38,14 +38,14 @@ class TripsController < ApplicationController
       flash[:success] = "旅行情報が更新されました！"
       redirect_to @trip
     else
-      render 'edit'
+      render 'trips/edit'
     end
   end
 
   def destroy
     if current_user
       @trip.destroy
-      flash[:success] = 'deleted'
+      flash[:success] = '旅行プランが削除されました'
       redirect_to current_user
     else
       redirect_to root_url

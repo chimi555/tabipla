@@ -6,10 +6,10 @@
         <div class="trip-show-picture">
           <%= image_tag @trip.picture.to_s, class: "img-responsive" %>
           <div class="trip-show-head">
-            <p class="trip-show-info trip-show-name">
+            <p class="trip-show-name">
               <%= @trip.name %>
             </p>
-            <p class="trip-show-info trip-show-subname">
+            <p class="trip-show-subname">
               <%= @trip.content %>
             </p>
           </div>
@@ -21,10 +21,10 @@
         ここにユーザー情報かく
       </div>
       <div class="trip-show-info">
-        <p class="trip-show-info trip-show-country">
+        <p class="trip-show-country">
           <%= @trip.country_name%>
         </p>
-        <p class="trip-show-info trip-show-area">
+        <p class="trip-show-area">
           <%= @trip.area %>
         </p>
       </div>
@@ -41,7 +41,7 @@
   <div class="trip-show-out">
     <p class="trip-show-tit"><i class="fas fa-pencil-alt"></i>旅行メモ</p>
     <div class="trip-show-in">
-      <div class="trip-note">
+      <div class="trip-show-note">
         <% @trip.notes.each do |note| %>
           <div class="row trip-note-each">
             <span class="col-md-12 trip-note-subject">
@@ -59,7 +59,7 @@
     <p class="trip-show-tit"><i class="fas fa-clock"></i>スケジュール</p>
     <div class="trip-show-in">
       <% @trip.days.each.with_index(1) do |day, i| %>
-        <div class="trip-day">
+        <div class="trip-show-day">
           <% unless day.date.nil? %>
             <div class="day-count">
               <%= i %>日目
@@ -69,7 +69,7 @@
             </div>
           <% end %>
         </div>
-        <div class="trip-schedule">
+        <div class="trip-show-schedule">
           <% day.schedules.each do |schedule| %>
             <div class="trip-schedule-each row">  
               <div class="col-md-2 col-sm-2">
@@ -102,7 +102,7 @@
     </div>
   <% end %>
   <% if current_user?(@trip.user) %>
-    <div class="trip-show-user">
+    <div class="trip-show-btn">
       <span class="edit-icon btn">
         <%= link_to edit_trip_path(@trip) do %>
           <i class="fas fa-edit"></i>編集
