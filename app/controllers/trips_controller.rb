@@ -45,7 +45,7 @@ class TripsController < ApplicationController
   def destroy
     if current_user
       @trip.destroy
-      flash[:success] = 'deleted'
+      flash[:success] = '旅行プランが削除されました'
       redirect_to current_user
     else
       redirect_to root_url
