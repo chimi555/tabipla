@@ -279,7 +279,7 @@ RSpec.describe 'Trips', type: :system do
       end
     end
 
-    describe "編集・削除機能" do
+    describe "編集・削除ボタン" do
       context '自分の旅行ページ' do
         before do
           sign_in user
