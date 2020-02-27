@@ -37,6 +37,9 @@ gem 'font-awesome-sass'
 # 国選択
 gem 'countries'
 gem 'country_select', require: 'country_select_without_sort_alphabetical'
+# PDF書きだし
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
 
 group :development, :test do
   gem 'byebug', platforms: %i(mri mingw x64_mingw)
