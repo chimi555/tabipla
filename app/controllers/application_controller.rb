@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def set_search
     @search = Trip.ransack(params[:q])
-    @search_trips = @search.result.page(params[:page]).per(10)
+    @search_trips = @search.result.includes(:user).page(params[:page]).per(10)
   end
 
   protected
