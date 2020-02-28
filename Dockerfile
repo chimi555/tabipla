@@ -4,7 +4,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     imagemagick \
     nodejs \
-    postgresql-client \
+    fonts-ipafont \
     && rm -rf /var/lib/apt/lists/*
 RUN mkdir /myapp
 
