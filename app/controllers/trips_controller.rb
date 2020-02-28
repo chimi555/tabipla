@@ -12,11 +12,11 @@ class TripsController < ApplicationController
       f.html
       f.pdf do
         render pdf: @trip.name,
-              encoding: 'UTF-8',
-              layout: 'pdf.html',
-              template: "trips/show_pdf.html.erb",
-              page_size: 'A4',
-              dpi: '300'
+               encoding: 'UTF-8',
+               layout: 'pdf.html',
+               template: "trips/show_pdf.html.erb",
+               page_size: 'A4',
+               dpi: '300'
       end
     end
   end
