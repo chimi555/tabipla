@@ -42,6 +42,8 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 # 検索
 gem 'ransack'
+# N+1検出
+gem 'bullet'
 
 group :development, :test do
   gem 'byebug', platforms: %i(mri mingw x64_mingw)

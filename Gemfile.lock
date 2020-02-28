@@ -57,6 +57,9 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
     builder (3.2.4)
+    bullet (6.1.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     byebug (11.1.1)
     capybara (3.31.0)
       addressable
@@ -519,6 +522,7 @@ GEM
     unf_ext (0.0.7.6)
     unicode-display_width (1.6.1)
     unicode_utils (1.4.0)
+    uniform_notifier (1.13.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
@@ -544,6 +548,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap-sass
+  bullet
   byebug
   capybara (>= 2.15)
   carrierwave
