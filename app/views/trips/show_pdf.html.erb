@@ -1,10 +1,10 @@
 <% provide(:title, @trip.name) %>
 <div class="container">
-  <div class="row trip-show-head">
-    <div class="col-md-8">
+  <div class="trip-show-head">
+    <div class="center">
       <div class="trip-show">
         <div class="trip-show-picture">
-          <%= image_tag @trip.picture.to_s, class: "img-responsive" %>
+          <%= wicked_pdf_image_tag @trip.picture.to_s, class: "img-responsive" %>
           <div class="trip-show-head">
             <p class="trip-show-name">
               <%= @trip.name %>
@@ -16,28 +16,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="trip-show-user">
-        ここにユーザー情報かく
-      </div>
-      <div class="trip-show-info">
-        <p class="trip-show-country">
-          <%= @trip.country_name%>
-        </p>
-        <p class="trip-show-area">
-          <%= @trip.area %>
-        </p>
-      </div>
-    </div>
   </div>
-  <% if user_signed_in? %>
-    <div class="trip-show-like">
-      <%= render "likes/like_form", trip: @trip %>
-      <span id="liked-countshow">
-        <%= @trip.likes.count %>
-      </span>
-    </div>
-  <% end %>
   <div class="trip-show-out">
     <p class="trip-show-tit"><i class="fas fa-pencil-alt"></i>旅行メモ</p>
     <div class="trip-show-in">
@@ -72,14 +51,14 @@
         <div class="trip-show-schedule">
           <% day.schedules.each do |schedule| %>
             <div class="trip-schedule-each row">  
-              <div class="col-md-2 col-sm-2">
+              <div class="col-md-2 col-sm-2 col-xs-2">
                 <div class="trip-schedule-time">
                   <%= schedule.time.strftime("%H:%M") %>
                 </div>
               </div>
-              <div class="col-md-10 col-sm-10 trip-schedule-right">
+              <div class="col-md-10 col-sm-10 col-xs-10 trip-schedule-right">
                 <span class="trip-schedule-action">
-                  <%= image_tag('action/' + schedule.action + '.png', class: "img-responsive") %>
+                  <%= wicked_pdf_image_tag('action/' + schedule.action + '.png', class: "img-responsive") %>
                 </span>
                 <div class="trip-schedule-info">
                   <p class="trip-schedule-place">
@@ -96,23 +75,4 @@
       <% end %>  
     </div>
   </div>
-  <% if user_signed_in? %>
-    <%= link_to trip_path(@trip.id, format: :pdf) do %>
-      PDFに書き出す
-    <% end %>
-  <% end %>
-  <% if current_user?(@trip.user) %>
-    <div class="trip-show-btn">
-      <span class="edit-icon btn">
-        <%= link_to edit_trip_path(@trip) do %>
-          <i class="fas fa-edit"></i>編集
-        <% end %>
-      </span>
-      <span class="delete-icon btn">
-        <%= link_to @trip, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
-          <i class="far fa-trash-alt"></i>削除
-        <% end %>
-      </span>
-    </div>
-  <% end %>
 </div>
