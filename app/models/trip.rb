@@ -6,6 +6,8 @@ class Trip < ApplicationRecord
   has_many :days, dependent: :destroy
   accepts_nested_attributes_for :days, allow_destroy: true
   has_many :likes, dependent: :destroy
+  has_many :tags, through: :trip_tags
+  has_many :trip_tags, dependent: :destroy
   # scope
   default_scope -> { order(created_at: :desc) }
   # バリデーション
