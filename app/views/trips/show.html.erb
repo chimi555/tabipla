@@ -97,9 +97,9 @@
     </div>
   </div>
   <% if user_signed_in? %>
-    <div class="trip-show-like">
-      <%= render "likes/like_form", trip: @trip %>
-    </div>
+    <%= link_to trip_path(@trip.id, format: :pdf) do %>
+      PDFに書き出す
+    <% end %>
   <% end %>
   <% if current_user?(@trip.user) %>
     <div class="trip-show-btn">
