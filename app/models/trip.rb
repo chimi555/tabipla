@@ -25,6 +25,24 @@ class Trip < ApplicationRecord
     country.translations[I18n.locale.to_s] || country.name
   end
 
+  # タグ更新処理
+  def save_tags(tags)
+    current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
+    old_tags = current_tags - tags
+    new_tags = tags - current_tags
+
+    # 古いタグを削除
+    old_tags.each do |old_name|
+      self.tags.delete Tag.find_by(tag_name:old_name)
+    end
+
+    # 新しいタグを追加
+    new_tags.each do |new_name|
+      trip_tag = Tag.find_or_create_by(tag_name:new_name)
+      self.tags << trip_tag
+    end
+  end
+
   private
 
   # アップロードされた画像のサイズをバリデーションする
