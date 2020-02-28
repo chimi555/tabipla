@@ -9,21 +9,6 @@
       </div>   
     </div>
   </div>
-  <div class="section">
-    <div class="container" >
-      <div class="recent-trips">
-        <div class="section-tit">NEW TRIP</div>
-        <div class="section-inbox">
-          <ol class="trips">
-            <%= render @trip_recent %>
-          </ol>
-          <%= link_to trips_path do %>
-            MORE
-          <% end %>
-        <div>
-      </div>
-    </div>
-  </div>
 <% else %>
   <div class="center">
     <div class="top-imgarea">
@@ -40,19 +25,23 @@
       </div>   
     </div>
   </div>
-  <div class="section">
-    <div class="container" >
-      <div class="recent-trips">
-        <div class="section-tit">NEW TRIP</div>
-        <div class="section-inbox">
-          <ol class="trips">
-            <%= render @trip_recent %>
-          </ol>
-          <%= link_to trips_path do %>
-            MORE
-          <% end %>
-        <div>
+<% end %>
+<div class="search-box gray-box">
+  <div class="center">
+    <%= render "shared/search_form" %>
+  </div>
+</div>
+<div class="section">
+  <div class="container">
+    <div class="recent-trips">
+      <div class="section-inbox">
+        <ol class="trips">
+          <%= render @search_trips %> 
+        </ol>
+        <%= link_to trips_path do %>
+          MORE
+        <% end %>
       </div>
     </div>
   </div>
-<% end %>
+</div>
