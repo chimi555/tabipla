@@ -21,6 +21,10 @@ gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+# jquery
+gem 'jquery-rails'
+# jquery ui
+gem 'jquery-ui-rails'
 # サンプルユーザー
 gem 'faker'
 # 画像投稿
@@ -31,7 +35,6 @@ gem 'mini_magick'
 gem 'kaminari'
 # 動的な入力フォーム
 gem 'nested_form_fields'
-gem 'jquery-rails'
 # fontawesome
 gem 'font-awesome-sass'
 # 国選択
