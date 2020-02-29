@@ -33,12 +33,12 @@ class Trip < ApplicationRecord
 
     # 古いタグを削除
     old_tags.each do |old_name|
-      self.tags.delete Tag.find_by(tag_name:old_name)
+      self.tags.delete Tag.find_by(tag_name: old_name)
     end
 
     # 新しいタグを追加
     new_tags.each do |new_name|
-      trip_tag = Tag.find_or_create_by(tag_name:new_name)
+      trip_tag = Tag.find_or_create_by(tag_name: new_name)
       self.tags << trip_tag
     end
   end
