@@ -28,6 +28,11 @@
           <div class="tripform-info">
             <%= trip_f.text_field :area, placeholder: "エリア、都市名など", class: 'form-control' %>
           </div>
+          <div class="trip-tag">
+            <ul id="trip-tags">
+            </ul>
+            <%= hidden_field_tag :tag_hidden, @tag_list %>
+          </div>
         </div>
       </div>
       <%# noteフォーム %>

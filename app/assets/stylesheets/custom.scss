@@ -99,7 +99,7 @@ p{
   display: inline-block;
   text-align: center;
   background-color: rgba(0,0,0,0.2);
-  border-radius: 10px;
+  border-radius: 3px;
   font-weight: bold;
   font-size: 15px;
   color: rgba(0,0,0,0.7);
@@ -225,7 +225,7 @@ header {
 /*_trip*/
 .eachtrip-picture{
   img{
-    border-radius: 10px;
+    border-radius: 3px;
   }
 }
 
@@ -235,7 +235,7 @@ header {
   padding: 0.5em 1em;
   background-color: rgba(0,0,0,0.4);
   color: #FFF;
-  border-radius: 4px;
+  border-radius: 3px;
   border: dashed 1px #FFF;
   box-shadow: 0px 0px 0px 5px rgba(0,0,0,0.4);
   font-size: 14px;
@@ -253,7 +253,7 @@ header {
 .trip-picture{
   position: relative;
   img{
-    border-radius: 10px;
+    border-radius: 3px;
     width: 100%;
   }
   .trip-tit{
@@ -278,7 +278,7 @@ header {
 .form-out{
   margin: 25px 0;
   background-color: #fffee2;
-  border-radius: 10px;
+  border-radius: 3px;
   padding: 20px 15px 15px;
   .form-tit{
     margin-bottom: 15px;
@@ -289,7 +289,7 @@ header {
   }
   .form-in{
     border: dashed 2px #ffc870;
-    border-radius: 10px;
+    border-radius: 3px;
     padding: 25px 25px 60px;
     position: relative;
     .each-form-add{
@@ -328,12 +328,12 @@ header {
   max-width: 740px;
   position: relative;
   img{
-    border-radius: 10px;
+    border-radius: 3px;
     width: 100%;
   }
   .trip-show-head{
     background-color: rgba(0,0,0,0.5);
-    border-radius: 10px;
+    border-radius: 3px;
     text-align: center;
     padding: 40px;
     position: absolute;
@@ -356,7 +356,7 @@ header {
 .trip-show-out{
   margin: 35px 0;
   background-color: #fffee2;
-  border-radius: 10px;
+  border-radius: 3px;
   padding: 30px;
   .trip-show-tit{
     margin-bottom: 25px;
@@ -370,7 +370,7 @@ header {
   }
   .trip-show-in{
     border: dashed 2px #ffc870;
-    border-radius: 10px;
+    border-radius: 3px;
     padding: 25px 40px 35px;
   }
 }
@@ -453,7 +453,7 @@ header {
   display: inline-block;
   text-align: center;
   background-color: rgba(0,0,0,0.5);
-  border-radius: 10px;
+  border-radius: 3px;
   font-weight: bold;
   font-size: 20px;
   color: #fff;
@@ -467,7 +467,7 @@ header {
   display: inline-block;
   text-align: center;
   background-color: rgba(0,0,0,0.4);
-  border-radius: 10px;
+  border-radius: 3px;
   font-weight: bold;
   font-size: 20px;
   color: rgba(0,0,0,0.3);
