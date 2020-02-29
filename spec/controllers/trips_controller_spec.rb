@@ -66,6 +66,8 @@ RSpec.describe TripsController, type: :controller do
 
   describe '#create' do
     context 'ログイン済ユーザー' do
+      let!(:tag_list) { "海外" }
+
       before do
         sign_in user
       end
@@ -86,7 +88,7 @@ RSpec.describe TripsController, type: :controller do
           ],
         })
         expect do
-          post :create, params: { trip: trip_params }
+          post :create, params: { trip: trip_params, tag_list: tag_list }
         end.to change(user.trips, :count).by(1)
         redirect_to trip_path(trip)
       end
@@ -145,6 +147,8 @@ RSpec.describe TripsController, type: :controller do
 
   describe '#update' do
     context 'ログイン済ユーザー' do
+      let!(:tag_list) { "北欧" }
+
       it '自分の旅行プランを編集できる' do
         trip_params = attributes_for(:trip, {
           name: "旅行プラン",
@@ -164,7 +168,7 @@ RSpec.describe TripsController, type: :controller do
           ],
         })
         sign_in user
-        patch :update, params: { id: trip.id, trip: trip_params }
+        patch :update, params: { id: trip.id, trip: trip_params, tag_list: tag_list }
         expect(trip.reload.name).to eq "旅行プラン"
         redirect_to trip_path(trip)
       end
