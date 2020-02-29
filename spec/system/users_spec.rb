@@ -113,11 +113,10 @@ RSpec.describe 'Users', type: :system do
         expect(page).to have_selector '.delete-icon'
       end
 
-      xit "tripプランが削除できること", js: true do
+      it "tripプランが削除できること", js: true do
         link = find('.delete-icon', match: :first)
         link.click
         page.driver.browser.switch_to.alert.accept
-        sign_in_as(user)
         visit user_path(user.id)
         expect(user.trips.count).to eq 1
       end
