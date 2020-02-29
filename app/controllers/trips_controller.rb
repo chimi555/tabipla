@@ -30,7 +30,7 @@ class TripsController < ApplicationController
 
   def create
     @trip = current_user.trips.build(trip_params)
-    tag_list = params[:trip][:tag_name].split(",")
+    tag_list = params[:tag_list].split(",")
     if @trip.save
       @trip.save_tags(tag_list)
       flash[:success] = '新しい旅行プランが登録されました'
@@ -48,7 +48,7 @@ class TripsController < ApplicationController
 
   def update
     @trip = Trip.find(params[:id])
-    tag_list = params[:trip][:tag_name].split(",")
+    tag_list = params[:tag_list].split(",")
     if @trip.update_attributes(trip_params)
       @trip.save_tags(tag_list)
       flash[:success] = "旅行情報が更新されました！"
