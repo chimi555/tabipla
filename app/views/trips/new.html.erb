@@ -29,7 +29,8 @@
             <%= trip_f.text_field :area, placeholder: "エリア、都市名など", class: 'form-control' %>
           </div>
           <div class="trip-tag">
-            <%= trip_f.text_field :tag_name, value: @tag_list %>
+            <ul id="trip-tags">
+            </ul>
           </div>
         </div>
       </div>
