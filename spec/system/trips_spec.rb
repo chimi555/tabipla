@@ -214,6 +214,8 @@ RSpec.describe 'Trips', type: :system do
   describe "旅行プラン個別ページ" do
     let(:trip) { create(:trip, :notes, user: user) }
     let!(:day) { create(:day, :schedules, trip: trip) }
+    let!(:tag) { create(:tag, tag_name: "北欧") }
+    let!(:trip_tag) { create(:trip_tag, trip: trip, tag: tag) }
 
     describe "ページレイアウト" do
       before do
@@ -236,13 +238,10 @@ RSpec.describe 'Trips', type: :system do
             expect(page).to have_content trip.area
           end
         end
-      end
 
-      context '旅行infoセクション' do
-        it '正しい情報が表示されること' do
-          within(".trip-show-info") do
-            expect(page).to have_content trip.country_name
-            expect(page).to have_content trip.area
+        it '正しいタグ名が表示されること' do
+          within(".trip-show-tag") do
+            expect(page).to have_content tag.tag_name
           end
         end
       end
