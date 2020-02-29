@@ -24,6 +24,9 @@
               ログアウト
             <% end %>
           </li>
+          <li class="dropdawn .dropdown-slide">
+            <%= current_user.user_name %>
+          </li>
         <% else %>
           <li>
             <%= link_to login_path do %>
