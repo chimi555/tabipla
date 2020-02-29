@@ -81,7 +81,7 @@ RSpec.describe 'Trips', type: :system do
       end
     end
 
-    describe "新規旅行プラン登録機能" do
+    describe "新規旅行プラン登録機能", js: true do
       context '正しい入力値' do
         it '新規登録が成功すること' do
           expect do
@@ -92,6 +92,9 @@ RSpec.describe 'Trips', type: :system do
             within(".trip-info") do
               select 'フィンランド', from: 'trip[country_code]'
               fill_in 'trip[area]', with: 'ヘルシンキ'
+            end
+            within(".trip-tag") do
+              fill_in 'tag', with: '海外'
             end
             within(".note-form") do
               fill_in 'trip[notes_attributes][0][subject]', with: '持ち物'
@@ -402,7 +405,7 @@ RSpec.describe 'Trips', type: :system do
       end
     end
 
-    describe "旅行プラン編集機能" do
+    describe "旅行プラン編集機能", js: true do
       before do
         sign_in user
         visit edit_trip_path(trip.id)
@@ -417,6 +420,9 @@ RSpec.describe 'Trips', type: :system do
           within(".trip-info") do
             select 'ノルウェー', from: 'trip[country_code]'
             fill_in 'trip[area]', with: 'オスロ'
+          end
+          within(".trip-tag") do
+            fill_in 'tag', with: '北欧'
           end
           click_button '更新'
           expect(page).to have_content '旅行情報が更新されました！'
