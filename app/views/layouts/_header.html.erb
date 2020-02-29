@@ -24,10 +24,20 @@
               ログアウト
             <% end %>
           </li>
+          <li class="dropdawn .dropdown-slide">
+            <%= current_user.user_name %>
+          </li>
         <% else %>
           <li>
             <%= link_to login_path do %>
               ログイン
+            <% end %>
+          </li>
+          <li>
+            <%= form_for(:user, url: login_path) do |f| %>
+              <%= f.hidden_field :login, value: 'trilog@example.com' %>
+              <%= f.hidden_field :password, value: 'trilog' %>
+              <%= f.submit 'テストログイン', class: '' %>
             <% end %>
           </li>
         <% end %>
