@@ -1,9 +1,22 @@
-<% provide(:title, '旅行プラン一覧') %>
+<% if @selected_tag.present? %>
+  <% provide(:title, @selected_tag.tag_name ) %>
+<% else %>
+  <% provide(:title, '旅行プラン一覧') %>
+<% end %>
+<div class="container">
+  <div class="trip-index-tit center">
+    <% if @selected_tag.present? %>
+      <p class="page-tit">すべての旅行プラン</p>
+      <p><%= "カテゴリー：#{@selected_tag.tag_name}" %></p>
+    <% else %>
+      <p>すべての旅行プラン</p>
+    <% end %>
+  </div>
+  <ul class="users">
+    <% @trips.each do |trip| %>
+      <%= render trip %>
+    <% end %>
+  </ul>
 
-<ul class="users">
-  <% @trips.each do |trip| %>
-    <%= render trip %>
-  <% end %>
-</ul>
-
-<%= paginate @trips %>
+  <%= paginate @trips %>
+</div>

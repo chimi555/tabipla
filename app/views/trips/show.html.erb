@@ -33,7 +33,7 @@
           <ul>
             <% @trip.tags.each do |tag| %>
               <li>
-                <%= link_to tag.tag_name,trips_path(tag_id:tag.id) %>
+                <%= link_to tag.tag_name, trips_path(tag_id: tag.id) %>
               </li>
             <% end %>
           </ul>
