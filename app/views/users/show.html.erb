@@ -17,7 +17,7 @@
               <%= link_to "プロフィール編集",  edit_user_registration_path, class: "btn" %>
             </div>
           <% else %>
-            <%= render 'follow_form' if user_signed_in? %>
+            <%= render 'follow_form', user: @user  %>
           <% end %>
           <div class="user-prof col-md-12 col-sm-12 col-xs-12">
               <%= @user.profile %>
