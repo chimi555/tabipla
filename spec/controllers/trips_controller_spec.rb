@@ -39,6 +39,22 @@ RSpec.describe TripsController, type: :controller do
     end
   end
 
+  describe '#show pdf' do
+    context '全てのユーザー' do
+      before do
+        get :show, format: :pdf, params: { id: trip.id }
+      end
+
+      it 'レスポンスが正常に表示されること' do
+        expect(response).to have_http_status(:success)
+      end
+
+      it ' インスタンス変数@tripが存在する' do
+        expect(assigns(:trip)).to eq trip
+      end
+    end
+  end
+
   describe '#new' do
     context 'ログイン済ユーザー' do
       before do

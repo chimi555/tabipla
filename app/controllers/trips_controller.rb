@@ -13,9 +13,9 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
-    respond_to do |f|
-      f.html
-      f.pdf do
+    respond_to do |format|
+      format.html
+      format.pdf do
         render pdf: @trip.name,
                encoding: 'UTF-8',
                layout: 'pdf.html',

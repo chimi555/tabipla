@@ -218,21 +218,21 @@ RSpec.describe 'Trips', type: :system do
     let!(:trip_tag) { create(:trip_tag, trip: trip, tag: tag) }
 
     describe "ページレイアウト" do
-      before do
-        visit trip_path(trip.id)
-      end
+      context '全てのユーザー' do
+        before do
+          visit trip_path(trip.id)
+        end
 
-      it '正しいタイトルが表示されること' do
-        expect(page).to have_title full_title(trip.name)
-      end
+        it '正しいタイトルが表示されること' do
+          expect(page).to have_title full_title(trip.name)
+        end
 
-      it '正しいページが表示されること' do
-        expect(page).to have_content trip.name
-        expect(page).to have_content trip.content
-      end
+        it '正しいページが表示されること' do
+          expect(page).to have_content trip.name
+          expect(page).to have_content trip.content
+        end
 
-      context '旅行infoセクション' do
-        it '正しい情報が表示されること' do
+        it '正しい旅行infoが表示されること' do
           within(".trip-show-info") do
             expect(page).to have_content trip.country_name
             expect(page).to have_content trip.area
@@ -244,9 +244,7 @@ RSpec.describe 'Trips', type: :system do
             expect(page).to have_content tag.tag_name
           end
         end
-      end
 
-      context '旅行メモセクション' do
         it '正しいセクション名(旅行メモ)が表示されること' do
           expect(page).to have_content "旅行メモ"
         end
@@ -259,18 +257,11 @@ RSpec.describe 'Trips', type: :system do
             end
           end
         end
-      end
 
-      context 'スケジュールセクション' do
         it '正しいセクション名(スケジュール)が表示されること' do
           expect(page).to have_content "スケジュール"
         end
 
-        it '正しい日付が表示されること' do
-          within(".trip-show-day") do
-            expect(page).to have_content day.date
-          end
-        end
         it '正しいスケジュールが表示されること' do
           within(".trip-show-schedule") do
             day.schedules.each do |schedule|
@@ -279,6 +270,22 @@ RSpec.describe 'Trips', type: :system do
               expect(page).to have_content schedule.memo
             end
           end
+        end
+      end
+
+      context 'ログインユーザー' do
+        before do
+          sign_in other_user
+          visit trip_path(trip.id)
+        end
+
+        it 'PDF書き出しリンクが表示されること' do
+          expect(page).to have_link "PDFに書き出す", href: trip_path(trip.id, format: :pdf)
+        end
+
+        it 'PDFの書き出しができること' do
+          click_on "PDFに書き出す"
+          expect(page).to have_current_path trip_path(trip.id, format: :pdf)
         end
       end
     end
