@@ -10,6 +10,7 @@ class Trip < ApplicationRecord
   has_many :tags, through: :trip_tags
   # scope
   default_scope -> { order(created_at: :desc) }
+  scope :from_tag, -> (tag_id)  { where(id: tag_ids = TripTag.where(tag_id: tag_id).select(:trip_id)) }
   # バリデーション
   validates :user_id, presence: true
   validates :name, presence: true, length: { maximum: 30 }
