@@ -81,7 +81,7 @@ RSpec.describe 'Trips', type: :system do
       end
     end
 
-    describe "新規旅行プラン登録機能" do
+    describe "新規旅行プラン登録機能", js: true do
       context '正しい入力値' do
         it '新規登録が成功すること' do
           expect do
@@ -92,6 +92,9 @@ RSpec.describe 'Trips', type: :system do
             within(".trip-info") do
               select 'フィンランド', from: 'trip[country_code]'
               fill_in 'trip[area]', with: 'ヘルシンキ'
+            end
+            within(".trip-tag") do
+              fill_in 'tag', with: '海外'
             end
             within(".note-form") do
               fill_in 'trip[notes_attributes][0][subject]', with: '持ち物'
@@ -211,40 +214,37 @@ RSpec.describe 'Trips', type: :system do
   describe "旅行プラン個別ページ" do
     let(:trip) { create(:trip, :notes, user: user) }
     let!(:day) { create(:day, :schedules, trip: trip) }
+    let!(:tag) { create(:tag, tag_name: "北欧") }
+    let!(:trip_tag) { create(:trip_tag, trip: trip, tag: tag) }
 
     describe "ページレイアウト" do
-      before do
-        visit trip_path(trip.id)
-      end
+      context '全てのユーザー' do
+        before do
+          visit trip_path(trip.id)
+        end
 
-      it '正しいタイトルが表示されること' do
-        expect(page).to have_title full_title(trip.name)
-      end
+        it '正しいタイトルが表示されること' do
+          expect(page).to have_title full_title(trip.name)
+        end
 
-      it '正しいページが表示されること' do
-        expect(page).to have_content trip.name
-        expect(page).to have_content trip.content
-      end
+        it '正しいページが表示されること' do
+          expect(page).to have_content trip.name
+          expect(page).to have_content trip.content
+        end
 
-      context '旅行infoセクション' do
-        it '正しい情報が表示されること' do
+        it '正しい旅行infoが表示されること' do
           within(".trip-show-info") do
             expect(page).to have_content trip.country_name
             expect(page).to have_content trip.area
           end
         end
-      end
 
-      context '旅行infoセクション' do
-        it '正しい情報が表示されること' do
-          within(".trip-show-info") do
-            expect(page).to have_content trip.country_name
-            expect(page).to have_content trip.area
+        it '正しいタグ名が表示されること' do
+          within(".trip-show-tag") do
+            expect(page).to have_content tag.tag_name
           end
         end
-      end
 
-      context '旅行メモセクション' do
         it '正しいセクション名(旅行メモ)が表示されること' do
           expect(page).to have_content "旅行メモ"
         end
@@ -257,18 +257,11 @@ RSpec.describe 'Trips', type: :system do
             end
           end
         end
-      end
 
-      context 'スケジュールセクション' do
         it '正しいセクション名(スケジュール)が表示されること' do
           expect(page).to have_content "スケジュール"
         end
 
-        it '正しい日付が表示されること' do
-          within(".trip-show-day") do
-            expect(page).to have_content day.date
-          end
-        end
         it '正しいスケジュールが表示されること' do
           within(".trip-show-schedule") do
             day.schedules.each do |schedule|
@@ -277,6 +270,22 @@ RSpec.describe 'Trips', type: :system do
               expect(page).to have_content schedule.memo
             end
           end
+        end
+      end
+
+      context 'ログインユーザー' do
+        before do
+          sign_in other_user
+          visit trip_path(trip.id)
+        end
+
+        it 'PDF書き出しリンクが表示されること' do
+          expect(page).to have_link "PDFに書き出す", href: trip_path(trip.id, format: :pdf)
+        end
+
+        it 'PDFの書き出しができること' do
+          click_on "PDFに書き出す"
+          expect(page).to have_current_path trip_path(trip.id, format: :pdf)
         end
       end
     end
@@ -402,7 +411,7 @@ RSpec.describe 'Trips', type: :system do
       end
     end
 
-    describe "旅行プラン編集機能" do
+    describe "旅行プラン編集機能", js: true do
       before do
         sign_in user
         visit edit_trip_path(trip.id)
@@ -417,6 +426,9 @@ RSpec.describe 'Trips', type: :system do
           within(".trip-info") do
             select 'ノルウェー', from: 'trip[country_code]'
             fill_in 'trip[area]', with: 'オスロ'
+          end
+          within(".trip-tag") do
+            fill_in 'tag', with: '北欧'
           end
           click_button '更新'
           expect(page).to have_content '旅行情報が更新されました！'
@@ -455,6 +467,58 @@ RSpec.describe 'Trips', type: :system do
           expect(trip.days.count).to eq 2
           expect(trip.days[1].schedules.count).to eq 1
         end
+      end
+    end
+  end
+
+  describe "旅行一覧", js: true do
+    let(:trip) { create(:trip, :notes, user: user) }
+    let(:other_trip) { create(:trip) }
+    let!(:day) { create(:day, :schedules, trip: trip) }
+    let!(:tag) { create(:tag, tag_name: "北欧") }
+    let!(:trip_tag) { create(:trip_tag, trip: trip, tag: tag) }
+
+    context 'カテゴリーが選択されているとき' do
+      before do
+        sign_in user
+        visit trips_path(tag_id: tag.id)
+      end
+
+      it '正しいタイトルが表示されること' do
+        expect(page).to have_title full_title(tag.tag_name)
+      end
+
+      it '正しいカテゴリー名が表示されること' do
+        expect(page).to have_content "すべての旅行プラン"
+        expect(page).to have_content "カテゴリー：#{tag.tag_name}"
+      end
+
+      it "該当カテゴリーに属した旅行プランが表示されること" do
+        expect(page).to have_link href: trip_path(trip.id)
+      end
+
+      it "該当カテゴリーに属していない旅行プランは表示されないこと" do
+        expect(page).not_to have_link href: trip_path(other_trip.id)
+      end
+    end
+
+    context 'カテゴリーが選択されていないとき' do
+      before do
+        sign_in user
+        visit trips_path
+      end
+
+      it '正しいタイトルが表示されること' do
+        expect(page).to have_title full_title("旅行プラン一覧")
+      end
+
+      it '正しいページ名が表示されること' do
+        expect(page).to have_content "すべての旅行プラン"
+      end
+
+      it "全ての旅行プランが表示されること" do
+        expect(page).to have_link href: trip_path(trip.id)
+        expect(page).not_to have_link href: trip_path(other_trip.id)
       end
     end
   end

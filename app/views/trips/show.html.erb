@@ -33,7 +33,7 @@
           <ul>
             <% @trip.tags.each do |tag| %>
               <li>
-                <%= link_to tag.tag_name,trips_path(tag_id:tag.id) %>
+                <%= link_to tag.tag_name, trips_path(tag_id: tag.id) %>
               </li>
             <% end %>
           </ul>
@@ -70,7 +70,7 @@
   <div class="trip-show-out">
     <p class="trip-show-tit"><i class="fas fa-clock"></i>スケジュール</p>
     <div class="trip-show-in">
-      <% @trip.days.each.with_index(1) do |day, i| %>
+      <% @trip.days.includes([:schedules]).each.with_index(1) do |day, i| %>
         <div class="trip-show-day">
           <% unless day.date.nil? %>
             <div class="day-count">

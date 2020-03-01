@@ -3,14 +3,19 @@ class TripsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @trips = Trip.page(params[:page]).per(10)
+    if params[:tag_id]
+      @selected_tag = Tag.find(params[:tag_id])
+      @trips = Trip.from_tag(params[:tag_id]).includes([:user]).page(params[:page]).per(10)
+    else
+      @trips = Trip.includes([:user]).page(params[:page]).per(10)
+    end
   end
 
   def show
     @trip = Trip.find(params[:id])
-    respond_to do |f|
-      f.html
-      f.pdf do
+    respond_to do |format|
+      format.html
+      format.pdf do
         render pdf: @trip.name,
                encoding: 'UTF-8',
                layout: 'pdf.html',
