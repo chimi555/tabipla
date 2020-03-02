@@ -43,4 +43,39 @@ RSpec.describe 'Likes', type: :system do
       end
     end
   end
+
+  describe "行きたいリストページ" do
+    context '行きたい登録済の旅行プランがあるとき' do
+      before do
+        sign_in_as(user)
+        like
+        visit like_user_path(user)
+      end
+
+      it '正しいページにアクセスされること' do
+        expect(page).to have_title full_title("行きたいリスト一覧")
+        expect(page).to have_content "行きたい！旅行リスト"
+      end
+
+      it '行きたい済の旅行プランが表示されること' do
+        expect(page).to have_link href: trip_path(liked_trip.id)
+      end
+    end
+
+    context '行きたい登録済の旅行プランがないとき' do
+      before do
+        sign_in_as(other_user)
+        visit like_user_path(other_user)
+      end
+
+      it '正しいページにアクセスされること' do
+        expect(page).to have_title full_title("行きたいリスト一覧")
+        expect(page).to have_content "行きたい！旅行リスト"
+      end
+
+      it '行きたい済の旅行プランが一つもないこと' do
+        expect(page).to have_content "まだ行きたい！登録した旅行プランはありません"
+      end
+    end
+  end
 end
