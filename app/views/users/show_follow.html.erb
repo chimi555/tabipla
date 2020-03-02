@@ -1,0 +1,14 @@
+<% provide(:title, @title)%>
+<div class="row">
+  <h1><%= @title %></h1>
+  <% if @users.any? %>
+    <div class="users_box row">
+      <ul class="users_follow">
+        <%= render @users%>
+      </ul>
+     <%= paginate @users %>
+    </div>
+  <% else %>
+    ユーザーはいません
+  <% end %>
+</div>
