@@ -1,16 +1,7 @@
-<% if current_user.already_liked?(trip) %> 
-  <%= form_for(current_user.likes.find_by(trip_id: trip.id),
-                                  html: { method: :delete },
-                                  ) do |l| %>
-    <%= button_tag type: 'submit', class: "unlike-btn"  do%>
-      <i class="fas fa-suitcase"></i>行きたい済
-    <% end %>
+<div id="likebtn">
+  <% if current_user.already_liked?(trip) %> 
+    <%= render 'likes/unlike', trip: trip %>
+  <% else %>
+     <%= render 'likes/like', trip: trip %>
   <% end %>
-<% else %>
-  <%= form_for(current_user.likes.build) do |l| %>
-    <div><%= hidden_field_tag :trip_id, trip.id %></div>
-    <%= button_tag type: 'submit', class: "like-btn"  do%>
-      <i class="fas fa-suitcase"></i>行きたい！
-    <% end %>
-  <% end %>
-<% end %>
+</div>
