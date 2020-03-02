@@ -7,7 +7,10 @@ class LikesController < ApplicationController
       redirect_to request.referrer || root_url
     else
       current_user.like(@trip)
-      redirect_to request.referrer || root_url
+      respond_to do |format|
+        format.html { redirect_to request.referrer || root_url }
+        format.js
+      end
     end
   end
 
@@ -15,7 +18,10 @@ class LikesController < ApplicationController
     @trip = Like.find(params[:id]).trip
     if current_user.already_liked?(@trip)
       current_user.unlike(@trip)
-      redirect_to request.referrer || root_url
+      respond_to do |format|
+        format.html { redirect_to request.referrer || root_url }
+        format.js
+      end
     else
       redirect_to request.referrer || root_url
     end
