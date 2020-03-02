@@ -44,7 +44,7 @@
   </div>
   <% if user_signed_in? %>
     <div class="trip-show-like">
-      <%= render "likes/like_form", trip: @trip %>
+        <%= render "likes/like_form", trip: @trip %>
       <span id="liked-countshow">
         <%= @trip.likes.count %>
       </span>

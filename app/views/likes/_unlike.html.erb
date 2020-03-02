@@ -1,0 +1,8 @@
+<%= form_for(current_user.likes.find_by(trip_id: trip.id),
+                                html: { method: :delete },
+                                remote: true
+                                ) do |l| %>
+  <%= button_tag type: 'submit', class: "unlike-btn"  do%>
+    <i class="fas fa-suitcase"></i>行きたい済
+  <% end %>
+<% end %>
