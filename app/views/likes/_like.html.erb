@@ -1,0 +1,6 @@
+<%= form_for(current_user.likes.build, remote: true) do |l| %>
+  <div><%= hidden_field_tag :trip_id, trip.id %></div>
+  <%= button_tag type: 'submit', class: "like-btn"  do%>
+    <i class="fas fa-suitcase"></i>行きたい！
+  <% end %>
+<% end %>
