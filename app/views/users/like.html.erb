@@ -1,7 +1,10 @@
 <% provide(:title, '行きたいリスト一覧') %>
 <div class="page-tit">行きたい！旅行リスト</div>
-<ol class="trips">
-  <%= render @user_likes %>  
-</ol>
-
-<%= paginate @user_likes %>
+<% if @user_likes.present? %>
+  <ol class="trips">
+    <%= render @user_likes %>  
+  </ol>
+  <%= paginate @user_likes %>
+<% else %>
+  <p>まだ行きたい！登録した旅行プランはありません</p>
+<% end %>
