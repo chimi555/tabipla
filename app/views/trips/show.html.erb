@@ -60,7 +60,7 @@
               <%= note.subject %>
             </span>
             <div class="col-md-12 trip-note-content">
-              <%= note.content %>
+              <%= text_url_to_link(h(note.content)).html_safe %>
             </div>
           </div>
         <% end %>
@@ -98,7 +98,7 @@
                     <%= schedule.place %>
                   </p>
                   <p class="trip-schedule-memo">
-                    <%= schedule.memo %>
+                    <%= text_url_to_link(h(schedule.memo)).html_safe %>
                   </p>
                 </div>
               </div>
