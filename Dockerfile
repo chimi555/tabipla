@@ -17,7 +17,7 @@ COPY Gemfile.lock /triplog/Gemfile.lock
 RUN bundle install
 
 COPY . /triplog
-
+RUN mkdir -p tmp/sockets
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
