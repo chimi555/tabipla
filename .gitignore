@@ -27,5 +27,6 @@
 /config/master.key
 
 /.env
+/nginx/log
 
 /public/uploads
