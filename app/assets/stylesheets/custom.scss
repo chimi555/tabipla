@@ -43,7 +43,7 @@ li{
 
 .gray-box{
   background-color: #dfe5ec;
-  padding: 40px 0;
+  padding: 20px 0;
 }
 
 .panel-body{
@@ -171,6 +171,24 @@ header {
     a{
      color: #fff;
     }
+  }
+}
+
+.search-form-tit{
+  padding:20px 0;
+  text-align: center;
+  font-size: 18px;
+  color: #545454;
+  i{
+    padding-right: 10px;
+  }
+}
+.search-form-each{
+  max-width: 405px;
+  margin: 0px auto 20px;
+  .search-form-each-tit{
+    font-size: 16px;
+    color: #545454;
   }
 }
 
