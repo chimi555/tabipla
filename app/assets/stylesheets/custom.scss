@@ -174,6 +174,8 @@ header {
   }
 }
 
+/* search_form */
+
 .search-form-tit{
   padding:20px 0;
   text-align: center;
@@ -183,6 +185,7 @@ header {
     padding-right: 10px;
   }
 }
+
 .search-form-each{
   max-width: 405px;
   margin: 0px auto 20px;
@@ -208,7 +211,7 @@ header {
     transform: translate(-50%,-50%);
     h1{
       font-size: 2.5em;
-      color: rgba(255, 255, 255, 0.8);
+      color: #fff;
       font-weight: bold;
     }
     .signup-btn{
@@ -219,8 +222,9 @@ header {
         font-weight: bold;
         border: solid white 2px;
         border-radius: 2px;
-        padding: 7px;
+        padding: 10px;
         color: white;
+        background: rgba(0, 0, 0, 0.4);
         text-decoration: none;
         }
       a:hover{
@@ -289,9 +293,36 @@ header {
 
 /*_trip*/
 .eachtrip-picture{
+  position: relative;
   img{
     border-radius: 3px;
   }
+  .caption{
+    font-size: 110%;
+    text-align: center;
+    padding-top: 80px;
+    color: #fff;
+  }
+  .mask{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background-color:	rgba(0,0,0,0.4);
+    -webkit-transition:	all 0.2s ease;
+    transition: all 0.2s ease;
+  }
+  .timestamp{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 14px;
+  }
+}
+.eachtrip-picture:hover .mask{
+  opacity: 1;
 }
 
 /*form*/
