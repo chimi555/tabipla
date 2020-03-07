@@ -5,9 +5,14 @@ class TripsController < ApplicationController
   def index
     if params[:tag_id]
       @selected_tag = Tag.find(params[:tag_id])
-      @trips = Trip.from_tag(params[:tag_id]).includes([:user]).page(params[:page]).per(10)
+      @trips = Trip.from_tag(params[:tag_id]).includes([:user]).page(params[:page]).per(9)
+    elsif params[:q]
+      @search = Trip.ransack(params[:q])
+      @word = params[:q][:name_or_content_or_country_code_or_area_or_tags_tag_name_cont_any]
+      @country = params[:q][:country_code_cont]
+      @trips = @search.result.includes([:user]).page(params[:page]).per(9)
     else
-      @trips = Trip.includes([:user]).page(params[:page]).per(10)
+      @trips = Trip.includes([:user]).page(params[:page]).per(9)
     end
   end
 
