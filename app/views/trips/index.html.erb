@@ -3,20 +3,32 @@
 <% else %>
   <% provide(:title, '旅行プラン一覧') %>
 <% end %>
-<div class="container">
-  <div class="trip-index-tit center">
-    <% if @selected_tag.present? %>
-      <p class="page-tit">すべての旅行プラン</p>
-      <p><%= "カテゴリー：#{@selected_tag.tag_name}" %></p>
-    <% else %>
-      <p>すべての旅行プラン</p>
-    <% end %>
+<div class="search-box gray-box">
+  <div class="center">
+    <%= render "shared/search_form" %>
   </div>
-  <ul class="users">
-    <% @trips.each do |trip| %>
-      <%= render trip %>
-    <% end %>
-  </ul>
-
-  <%= paginate @trips %>
+</div>
+<div class="section">
+  <div class="container">
+    <div class="trip-index-tit center">
+      <% if @selected_tag.present? %>
+        <p class="page-tit">すべての旅行プラン</p>
+        <p><%= "カテゴリー：#{@selected_tag.tag_name}" %></p>
+      <% elsif @search.present? %>
+        <p class="page-tit">すべての旅行プラン</p>
+        <% unless @word.blank? %>
+          <p><%= "検索 ：#{@word}" %></p>
+        <% end %>
+        <% unless @country.blank? %>
+          <p><%= "検索 ：#{@country}" %></p>
+        <% end %>
+      <% else %>
+        <p class="page-tit">すべての旅行プラン</p>
+      <% end %>
+    </div>
+    <ul class="trips">
+      <%= render @trips %> 
+    </ul>
+    <%= paginate @trips %>
+  </div>
 </div>
