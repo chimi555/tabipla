@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   def set_search
     @search = Trip.ransack(params[:q])
-    @search_trips = @search.result.includes(:user).limit(MAX_OF_DISPLAY_RECENT_TRIPS)
   end
 
   protected
