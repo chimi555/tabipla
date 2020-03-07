@@ -11,6 +11,9 @@
                 <span class="timestamp">
                   <%= time_ago_in_words(trip.created_at) %>前に投稿
                 </span>
+                <span class="likecount">
+                  <%= trip.likes.count %>
+                </span>
                 <% if current_user?(trip.user) %>
                   <div class="user-tripedit">
                     <span class="edit-icon">

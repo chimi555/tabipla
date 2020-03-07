@@ -330,9 +330,15 @@ header {
     left: 10px;
     font-size: 14px;
   }
-  .user-tripedit{
+  .likecount{
     position: absolute;
     bottom: 5px;
+    right: 10px;
+    font-size: 17px;
+  }
+  .user-tripedit{
+    position: absolute;
+    top: 5px;
     right: 10px;
     font-size: 17px;
     span{
