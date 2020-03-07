@@ -2,7 +2,7 @@
   <p class="search-form-tit">
     <i class="fas fa-search"></i>旅行プラン検索
   </p>
-  <%= search_form_for @search, url: root_path do |f|%>
+  <%= search_form_for @search, url: trips_path do |f|%>
     <div class="search-form-each">
       <p class="search-form-each-tit">国名から検索</p>
       <%= f.country_select :country_code_cont, include_blank: true, selected: "", class: "serch-field form-control" %>
