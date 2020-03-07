@@ -66,12 +66,28 @@ li{
   }
 }
 
+#page-area{
+  margin: 40px 0;
+}
+
+.page-tit{
+  padding:20px 0;
+  text-align: center;
+  font-size: 22px;
+  color: #848484;
+}
+
+.user-form-text{
+  margin: 15px;
+}
+
 .field_with_errors {
   @extend .has-error;
   .form-control {
     color: $state-danger-text;
   }
 }
+
 /*typography*/
 
 h1,h2,h3,h4,h5,h6{
@@ -108,6 +124,19 @@ p{
   }
 }
 
+.test-btn{
+  display: inline-block;
+  text-align: center;
+  background-color:#fff;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 15px;
+  color: rgba(0,0,0,0.7);
+  a{
+    color: rgba(0,0,0,0.7);
+  }
+}
+
 .actions{
   text-align: center;
 }
@@ -118,6 +147,7 @@ header {
   padding: 15px 0 15px;
   background-color: #4e6681;
 }
+
 #logo{
   float: left;
   font-weight: bold;
@@ -198,6 +228,23 @@ header {
   padding: 15px;
 }
 
+.user-form{
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 30px 80px;
+  .field{
+    margin:30px 0 50px;
+    label{
+      padding-bottom: 10px;
+      font-size: 16px;
+      color: #737373;
+    }
+  }
+  .user-form-btn{
+
+  }
+}
+
 /*user_show*/
 .user-info-box{
   margin:50px 150px;
@@ -243,12 +290,6 @@ header {
   margin-top: 15px;
 }
 
-.page-tit{
-  padding:30px 0;
-  text-align: center;
-  font-size: 25px;
-  color: #9c9c9c;
-}
 
 .trip-picture{
   position: relative;

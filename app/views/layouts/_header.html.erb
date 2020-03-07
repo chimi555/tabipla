@@ -37,7 +37,7 @@
             <%= form_for(:user, url: login_path) do |f| %>
               <%= f.hidden_field :login, value: 'trilog@example.com' %>
               <%= f.hidden_field :password, value: 'trilog' %>
-              <%= f.submit 'テストログイン', class: '' %>
+              <%= f.submit 'テストログイン', class: 'test-btn' %>
             <% end %>
           </li>
         <% end %>
