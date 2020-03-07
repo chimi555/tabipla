@@ -258,14 +258,24 @@ header {
 .user-form{
   max-width: 700px;
   margin: 0 auto;
-  padding: 30px 80px;
-  .field{
-    margin:30px 0 50px;
-    label{
-      padding-bottom: 10px;
-      font-size: 16px;
-      color: #737373;
+  .user-form-in{
+    padding: 30px 80px;
+    background-color: #dfe5ec;
+    .field{
+      margin:30px 0 50px;
+      label{
+        padding-bottom: 10px;
+        font-size: 16px;
+        color: #737373;
+      }
     }
+    .password-edit{
+      margin-top: 15px;
+    }
+  }
+  .user-delete{
+    margin-top: 20px;
+    text-align: right;
   }
 }
 
