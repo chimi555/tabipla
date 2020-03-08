@@ -17,8 +17,6 @@ Rails.application.routes.draw do
     member do
       get 'password_edit', to: 'users#password_edit'
       patch 'password_update', to: 'users#password_update'
-      get 'like', to: 'users#like'
-      get :following, :followers
     end
   end
   resources :trips
