@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+
   def show
     @user = User.find(params[:id])
-    @trips = @user.trips
+    @trips = @user.trips.page(params[:page]).per(9)
+    @following = @user.following.page(params[:page]).per(9)
+    @followers = @user.followers.page(params[:page]).per(9)
+    @user_likes = current_user.liked_trips_list.page(params[:page]).per(9)
   end
 
   def index
