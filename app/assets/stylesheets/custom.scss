@@ -362,6 +362,28 @@ input[name="tab_item"] {
   border-bottom: 3px solid rgba(0, 0, 0, 0.7);
 }
 
+/*_user*/
+#eachuser{
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  text-align: center;
+  padding: 40px;
+  .user-img{
+    margin-bottom: 20px;
+    img{
+      height: 150px;
+      width: 150px;
+      border-radius: 50%;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+    }
+  }
+  p{
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 18px;
+  }
+}
+
 /*_trip*/
 .eachtrip{
   margin-bottom: 15px;
