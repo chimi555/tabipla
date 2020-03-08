@@ -51,7 +51,7 @@
   <div class="tab_content" id="mytrip_content">
     <div class="tab_content_description">
       <% if @user.trips.any? %>
-        <ol class="trips">
+        <ol class="trips row">
           <%= render @trips %>
         </ol>
       <% else %>
@@ -62,7 +62,7 @@
   <div class="tab_content" id="like_list_content">
     <div class="tab_content_description">
       <% if @user_likes.any? %>
-        <ol class="trips">
+        <ol class="trips row">
           <%= render @user_likes %>
         </ol>
       <% else %>
