@@ -530,6 +530,7 @@ header {
 .trip-show-picture{
   max-width: 740px;
   position: relative;
+  margin-bottom: 15px;
   img{
     border-radius: 3px;
     width: 100%;
@@ -545,14 +546,61 @@ header {
     -ms-transform: translate(-50%,-50%);
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
-    .trip-show-info{
-      color: #fff;
-    }
+    color: #fff;
     .trip-show-name{
       font-size: 20px;
       padding-bottom: 10px;
     }
 
+  }
+}
+.trip-show-info{
+  background-color: #e2e9ed;
+  border-radius: 3px;
+  padding: 30px 15px 20px;
+  margin-bottom: 15px;
+  .trip-show-user{
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  .trip-show-info-tit{
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #848383;
+    padding: 0 0 10px 5px;
+    border-bottom: dashed 2px #848383;
+  }
+  .trip-show-eachinfo-tit{
+    position: relative;
+    padding-left: 1.2em;
+    padding-bottom: 10px;
+    line-height: 1.4;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgba(0,0,0,0.5);
+  }
+  .trip-show-eachinfo-tit:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f111";
+    position: absolute;
+    font-size: 0.6em;
+    left: 0;
+    top: 0.2em;
+    color: rgba(0,0,0,0.5);
+  }
+  .trip-show-eachinfo{
+    margin: 16px 0;
+  }
+  .trip-show-tag{
+    ul{
+      display: inline-block;
+      padding-left: 4px;
+      li{
+        display: inline-block;
+      }
+    }
   }
 }
 
@@ -678,6 +726,12 @@ header {
   i{
     padding-right: 7px;
   }
+}
+
+.liked-countshow{
+  font-size: 16px;
+  font-weight: normal;
+  margin: 10px 0;
 }
 
 /*footer*/
