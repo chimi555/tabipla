@@ -41,12 +41,12 @@
   <input id="following_list" type="radio" name="tab_item">
   <label class="tab_item" for="following_list">
     <span>フォロー中</span>
-    <span class="count"><%= @following.count %></span>
+    <span class="count"><%= @user.following.count %></span>
   </label>
   <input id="followers_list" type="radio" name="tab_item">
   <label class="tab_item" for="followers_list">
     <span>フォロワー</span>
-    <span class="count"><%= @followers.count %></span>
+    <span class="followers-count"><%= @user.followers.count %></span>
   </label>
   <div class="tab_content" id="mytrip_content">
     <div class="tab_content_description">
