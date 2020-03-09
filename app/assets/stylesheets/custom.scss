@@ -914,14 +914,10 @@ input[name="tab_item"] {
 
 /*footer*/
 footer {
-  margin-top: 45px;
+  margin-top: 60px;
   padding: 10px 0;
-  .post-icon{
-    text-align: center;
-    i{
-      color: #fff;
-      font-size: 25px;
-    }
+  .copyright{
+    float: right;
   }
 }
 
