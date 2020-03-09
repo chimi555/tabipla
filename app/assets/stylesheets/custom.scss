@@ -92,6 +92,48 @@ ul, ol{
   }
 }
 
+.btn{
+  display: inline-block;
+  text-align: center;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 15px;
+  color: rgba(0,0,0,0.7);
+  a{
+    color: rgba(0,0,0,0.7);
+  }
+}
+
+.btn-primary{
+  color: #fff;
+  border-color: rgba(0,0,0,0.7);
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: rgba(0,0,0,0.7);
+  border-color: rgba(0,0,0,0.7);
+}
+
+
+.test-btn{
+  display: inline-block;
+  text-align: center;
+  background-color:#fff;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 15px;
+  color: rgba(0,0,0,0.7);
+  a{
+    color: rgba(0,0,0,0.7);
+  }
+}
+
+.actions{
+  text-align: center;
+}
+
 /*typography*/
 
 h1,h2,h3,h4,h5,h6{
@@ -113,36 +155,6 @@ h2{
 p{
   font-size: 1.1em;
   line-height: 1.1em;
-}
-
-.btn{
-  display: inline-block;
-  text-align: center;
-  background-color: rgba(0,0,0,0.2);
-  border-radius: 3px;
-  font-weight: bold;
-  font-size: 15px;
-  color: rgba(0,0,0,0.7);
-  a{
-    color: rgba(0,0,0,0.7);
-  }
-}
-
-.test-btn{
-  display: inline-block;
-  text-align: center;
-  background-color:#fff;
-  border-radius: 3px;
-  font-weight: bold;
-  font-size: 15px;
-  color: rgba(0,0,0,0.7);
-  a{
-    color: rgba(0,0,0,0.7);
-  }
-}
-
-.actions{
-  text-align: center;
 }
 
 /* header */
@@ -335,7 +347,8 @@ header {
 }
 
 .tab_item:hover {
-  opacity: 0.75;
+  color: rgba(0, 0, 0, 0.5);
+  border-bottom: 3px solid rgba(0, 0, 0, 0.5);
 }
 
 input[name="tab_item"] {
