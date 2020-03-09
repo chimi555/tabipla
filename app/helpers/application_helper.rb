@@ -9,7 +9,7 @@ module ApplicationHelper
       text.gsub!(url, link_text)
     end
 
-    return text
+    text
   end
 
   def full_title(page_title = '')

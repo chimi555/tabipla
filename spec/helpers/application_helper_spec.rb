@@ -1,6 +1,5 @@
 require 'rails_helper'
 RSpec.describe ApplicationHelper, type: :helper do
-
   describe '#text_url_to_link' do
     it 'httpがついていればハイパーリンクで返すこと' do
       text = "http://example.com"
