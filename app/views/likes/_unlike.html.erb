@@ -4,5 +4,8 @@
                                 ) do |l| %>
   <%= button_tag type: 'submit', class: "unlike-btn"  do%>
     <i class="fas fa-suitcase"></i>行きたい済
+    <span class="liked-countshow">
+      [<%= @trip.likes.count %>]
+    </span>
   <% end %>
 <% end %>

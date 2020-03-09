@@ -24,6 +24,10 @@ li{
   padding: 5px 0;
 }
 
+ul, ol{
+  padding-inline-start: 0px;
+}
+
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -43,7 +47,7 @@ li{
 
 .gray-box{
   background-color: #dfe5ec;
-  padding: 40px 0;
+  padding: 20px 0;
 }
 
 .panel-body{
@@ -66,12 +70,70 @@ li{
   }
 }
 
+#page-area{
+  margin: 40px 0;
+}
+
+.page-tit{
+  padding:20px 0;
+  text-align: center;
+  font-size: 22px;
+  color: #848484;
+}
+
+.user-form-text{
+  margin: 15px;
+}
+
 .field_with_errors {
   @extend .has-error;
   .form-control {
     color: $state-danger-text;
   }
 }
+
+.btn{
+  display: inline-block;
+  text-align: center;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 15px;
+  color: rgba(0,0,0,0.7);
+  a{
+    color: rgba(0,0,0,0.7);
+  }
+}
+
+.btn-primary{
+  color: #fff;
+  border-color: rgba(0,0,0,0.7);
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: rgba(0,0,0,0.7);
+  border-color: rgba(0,0,0,0.7);
+}
+
+
+.test-btn{
+  display: inline-block;
+  text-align: center;
+  background-color:#fff;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 15px;
+  color: rgba(0,0,0,0.7);
+  a{
+    color: rgba(0,0,0,0.7);
+  }
+}
+
+.actions{
+  text-align: center;
+}
+
 /*typography*/
 
 h1,h2,h3,h4,h5,h6{
@@ -95,52 +157,98 @@ p{
   line-height: 1.1em;
 }
 
-.btn{
-  display: inline-block;
-  text-align: center;
-  background-color: rgba(0,0,0,0.2);
-  border-radius: 3px;
-  font-weight: bold;
-  font-size: 15px;
-  color: rgba(0,0,0,0.7);
-  a{
-    color: rgba(0,0,0,0.7);
-  }
-}
-
-.actions{
-  text-align: center;
-}
-
 /* header */
 
 header {
   padding: 15px 0 15px;
   background-color: #4e6681;
 }
+
 #logo{
   float: left;
-  font-weight: bold;
-  padding-top: 15px;
-  font-size: 25px;
+  padding: 15px 8px 0 0;
   text-decoration: none;
-  color: #fff;
+  max-width: 130px;
 }
-.header-nav{
-  float: right;
-  padding-top: 30px;
+
+.header-nav-left{
+  float: left;
+  padding-top: 20px;
   li{
     float: left;
     text-decoration: none;
     color: #fff;
-    padding: 0 10px;
+    padding: 8px 5px;
     i{
       color: #fff;
-      font-size: 22px;
+      font-size: 20px;
     }
     a{
      color: #fff;
     }
+  }
+}
+
+.header-nav{
+  float: right;
+  padding-top: 20px;
+  li{
+    float: left;
+    text-decoration: none;
+    color: #fff;
+    padding: 8px 10px;
+    i{
+      color: #fff;
+      font-size: 20px;
+      padding-right: 5px;
+    }
+    a{
+     color: #fff;
+    }
+  }
+  .user-btn{
+    a{
+      font-weight: 700;
+      color: rgba(0, 0, 0, 0.7);
+      text-decoration: none;
+    }
+    i{
+      color: rgba(0, 0, 0, 0.7);
+      padding-right: 5px;
+      font-size: 16px;
+    }
+    img{
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+    }
+    background: #f9f9f9;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+}
+
+/* search_form */
+
+.search-form-tit{
+  padding:20px 0;
+  text-align: center;
+  font-size: 18px;
+  color: #545454;
+  i{
+    padding-right: 10px;
+  }
+}
+
+.search-form-each{
+  max-width: 405px;
+  margin: 0px auto 20px;
+  .search-form-each-tit{
+    font-size: 16px;
+    color: #545454;
   }
 }
 
@@ -160,7 +268,7 @@ header {
     transform: translate(-50%,-50%);
     h1{
       font-size: 2.5em;
-      color: rgba(255, 255, 255, 0.8);
+      color: #fff;
       font-weight: bold;
     }
     .signup-btn{
@@ -171,8 +279,9 @@ header {
         font-weight: bold;
         border: solid white 2px;
         border-radius: 2px;
-        padding: 7px;
+        padding: 10px;
         color: white;
+        background: rgba(0, 0, 0, 0.4);
         text-decoration: none;
         }
       a:hover{
@@ -196,6 +305,35 @@ header {
   letter-spacing: 0.08em;
   font-size: 27px;
   padding: 15px;
+}
+
+.trips{
+  margin:30px 0;
+}
+
+/*user_form*/
+.user-form{
+  max-width: 700px;
+  margin: 0 auto;
+  .user-form-in{
+    padding: 30px 80px;
+    background-color: #dfe5ec;
+    .field{
+      margin:30px 0 50px;
+      label{
+        padding-bottom: 10px;
+        font-size: 16px;
+        color: #737373;
+      }
+    }
+    .password-edit{
+      margin-top: 15px;
+    }
+  }
+  .user-delete{
+    margin-top: 20px;
+    text-align: right;
+  }
 }
 
 /*user_show*/
@@ -222,11 +360,139 @@ header {
   padding: 20px;
 }
 
+.tabs {
+  margin-top: 50px;
+  padding-bottom: 40px;
+  background-color: #fff;
+  max-width: 1100px;
+  margin: 0 auto;}
+
+.tab_item {
+  width: calc(100%/4);
+  height: 50px;
+  border-bottom: 3px solid #c1c0c0;
+  background-color: #fff;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: #c1c0c0;
+  display: block;
+  float: left;
+  font-weight: normal;
+  text-align: center;
+  transition: all 0.2s ease;
+  .count{
+    font-weight: 700;
+  }
+}
+
+.tab_item:hover {
+  color: rgba(0, 0, 0, 0.5);
+  border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+}
+
+input[name="tab_item"] {
+  display: none;
+}
+
+.tab_content {
+  display: none;
+  padding: 40px 40px 0;
+  clear: both;
+  overflow: hidden;
+}
+
+#mytrip:checked ~ #mytrip_content,
+#following_list:checked ~ #following_list_content,
+#followers_list:checked ~ #followers_list_content,
+#like_list:checked ~ #like_list_content {
+  display: block;
+}
+
+.tabs input:checked + .tab_item {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.7);
+  border-bottom: 3px solid rgba(0, 0, 0, 0.7);
+}
+
+/*_user*/
+#eachuser{
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  text-align: center;
+  padding: 40px;
+  margin-bottom: 15px;
+  .user-img{
+    margin-bottom: 20px;
+    img{
+      height: 150px;
+      width: 150px;
+      border-radius: 50%;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+    }
+  }
+  p{
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 18px;
+  }
+}
+
 /*_trip*/
+.eachtrip{
+  margin-bottom: 15px;
+}
 .eachtrip-picture{
+  position: relative;
+  display: inline-block;
   img{
     border-radius: 3px;
   }
+  .caption{
+    font-size: 110%;
+    text-align: center;
+    padding-top: 80px;
+    color: #fff;
+    a{
+      color: #fff;
+    }
+  }
+  .mask{
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background-color:	rgba(0,0,0,0.4);
+    -webkit-transition:	all 0.2s ease;
+    transition: all 0.2s ease;
+  }
+  .timestamp{
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    font-size: 14px;
+  }
+  .likecount{
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    font-size: 17px;
+  }
+  .user-tripedit{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 17px;
+    span{
+      margin: 0 5px;
+    }
+  }
+}
+.eachtrip-picture:hover .mask{
+  opacity: 1;
 }
 
 /*form*/
@@ -243,15 +509,9 @@ header {
   margin-top: 15px;
 }
 
-.page-tit{
-  padding:30px 0;
-  text-align: center;
-  font-size: 25px;
-  color: #9c9c9c;
-}
-
 .trip-picture{
   position: relative;
+  margin-bottom: 15px;
   img{
     border-radius: 3px;
     width: 100%;
@@ -273,6 +533,35 @@ header {
     width: 450px;
     margin: 25px;
   }
+}
+
+.trip-info{
+  background-color: #e2e9ed;
+  height: 100%;
+  border-radius: 3px;
+  padding: 30px 15px 30px;
+  .form-in{
+    padding:0px 10px 10px;
+  }
+  .form-tit{
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #848383;
+    padding: 0 0 10px 5px;
+    border-bottom: dashed 2px #848383;
+  }
+  .tripform-info{
+    margin: 16px 0;
+    select{
+     width: 100%; 
+    }
+  }
+}
+
+#trip-tags{
+  background: #fff;
+  height: 100px;
 }
 
 .form-out{
@@ -321,12 +610,62 @@ header {
       }
     }
   }
+  .eachday-form{
+    margin-bottom: 25px;
+    .eachday-form-date{
+      border-bottom: solid 2px #c3c1c1;
+      text-align: center;
+      padding-bottom: 10px;
+      .date-count{
+        color: #696868;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .each-day-delete{
+        i{
+          color: #9c9c9c;
+        }
+      }
+    }
+  }
+  .each-day-add{
+    position: absolute;
+    bottom: 10px;
+    left: 2%;
+    font-size: 15px;
+    a{
+      color: #696868;
+      text-decoration: none;
+    }
+    i{
+      color: #9c9c9c;
+    }
+  }
+  .schedule-form{
+    position: relative;
+    padding-bottom: 50px;
+    .each-sche-add{
+      position: absolute;
+      bottom: 15px;
+      right: 45%;
+      text-align: center;
+      font-size: 15px;
+      a{
+        color: #696868;
+        text-decoration: none;
+      }
+      i{
+        color: #9c9c9c;
+      }
+    }
+  }
 }
 
 /*trip_show*/
 .trip-show-picture{
-  max-width: 740px;
+  max-width: 700px;
   position: relative;
+  margin: 15px auto;
   img{
     border-radius: 3px;
     width: 100%;
@@ -342,14 +681,61 @@ header {
     -ms-transform: translate(-50%,-50%);
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
-    .trip-show-info{
-      color: #fff;
-    }
+    color: #fff;
     .trip-show-name{
       font-size: 20px;
       padding-bottom: 10px;
     }
+  }
+}
 
+.trip-show-info{
+  background-color: #e2e9ed;
+  border-radius: 3px;
+  padding: 30px 15px 20px;
+  margin-bottom: 15px;
+  .trip-show-user{
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  .trip-show-info-tit{
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #848383;
+    padding: 0 0 10px 5px;
+    border-bottom: dashed 2px #848383;
+  }
+  .trip-show-eachinfo-tit{
+    position: relative;
+    padding-left: 1.2em;
+    padding-bottom: 10px;
+    line-height: 1.4;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgba(0,0,0,0.5);
+  }
+  .trip-show-eachinfo-tit:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f111";
+    position: absolute;
+    font-size: 0.6em;
+    left: 0;
+    top: 0.2em;
+    color: rgba(0,0,0,0.5);
+  }
+  .trip-show-eachinfo{
+    margin: 16px 0;
+  }
+  .trip-show-tag{
+    ul{
+      display: inline-block;
+      padding-left: 4px;
+      li{
+        display: inline-block;
+      }
+    }
   }
 }
 
@@ -380,6 +766,7 @@ header {
   border-bottom: dashed 1px #9c9c9c;
   margin:25px 0;
 }
+
 .trip-note-subject{
   position: relative;
   padding-left: 1.2em;
@@ -389,6 +776,7 @@ header {
   font-weight: bold;
   color: rgba(0,0,0,0.5);
 }
+
 .trip-note-subject:before {
   font-family: "Font Awesome 5 Free";
   content: "\f111";
@@ -397,6 +785,22 @@ header {
   left: 0;
   top: 0.2em;
   color: rgba(0,0,0,0.5);
+}
+
+.trip-show-day{
+  border-bottom: solid 2px #c3c1c1;
+  text-align: center;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  .date-count{
+    color: #696868;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.trip-show-schedule{
+  margin-bottom: 20px;
 }
 
 .trip-schedule-each{
@@ -412,10 +816,10 @@ header {
     .trip-schedule-action{
       position: absolute;
       top: 0px;
-      left: -32px;
+      left: -29px;
       background: #fff;
-      height: 60px;
-      width: 60px;
+      height: 55px;
+      width: 55px;
       border: solid 2px #ffc870;
       border-radius: 50%;
       -moz-border-radius: 50%;
@@ -425,11 +829,12 @@ header {
       }
     }
     .trip-schedule-info{
-      padding: 20px 20px 30px 30px;
+      padding: 20px 20px 20px 30px;
       .trip-schedule-place{
-        font-size: 20px;
+        font-size: 16px;
       }
       .trip-schedule-memo{
+        font-size: 14px;
         padding: 5px 0 0 5px;
       }
     }
@@ -477,16 +882,42 @@ header {
   }
 }
 
+.liked-countshow{
+  font-size: 16px;
+  font-weight: normal;
+  margin: 10px 0;
+}
+
+.pdf-area{
+  text-align: center;
+}
+
+.pdf-btn{
+  border: solid 2px rgba(0,0,0,0.5);
+  border-radius: 3px;
+  padding:10px 15px;
+  cursor: pointer;
+  a{
+    font-size: 16px;
+    color: rgba(0,0,0,0.7);
+    text-decoration: none;
+  }
+  i{
+    font-size: 20px;
+    padding-right: 8px;
+  }
+}
+
+.trip-pdf-name{
+  font-size: 20px;
+}
+
 /*footer*/
 footer {
-  margin-top: 45px;
+  margin-top: 60px;
   padding: 10px 0;
-  .post-icon{
-    text-align: center;
-    i{
-      color: #fff;
-      font-size: 25px;
-    }
+  .copyright{
+    float: right;
   }
 }
 

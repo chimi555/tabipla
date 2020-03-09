@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+
   def show
     @user = User.find(params[:id])
-    @trips = @user.trips
+    @trips = @user.trips.page(params[:page]).per(9)
+    @following = @user.following.page(params[:page]).per(9)
+    @followers = @user.followers.page(params[:page]).per(9)
+    @user_likes = current_user.liked_trips_list.page(params[:page]).per(9)
   end
 
   def index
@@ -19,24 +23,6 @@ class UsersController < ApplicationController
     else
       render "password_edit", alert: "パスワードが更新できませんでした"
     end
-  end
-
-  def like
-    @user_likes = current_user.liked_trips_list.page(params[:page]).per(10)
-  end
-
-  def following
-    @title = "フォロー中"
-    @user = User.find(params[:id])
-    @users = @user.following.page(params[:page])
-    render 'show_follow'
-  end
-
-  def followers
-    @title = "フォロワー"
-    @user = User.find(params[:id])
-    @users = @user.followers.page(params[:page])
-    render 'show_follow'
   end
 
   private

@@ -22,21 +22,81 @@
           <div class="user-prof col-md-12 col-sm-12 col-xs-12">
               <%= @user.profile %>
           </div>
-          <div class="countbox col-md-12 col-sm-12 col-xs-12">
-            <%= render 'shared/stats', user: @user %>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="yellow-box">
-  <div class="container">
-    <% if @user.trips.any? %>
-      <ol class="trips">
-        <%= render @trips %>
-      </ol>
-    <% end %>
+<div class="tabs">
+  <input id="mytrip" type="radio" name="tab_item" checked>
+  <label class="tab_item" for="mytrip">
+    <span>MyTrip</span>
+    <span class="count"><%= @user.trips.count %></span>
+  </label>
+  <input id="like_list" type="radio" name="tab_item">
+  <label class="tab_item" for="like_list">
+    <span>行きたいリスト</span>
+    <span class="count"><%= @user_likes.count %></span>
+  </label>
+  <input id="following_list" type="radio" name="tab_item">
+  <label class="tab_item" for="following_list">
+    <span>フォロー中</span>
+    <span class="count"><%= @user.following.count %></span>
+  </label>
+  <input id="followers_list" type="radio" name="tab_item">
+  <label class="tab_item" for="followers_list">
+    <span>フォロワー</span>
+    <span class="followers-count"><%= @user.followers.count %></span>
+  </label>
+  <div class="tab_content" id="mytrip_content">
+    <div class="tab_content_description">
+      <% if @user.trips.any? %>
+        <ol class="trips row">
+          <%= render @trips %>
+        </ol>
+      <% else %>
+        登録済みの旅行プランはまだありません
+      <% end %>
+    </div>
+  </div>
+  <div class="tab_content" id="like_list_content">
+    <div class="tab_content_description">
+      <% if @user_likes.any? %>
+        <ol class="trips row">
+          <%= render @user_likes %>
+        </ol>
+      <% else %>
+        行きたい！登録済の旅行プランはまだありません
+      <% end %>
+    </div>
+  </div>
+  <div class="tab_content" id="following_list_content">
+    <div class="tab_content_description">
+      <% if @following.any? %>
+        <div class="users_box row">
+          <ul class="users_follow">
+            <%= render @following%>
+          </ul>
+        <%= paginate @following %>
+        </div>
+      <% else %>
+        ユーザーはいません
+      <% end %>
+    </div>
+  </div>
+  <div class="tab_content" id="followers_list_content">
+    <div class="tab_content_description">
+      <% if @followers.any? %>
+        <div class="users_box row">
+          <ul class="users_follow">
+            <%= render @followers%>
+          </ul>
+        <%= paginate @followers %>
+        </div>
+      <% else %>
+        ユーザーはいません
+      <% end %>
+    </div>
   </div>
 </div>
 

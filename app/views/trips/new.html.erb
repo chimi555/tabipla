@@ -7,11 +7,11 @@
     <div class="whitebox">
       <%# プラン概要フォーム %>
       <div class="trip-form row">
-        <div class="trip-picture col-md-8">
+        <div class="trip-picture col-md-8 col-sm-12 col-xs-12">
           <%= image_tag @trip.picture.to_s, class: "img-responsive" %>
           <div class="trip-tit">
             <span class="tripform-info">
-              <%= trip_f.text_field :name, placeholder: "旅行名", class: 'form-wide form-control' %>
+              <%= trip_f.text_field :name, placeholder: "旅行名【必須】", class: 'form-wide form-control' %>
             </span>
             <span class="tripform-info">
               <%= trip_f.text_area :content, placeholder: "サブタイトル", class: 'form-wide form-control' %>
@@ -21,25 +21,31 @@
             <%= trip_f.file_field :picture, accept: 'image/jpeg, image/gif, image/png' %>
           </span>
         </div>
-        <div class="trip-info col-md-4">
-          <div class="tripform-info">
-            <%= trip_f.country_select :country_code, selected: "JP", priority_countries: ["JP"] %>
-          </div>
-          <div class="tripform-info">
-            <%= trip_f.text_field :area, placeholder: "エリア、都市名など", class: 'form-control' %>
-          </div>
-          <div class="trip-tag">
-            <ul id="trip-tags">
-            </ul>
+        <div class="trip-info col-md-4 col-sm-12 col-xs-12">
+          <p class="form-tit">旅行info</p>
+          <div class="form-in">
+            <div class="tripform-info">
+              <p>国名：</p>
+              <%= trip_f.country_select :country_code, selected: "JP", priority_countries: ["JP"], class: 'form-control' %>
+            </div>
+            <div class="tripform-info">
+              <p>エリア：</p>
+              <%= trip_f.text_field :area, placeholder: "地方名、都道府県名、都市名など", class: 'form-control' %>
+            </div>
+            <div class="trip-tag">
+              <p>カテゴリータグ：</br>スペース区切りで入力 (例：海外、北欧、温泉...etc)</p>
+              <ul id="trip-tags">
+              </ul>
+            </div>
           </div>
         </div>
       </div>
       <%# noteフォーム %>
-      <div class="note-form">
+      <div class="note-form row">
         <%= render "note_form", trip_f: trip_f %>
       </div>
       <%# スケジュールフォーム %>
-      <div class="day-form">
+      <div class="day-form row">
         <%= render "day_form", trip_f: trip_f %>
       </div>
       <div class="center">

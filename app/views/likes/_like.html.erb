@@ -2,5 +2,8 @@
   <div><%= hidden_field_tag :trip_id, trip.id %></div>
   <%= button_tag type: 'submit', class: "like-btn"  do%>
     <i class="fas fa-suitcase"></i>行きたい！
+    <span class="liked-countshow">
+      [<%= @trip.likes.count %>]
+    </span>
   <% end %>
 <% end %>

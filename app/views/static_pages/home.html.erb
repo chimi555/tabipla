@@ -34,12 +34,13 @@
 <div class="section">
   <div class="container">
     <div class="recent-trips">
-      <div class="section-inbox">
-        <ol class="trips">
-          <%= render @search_trips %> 
+      <div class="section-inbox center">
+        <p class="page-tit">最新の旅行プラン</p>
+        <ol class="trips row">
+          <%= render @trip_recent %> 
         </ol>
         <%= link_to trips_path do %>
-          MORE
+          <p class="btn">MORE</p>
         <% end %>
       </div>
     </div>

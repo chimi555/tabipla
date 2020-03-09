@@ -1,31 +1,54 @@
 <header class="navbar navbar-expand-sm navbar-fixed-top navbar-light">
   <div class="container">
-    <%= link_to "Trilog", root_path, id: "logo" %>
+    <%= link_to root_path, id: "logo" do %>
+      <%= image_tag('logo.png', class: "img-responsive") %>
+    <% end %>
+    <ul class="header-nav-left">
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to trips_path do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to users_path do %>
+            <i class="fas fa-users"></i>
+          <% end %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to trips_path do %>
+            <i class="fas fa-search"></i>旅行プラン検索
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
     <nav>
       <ul class="header-nav">
         <% if user_signed_in? %>
           <li>
             <%= link_to new_trip_path do %>
-              旅行プラン作成
+              <i class="fas fa-suitcase"></i>＋旅行プラン
             <% end %>
           </li>
-          <li>
-            <%= link_to user_path(current_user)  do %>
-              マイページ
-            <% end %>
-          </li>
-          <li>
-            <%= link_to like_user_path(current_user)  do %>
-              行きたいリスト
-            <% end %>
-          </li>
-          <li>
-            <%= link_to logout_path, method: :delete do %>
-              ログアウト
-            <% end %>
-          </li>
-          <li class="dropdawn .dropdown-slide">
-            <%= current_user.user_name %>
+          <li class="user-btn dropdown .dropdown-slide">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <%= image_tag current_user.image.thumb30.to_s %>
+              <%= current_user.user_name %>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <%= link_to user_path(current_user)  do %>
+                  <i class="fas fa-user-circle"></i>マイページ
+                <% end %>
+              </li>
+              <li>
+                <%= link_to logout_path, method: :delete do %>
+                  <i class="fas fa-sign-out-alt"></i>ログアウト
+                <% end %>
+              </li>
+            </ul>
           </li>
         <% else %>
           <li>
@@ -37,7 +60,7 @@
             <%= form_for(:user, url: login_path) do |f| %>
               <%= f.hidden_field :login, value: 'trilog@example.com' %>
               <%= f.hidden_field :password, value: 'trilog' %>
-              <%= f.submit 'テストログイン', class: '' %>
+              <%= f.submit 'テストログイン', class: 'test-btn' %>
             <% end %>
           </li>
         <% end %>
