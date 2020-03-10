@@ -23,6 +23,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, presence: true
   # ファイルアップローダー
   mount_uploader :image, ImageUploader
+  # roleのenum定義
+  enum role: { normal: 0, admin: 1, guest: 2 }
 
   def login
     @login || user_name || email
