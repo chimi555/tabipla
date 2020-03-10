@@ -1,36 +1,34 @@
 <div class= "col-md-4 col-sm-6 col-xs-12">
   <li id="trip-<%= trip.id %>">
     <%= link_to trip do %>
-      <div class="eachtrip">
-        <div class="eachtrip-picture">
-          <%= image_tag trip.picture.to_s, class: "img-responsive" %>
-          <div class="mask">
-            <div class="caption">
-              <p><%= trip.name%></p>
-              <span class="timestamp">
-                <%= time_ago_in_words(trip.created_at) %>前に投稿
+    <div class="eachtrip-picture">
+      <%= image_tag trip.picture.thumb350.to_s, class: "img-responsive" %>
+      <div class="mask">
+        <div class="caption">
+          <p><%= trip.name%></p>
+          <span class="timestamp">
+            <%= time_ago_in_words(trip.created_at) %>前に投稿
+          </span>
+          <span class="likecount">
+            <%= trip.likes.count %>
+          </span>
+          <% if current_user?(trip.user) %>
+            <div class="user-tripedit">
+              <span class="edit-icon">
+                <%= link_to edit_trip_path(trip) do %>
+                  <i class="fas fa-edit"></i>
+                <% end %>
               </span>
-              <span class="likecount">
-                <%= trip.likes.count %>
+              <span class="delete-icon">
+                <%= link_to trip, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+                  <i class="far fa-trash-alt"></i>
+                <% end %>
               </span>
-              <% if current_user?(trip.user) %>
-                <div class="user-tripedit">
-                  <span class="edit-icon">
-                    <%= link_to edit_trip_path(trip) do %>
-                      <i class="fas fa-edit"></i>
-                    <% end %>
-                  </span>
-                  <span class="delete-icon">
-                    <%= link_to trip, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
-                      <i class="far fa-trash-alt"></i>
-                    <% end %>
-                  </span>
-                </div>
-              <% end %>
             </div>
-          </div>
+          <% end %>
         </div>
       </div>
+    </div>
     <% end %>
   </li>
 </div>

@@ -1,6 +1,6 @@
 class PictureUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  process resize_to_limit: [600, 250]
+  process resize_to_fill: [700, 465, 'Center']
 
   if Rails.env.production?
     storage :fog
@@ -24,8 +24,8 @@ class PictureUploader < CarrierWave::Uploader::Base
     [version_name, "default_trip.png"].compact.join('_')
   end
 
-  version :thumb300 do
-    process resize_to_fill: [300, 300, 'Center']
+  version :thumb350 do
+    process resize_to_fill: [350, 230, 'Center']
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
