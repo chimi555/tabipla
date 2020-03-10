@@ -1,22 +1,27 @@
-# frozen_string_literal: true
+User.create!(
+  user_name: 'テストユーザー',
+  email: 'tabipla@example.com',
+  password: 'tabipla',
+  password_confirmation: 'tabipla',
+  role: :guest,
+)
 
-User.create!(user_name: 'Example User',
-             email: 'example@railstutorial.org',
-             password: 'foobar',
-             password_confirmation: 'foobar')
+User.create!(
+  user_name: 'adminユーザー',
+  email: 'admin@example.com',
+  password: 'admin000',
+  password_confirmation: 'admin000',
+  role: :admin,
+)
 
-99.times do |n|
+
+30.times do |n|
   user_name = Faker::Name.name
   email = "example-#{n + 1}@railstutorial.org"
   password = 'password'
   User.create!(user_name: user_name,
                email: email,
                password: password,
-               password_confirmation: password)
-end
-
-users = User.order(:created_at).take(6)
-10.times do
-  name = Faker::Lorem.sentence(5)
-  users.each { |user| user.trips.create!(name: name) }
+               password_confirmation: password,
+               role: :normal)
 end
