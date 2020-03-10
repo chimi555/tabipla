@@ -19,9 +19,11 @@ class UsersController < ApplicationController
   def password_update
     if current_user.update_with_password(password_params)
       sign_in(current_user, bypass: true)
-      redirect_to current_user, notice: "パスワードを更新しました"
+      flash[:success] = "パスワードを更新しました"
+      redirect_to current_user
     else
-      render "password_edit", alert: "パスワードが更新できませんでした"
+      flash[:danger] = "パスワードが更新できませんでした"
+      render "password_edit"
     end
   end
 
