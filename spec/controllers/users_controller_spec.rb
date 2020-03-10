@@ -30,7 +30,7 @@ RSpec.describe UsersController, type: :controller do
         expect(assigns(:following)).to eq user.following
       end
 
-      it ' インスタンス変数@followingが存在する' do
+      it ' インスタンス変数@followersが存在する' do
         expect(assigns(:followers)).to eq user.followers
       end
 

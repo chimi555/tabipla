@@ -50,9 +50,9 @@ RSpec.describe 'Trip_edit', type: :system do
           have_select('trip[days_attributes][0][schedules_attributes][0][time(5i)]',
                       selected: "00")
           expect(page).to have_field 'trip[days_attributes][0][schedules_attributes][0][place]',
-                                    with: day.schedules[0].place
+                                     with: day.schedules[0].place
           expect(page).to have_field 'trip[days_attributes][0][schedules_attributes][0][memo]',
-                                    with: day.schedules[0].memo
+                                     with: day.schedules[0].memo
           have_select('trip[days_attributes][0][schedules_attributes][1][action]',
                       selected: day.schedules[1].action)
           have_select('trip[days_attributes][0][schedules_attributes][1][time(4i)]',
@@ -60,9 +60,9 @@ RSpec.describe 'Trip_edit', type: :system do
           have_select('trip[days_attributes][0][schedules_attributes][1][time(5i)]',
                       selected: "00")
           expect(page).to have_field 'trip[days_attributes][0][schedules_attributes][1][place]',
-                                    with: day.schedules[1].place
+                                     with: day.schedules[1].place
           expect(page).to have_field 'trip[days_attributes][0][schedules_attributes][1][memo]',
-                                    with: day.schedules[1].memo
+                                     with: day.schedules[1].memo
         end
       end
     end

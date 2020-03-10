@@ -37,11 +37,11 @@ RSpec.describe 'Users', type: :system do
         expect(user.reload.email).to eq 'edit@example.com'
       end
 
-      it "ユーザーアカウントを削除できること", js:true do
+      it "ユーザーアカウントを削除できること", js: true do
         click_on 'アカウント削除'
         page.driver.browser.switch_to.alert.accept
         expect(page).to have_current_path root_path
-        expect(page).to have_content "アカウントを削除しました。またのご利用をお待ちしております。"        
+        expect(page).to have_content "アカウントを削除しました。またのご利用をお待ちしております。"
       end
 
       it "プロフィールの更新に失敗すること" do
@@ -150,7 +150,7 @@ RSpec.describe 'Users', type: :system do
     end
   end
 
-  describe "タブのテスト", js:true do
+  describe "タブのテスト", js: true do
     before do
       sign_in_as(user)
     end
