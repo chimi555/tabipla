@@ -18,9 +18,26 @@ class ApplicationController < ActionController::Base
     )
   end
 
+  # テストユーザーかどうか確認
   def guest_judge
     return unless current_user.guest?
     flash[:info] = '申し訳ありません。テストユーザーは編集できません。'
     redirect_to user_path(current_user.id)
+  end
+
+  # 管理者かどうか確認
+  def admin_judge
+    if current_user.admin?
+      @user.destroy
+      flash[:success] = "ユーザーの削除に成功しました"
+      redirect_to users_path
+    elsif current_user?(user)
+      @user.destroy
+      flash[:success] = "アカウントを削除しました"
+      redirect_to root_url
+    else
+      flash[:danger] = "他人のアカウントは削除できません"
+      redirect_to root_url
+    end
   end
 end
