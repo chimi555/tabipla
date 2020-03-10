@@ -2,7 +2,7 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :authenticate_user!
-  before_action :guest_judge, only: %i[edit]
+  before_action :guest_judge, only: [:edit, :update]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -77,11 +77,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # アカウント編集後のリダイレクト先
   def after_update_path_for(resource)
     user_path(resource.id)
-  end
-
-  def guest_judge
-    return unless @user.guest?
-    flash[:info] = '申し訳ありません。テストユーザーは編集できません。'
-    redirect_to user_path(current_user.id)
   end
 end
