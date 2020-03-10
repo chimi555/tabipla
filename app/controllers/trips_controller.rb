@@ -46,7 +46,7 @@ class TripsController < ApplicationController
       flash[:success] = '新しい旅行プランが登録されました'
       redirect_to trip_path(@trip.id)
     else
-      flash[:alert] = '新しい旅行プランの登録に失敗しました'
+      flash[:danger] = '新しい旅行プランの登録に失敗しました'
       render 'trips/new'
     end
   end
