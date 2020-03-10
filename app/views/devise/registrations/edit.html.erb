@@ -43,7 +43,7 @@
         </div>
       </div>
       <div class="user-delete">
-        <%= button_tag registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete do %>
+        <%= link_to registration_path(resource_name), method: :delete, data: { confirm: "本当に削除しますか？" } do %>
           <i class="far fa-trash-alt"></i>アカウント削除
         <% end %>
       </div>

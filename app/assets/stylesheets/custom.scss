@@ -662,10 +662,14 @@ input[name="tab_item"] {
 }
 
 /*trip_show*/
+#main{
+  margin: 15px 0;
+}
+
 .trip-show-picture{
   max-width: 700px;
   position: relative;
-  margin: 15px auto;
+  margin: 0px auto 15px;
   img{
     border-radius: 3px;
     width: 100%;
