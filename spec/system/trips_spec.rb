@@ -24,7 +24,7 @@ RSpec.describe 'Trips', type: :system do
       context 'タイトルセクション' do
         it '入力フォームが正しく表示されること' do
           within(".trip-picture") do
-            expect(page).to have_field("旅行名")
+            expect(page).to have_field("旅行名【必須】")
             expect(page).to have_field("サブタイトル")
           end
         end
@@ -34,7 +34,7 @@ RSpec.describe 'Trips', type: :system do
         it '入力フォームが正しく表示されること' do
           within(".trip-info") do
             expect(page).to have_select(selected: '日本')
-            expect(page).to have_field("エリア、都市名など")
+            expect(page).to have_field("地方名、都道府県名、都市名など")
           end
         end
       end
@@ -232,8 +232,14 @@ RSpec.describe 'Trips', type: :system do
           expect(page).to have_content trip.content
         end
 
+        it '正しいユーザーinfoが表示されること' do
+          within(".trip-show-first") do
+            expect(page).to have_content user.user_name
+          end
+        end
+
         it '正しい旅行infoが表示されること' do
-          within(".trip-show-info") do
+          within(".trip-show-second") do
             expect(page).to have_content trip.country_name
             expect(page).to have_content trip.area
           end
