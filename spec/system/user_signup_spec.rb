@@ -11,7 +11,7 @@ RSpec.describe 'Sign up', type: :system do
         fill_in 'ユーザーネーム', with: 'ExampleUser_username'
         fill_in 'メールアドレス', with: 'example@example.com'
         fill_in 'パスワード', with: 'foobar'
-        fill_in '確認用パスワード', with: 'foobar'
+        fill_in 'パスワード(確認)', with: 'foobar'
         click_button '新規登録'
       end.to change(User, :count).by(1)
       expect(page).to have_content 'アカウント登録が完了しました。'
@@ -22,7 +22,7 @@ RSpec.describe 'Sign up', type: :system do
         fill_in 'ユーザーネーム', with: ''
         fill_in 'メールアドレス', with: 'example@example.com'
         fill_in 'パスワード', with: 'foobar'
-        fill_in '確認用パスワード', with: 'foobar'
+        fill_in 'パスワード(確認)', with: 'foobar'
         click_button '新規登録'
       end.not_to change(User, :count)
       expect(page).to have_content 'ユーザーネームが入力されていません。'
