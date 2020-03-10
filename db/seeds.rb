@@ -8,9 +8,9 @@ User.create!(
 
 User.create!(
   user_name: 'adminユーザー',
-  email: 'admin@example.com',
-  password: 'admin000',
-  password_confirmation: 'admin000',
+  email: Rails.application.credentials.user[:admin_user_email] ,
+  password: Rails.application.credentials.user[:admin_user_password],
+  password_confirmation: Rails.application.credentials.user[:admin_user_password],
   role: :admin,
 )
 
