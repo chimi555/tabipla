@@ -27,17 +27,6 @@ class ApplicationController < ActionController::Base
 
   # 管理者かどうか確認
   def admin_judge
-    if current_user.admin?
-      @user.destroy
-      flash[:success] = "ユーザーの削除に成功しました"
-      redirect_to users_path
-    elsif current_user?(user)
-      @user.destroy
-      flash[:success] = "アカウントを削除しました"
-      redirect_to root_url
-    else
-      flash[:danger] = "他人のアカウントは削除できません"
-      redirect_to root_url
-    end
+    redirect_to(root_path) unless current_user.admin?
   end
 end

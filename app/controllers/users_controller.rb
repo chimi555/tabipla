@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :guest_judge, only: [:password_edit, :password_update]
+  before_action :admin_judge, only: [:user_destroy]
 
   def show
     @user = User.find(params[:id])
@@ -25,6 +26,18 @@ class UsersController < ApplicationController
     else
       flash[:danger] = "パスワードが更新できませんでした"
       render "password_edit"
+    end
+  end
+
+  def user_destroy
+    if current_user.admin?
+      @user = User.find(params[:id])
+      @user.destroy
+      flash[:success] = "ユーザーの削除に成功しました"
+      redirect_to users_path
+    else
+      flash[:danger] = "他人のアカウントは削除できません"
+      redirect_to root_path
     end
   end
 
