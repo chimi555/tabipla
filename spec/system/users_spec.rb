@@ -1,58 +1,76 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
-  let(:user) { create(:user) }
+  let!(:user) { create(:user) }
   let(:other_user) { create(:user) }
+  let(:test_user) { create(:user, :guest) }
+  let(:admin_user) { create(:user, :admin) }
   let(:liked_trip) { create(:trip) }
   let(:like) { create(:like, trip: liked_trip, user: user) }
 
   describe "ユーザー編集ページ" do
-    before do
-      sign_in_as(user)
-      within(".user-info") do
-        click_link 'プロフィール編集'
+    describe "一般ユーザー" do
+      before do
+        sign_in_as(user)
+        within(".user-info") do
+          click_link 'プロフィール編集'
+        end
+      end
+
+      context 'ページレイアウト' do
+        it "正しいプロフィール編集ページが表示されること" do
+          expect(page).to have_current_path '/users/edit'
+          expect(page).to have_content "ユーザー画像を変更する"
+          expect(page).to have_content "ユーザーネーム"
+          expect(page).to have_content "自己紹介"
+          expect(page).to have_content "メールアドレス"
+          expect(page).to have_link "パスワード変更", href: password_edit_user_path(user.id)
+        end
+      end
+
+      context 'プロフィール編集機能' do
+        it "プロフィールの更新に成功すること" do
+          fill_in 'ユーザーネーム', with: 'Edit_username'
+          fill_in '自己紹介', with: '自己紹介文更新！'
+          fill_in 'メールアドレス', with: 'edit@example.com'
+          click_button 'プロフィール更新'
+          expect(page).to have_current_path user_path(user.id)
+          expect(user.reload.user_name).to eq 'Edit_username'
+          expect(user.reload.profile).to eq '自己紹介文更新！'
+          expect(user.reload.email).to eq 'edit@example.com'
+        end
+
+        it "ユーザーアカウントを削除できること", js: true do
+          click_on 'アカウント削除'
+          page.driver.browser.switch_to.alert.accept
+          expect(page).to have_current_path root_path
+          expect(page).to have_content "アカウントを削除しました。またのご利用をお待ちしております。"
+        end
+
+        it "プロフィールの更新に失敗すること" do
+          fill_in 'ユーザーネーム', with: ''
+          fill_in '自己紹介', with: '自己紹介文更新！'
+          fill_in 'メールアドレス', with: 'edit@example.com'
+          click_button 'プロフィール更新'
+          # expect(page).to have_current_path '/users/edit'
+          expect(page).to have_content 'ユーザーネームが入力されていません。'
+          expect(user.reload.profile).not_to eq '自己紹介文更新！'
+          expect(user.reload.email).not_to eq 'edit@example.com'
+        end
       end
     end
 
-    context 'ページレイアウト' do
-      it "正しいプロフィール編集ページが表示されること" do
-        expect(page).to have_current_path '/users/edit'
-        expect(page).to have_content "ユーザー画像を変更する"
-        expect(page).to have_content "ユーザーネーム"
-        expect(page).to have_content "自己紹介"
-        expect(page).to have_content "メールアドレス"
-        expect(page).to have_link "パスワード変更", href: password_edit_user_path(user.id)
-      end
-    end
-
-    context '一般ユーザー' do
-      it "プロフィールの更新に成功すること" do
-        fill_in 'ユーザーネーム', with: 'Edit_username'
-        fill_in '自己紹介', with: '自己紹介文更新！'
-        fill_in 'メールアドレス', with: 'edit@example.com'
-        click_button 'プロフィール更新'
-        expect(page).to have_current_path user_path(user.id)
-        expect(user.reload.user_name).to eq 'Edit_username'
-        expect(user.reload.profile).to eq '自己紹介文更新！'
-        expect(user.reload.email).to eq 'edit@example.com'
+    describe "テストユーザー" do
+      before do
+        sign_in_as(test_user)
+        within(".user-info") do
+          click_link 'プロフィール編集'
+        end
       end
 
-      it "ユーザーアカウントを削除できること", js: true do
-        click_on 'アカウント削除'
-        page.driver.browser.switch_to.alert.accept
-        expect(page).to have_current_path root_path
-        expect(page).to have_content "アカウントを削除しました。またのご利用をお待ちしております。"
-      end
-
-      it "プロフィールの更新に失敗すること" do
-        fill_in 'ユーザーネーム', with: ''
-        fill_in '自己紹介', with: '自己紹介文更新！'
-        fill_in 'メールアドレス', with: 'edit@example.com'
-        click_button 'プロフィール更新'
-        # expect(page).to have_current_path '/users/edit'
-        expect(page).to have_content 'ユーザーネームが入力されていません。'
-        expect(user.reload.profile).not_to eq '自己紹介文更新！'
-        expect(user.reload.email).not_to eq 'edit@example.com'
+      it "プロフィール編集ページへはアクセスできないこと" do
+        expect(page).to have_current_path user_path(test_user.id)
+        expect(page).to have_content "申し訳ありません。テストユーザーは編集できません。"
       end
     end
   end
@@ -227,6 +245,37 @@ RSpec.describe 'Users', type: :system do
         it 'フォロワーがいないこと' do
           expect(page).to have_content "ユーザーはいません"
         end
+      end
+    end
+  end
+
+  describe "ユーザー一覧ページ" do
+    context '管理ユーザー' do
+      before do
+        sign_in_as(admin_user)
+        visit users_path
+      end
+
+      it 'deleteリンクが表示されること' do
+        expect(page).to have_link "delete"
+      end
+
+      it 'ユーザーを削除できること', js: true do
+        click_on "delete"
+        page.driver.browser.switch_to.alert.accept
+        expect(page).to have_current_path users_path
+        expect(page).to have_content "ユーザーの削除に成功しました"
+      end
+    end
+
+    context '一般ユーザー' do
+      before do
+        sign_in_as(other_user)
+        visit users_path
+      end
+
+      it 'deleteリンクが表示されないこと' do
+        expect(page).not_to have_link "delete"
       end
     end
   end
