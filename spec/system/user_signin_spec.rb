@@ -8,7 +8,7 @@ RSpec.describe 'Sign in', type: :system do
   end
 
   context '入力値が正しいとき' do
-    it 'ログインに成功すること', js: true do
+    example 'ログインに成功すること', js: true do
       fill_in 'メールアドレスまたはユーザーネーム', with: user.user_name
       fill_in 'パスワード', with: user.password
       click_button 'ログイン'
@@ -18,7 +18,7 @@ RSpec.describe 'Sign in', type: :system do
   end
 
   context '入力値が正しくないとき' do
-    it 'ログインに失敗すること' do
+    example 'ログインに失敗すること' do
       fill_in 'メールアドレスまたはユーザーネーム', with: user.user_name
       fill_in 'パスワード', with: ''
       click_button 'ログイン'

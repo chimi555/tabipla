@@ -12,7 +12,7 @@ RSpec.describe 'StaticPages', type: :system do
         visit root_path
       end
 
-      it "正しいヘッダーが表示されること" do
+      example "正しいヘッダーが表示されること" do
         within(".header-nav") do
           expect(page).to have_content user.user_name
           expect(page).to have_link "旅行プラン", href: new_trip_path
@@ -23,11 +23,11 @@ RSpec.describe 'StaticPages', type: :system do
         end
       end
 
-      it "新規登録ボタンが表示されないこと" do
+      example "新規登録ボタンが表示されないこと" do
         expect(page).not_to have_link "新規登録", href: signup_path
       end
 
-      it "ドロップダウンメニューが正しく表示されること" do
+      example "ドロップダウンメニューが正しく表示されること" do
         within(".header-nav") do
           click_on user.user_name
           expect(page).to have_link "マイページ", href: user_path(user.id)
@@ -35,7 +35,7 @@ RSpec.describe 'StaticPages', type: :system do
         end
       end
 
-      it "ドロップダウンメニューからマイページへ移動できること" do
+      example "ドロップダウンメニューからマイページへ移動できること" do
         within(".header-nav") do
           click_on user.user_name
           click_on "マイページ"
@@ -43,7 +43,7 @@ RSpec.describe 'StaticPages', type: :system do
         end
       end
 
-      it "ドロップダウンメニューからログアウトできること" do
+      example "ドロップダウンメニューからログアウトできること" do
         within(".header-nav") do
           click_on user.user_name
           click_on "ログアウト"
@@ -58,14 +58,14 @@ RSpec.describe 'StaticPages', type: :system do
         visit root_path
       end
 
-      it "正しいヘッダーが表示されること" do
+      example "正しいヘッダーが表示されること" do
         expect(page).to have_link "ログイン", href: login_path
         expect(page).to have_button "テストログイン"
         expect(page).to have_link href: trips_path
         expect(page).not_to have_link href: users_path
       end
 
-      it "新規登録ボタンが表示されること" do
+      example "新規登録ボタンが表示されること" do
         expect(page).to have_link "新規登録", href: signup_path
       end
     end
@@ -75,12 +75,12 @@ RSpec.describe 'StaticPages', type: :system do
         visit root_path
       end
 
-      it "最新の6件の旅行プランが表示されること" do
+      example "最新の6件の旅行プランが表示されること" do
         expect(page).to have_link href: trip_path(trips.last.id)
         expect(page).not_to have_link href: trip_path(trips.first.id)
       end
 
-      it "MOREボタンが表示されること" do
+      example "MOREボタンが表示されること" do
         expect(page).to have_link "MORE", href: trips_path
       end
     end
@@ -91,7 +91,7 @@ RSpec.describe 'StaticPages', type: :system do
       visit root_path
     end
 
-    it "テストユーザーとしてログインできること" do
+    example "テストユーザーとしてログインできること" do
       click_on 'テストログイン'
       expect(page).to have_content 'ログインしました。'
       expect(page).to have_current_path user_path(test_user.id)
@@ -106,7 +106,7 @@ RSpec.describe 'StaticPages', type: :system do
       visit root_path
     end
 
-    it "キーワードから検索できること" do
+    example "キーワードから検索できること" do
       within(".search-form") do
         fill_in "都市名、旅行カテゴリー名(温泉、海外...etc)など", with: '温泉旅行'
         click_on '検索'
@@ -116,7 +116,7 @@ RSpec.describe 'StaticPages', type: :system do
       expect(page).not_to have_link href: trip_path(other_trip.id)
     end
 
-    it "国名から検索できること" do
+    example "国名から検索できること" do
       within(".search-form") do
         select '日本', from: 'q[country_code_cont]'
         click_on '検索'

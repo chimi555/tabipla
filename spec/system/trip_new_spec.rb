@@ -10,18 +10,18 @@ RSpec.describe 'Trip_new', type: :system do
   end
 
   describe "新規旅行プラン登録ページ" do
-    it '正しいタイトルが表示されること' do
+    example '正しいタイトルが表示されること' do
       expect(page).to have_title full_title('新規旅行プランの登録')
     end
 
-    it '正しいページが表示されること' do
+    example '正しいページが表示されること' do
       expect(page).to have_content "旅行プラン登録"
       expect(page).to have_content "旅行メモ"
       expect(page).to have_content "スケジュール"
     end
 
     context 'タイトルセクション' do
-      it '入力フォームが正しく表示されること' do
+      example '入力フォームが正しく表示されること' do
         within(".trip-picture") do
           expect(page).to have_field("旅行名【必須】")
           expect(page).to have_field("サブタイトル")
@@ -30,7 +30,7 @@ RSpec.describe 'Trip_new', type: :system do
     end
 
     context '旅行infoセクション' do
-      it '入力フォームが正しく表示されること' do
+      example '入力フォームが正しく表示されること' do
         within(".trip-info") do
           expect(page).to have_select(selected: '日本')
           expect(page).to have_field("地方名、都道府県名、都市名など")
@@ -39,18 +39,18 @@ RSpec.describe 'Trip_new', type: :system do
     end
 
     context '旅行メモセクション' do
-      it '正しいセクション名が表示されること' do
+      example '正しいセクション名が表示されること' do
         expect(page).to have_content "旅行メモ"
       end
 
-      it '入力フォームが正しく表示されること' do
+      example '入力フォームが正しく表示されること' do
         within(".note-form") do
           expect(page).to have_field("タイトル(持ち物、集合場所、メンバー...etc)")
           expect(page).to have_field("内容(パスポート・水着..、駅名...、メンバー名...etc)")
         end
       end
 
-      it 'フォーム追加ボタンが表示されること' do
+      example 'フォーム追加ボタンが表示されること' do
         within(".note-form") do
           expect(page).to have_css '.each-form-add'
         end
@@ -58,18 +58,18 @@ RSpec.describe 'Trip_new', type: :system do
     end
 
     context 'スケジュールセクション' do
-      it '正しいセクション名が表示されること' do
+      example '正しいセクション名が表示されること' do
         expect(page).to have_content "スケジュール"
       end
 
-      it '入力フォームが正しく表示されること' do
+      example '入力フォームが正しく表示されること' do
         within(".schedule-form") do
           expect(page).to have_field("場所名")
           expect(page).to have_field("memo")
         end
       end
 
-      it 'フォーム追加ボタンが表示されること' do
+      example 'フォーム追加ボタンが表示されること' do
         within(".day-form") do
           expect(page).to have_css '.each-day-add'
         end
@@ -82,7 +82,7 @@ RSpec.describe 'Trip_new', type: :system do
 
   describe "新規旅行プラン登録機能", js: true do
     context '正しい入力値' do
-      it '新規登録が成功すること' do
+      example '新規登録が成功すること' do
         expect do
           within(".trip-picture") do
             fill_in 'trip[name]', with: 'testTrip'
@@ -120,7 +120,7 @@ RSpec.describe 'Trip_new', type: :system do
     end
 
     context '正しくない入力値' do
-      it '新規登録が失敗すること' do
+      example '新規登録が失敗すること' do
         expect do
           within(".trip-picture") do
             fill_in 'trip[name]', with: ''
@@ -146,7 +146,7 @@ RSpec.describe 'Trip_new', type: :system do
 
   describe "フォーム追加・削除機能", js: true do
     context '旅行メモセクション' do
-      it 'フォームが追加できること' do
+      example 'フォームが追加できること' do
         within(".note-form") do
           expect(page).to have_css '.nested_trip_notes', count: 1
           link = find('.add_nested_fields_link')
@@ -155,7 +155,7 @@ RSpec.describe 'Trip_new', type: :system do
         end
       end
 
-      it 'フォームが削除できること' do
+      example 'フォームが削除できること' do
         within(".note-form") do
           add_link = find('.add_nested_fields_link')
           add_link.click
@@ -167,7 +167,7 @@ RSpec.describe 'Trip_new', type: :system do
     end
 
     context 'スケジュールセクション' do
-      it 'スケジュールフォームが追加できること' do
+      example 'スケジュールフォームが追加できること' do
         within(".schedule-form") do
           expect(page).to have_css '.nested_trip_days_0_schedules', count: 1
           click_on "スケジュール追加"
@@ -175,7 +175,7 @@ RSpec.describe 'Trip_new', type: :system do
         end
       end
 
-      it 'スケジュールフォームが削除できること' do
+      example 'スケジュールフォームが削除できること' do
         within(".schedule-form") do
           click_on "スケジュール追加"
           remove_link = find('.remove_nested_fields_link', match: :first)
@@ -184,7 +184,7 @@ RSpec.describe 'Trip_new', type: :system do
         end
       end
 
-      it '日付フォームが追加できること' do
+      example '日付フォームが追加できること' do
         within(".day-form") do
           expect(page).to have_css '.nested_trip_days', count: 1
           within(".each-day-add") do
@@ -194,7 +194,7 @@ RSpec.describe 'Trip_new', type: :system do
         end
       end
 
-      it '日付フォームが削除できること' do
+      example '日付フォームが削除できること' do
         within(".day-form") do
           within(".each-day-add") do
             click_on "日付追加"

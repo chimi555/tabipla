@@ -14,11 +14,11 @@ RSpec.describe 'Follow', type: :system do
         visit user_path(other_user.id)
       end
 
-      it 'フォローボタンが表示されること' do
+      example 'フォローボタンが表示されること' do
         expect(page).to have_button "フォローする"
       end
 
-      it 'フォローでき、Unfollowボタンに変わること' do
+      example 'フォローでき、Unfollowボタンに変わること' do
         click_button "フォローする"
         expect(user.following.count).to eq 1
         expect(page).to have_button "フォロー済"
@@ -31,11 +31,11 @@ RSpec.describe 'Follow', type: :system do
         visit user_path(other_user.id)
       end
 
-      it 'アンフォローボタンが表示されること' do
+      example 'アンフォローボタンが表示されること' do
         expect(page).to have_button "フォロー済"
       end
 
-      it 'アンフォローでき、Followボタンに変わること' do
+      example 'アンフォローでき、Followボタンに変わること' do
         click_button "フォロー済"
         expect(page).to have_button "フォローする"
       end

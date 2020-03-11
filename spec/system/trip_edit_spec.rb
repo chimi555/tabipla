@@ -13,16 +13,16 @@ RSpec.describe 'Trip_edit', type: :system do
         visit edit_trip_path(trip.id)
       end
 
-      it '正しいタイトルが表示されること' do
+      example '正しいタイトルが表示されること' do
         expect(page).to have_title full_title("旅行プランの編集")
       end
 
-      it '正しいページが表示されること' do
+      example '正しいページが表示されること' do
         expect(page).to have_current_path edit_trip_path(trip.id)
         expect(page).to have_content "旅行プラン編集"
       end
 
-      it 'フォームに正しい情報が入力されていること' do
+      example 'フォームに正しい情報が入力されていること' do
         within(".trip-picture") do
           expect(page).to have_field 'trip[name]', with: trip.name
           expect(page).to have_field 'trip[content]', with: trip.content
@@ -73,7 +73,7 @@ RSpec.describe 'Trip_edit', type: :system do
         visit edit_trip_path(trip.id)
       end
 
-      it 'トップページにリダイレクトされること' do
+      example 'トップページにリダイレクトされること' do
         expect(page).to have_current_path root_path
       end
     end
@@ -86,7 +86,7 @@ RSpec.describe 'Trip_edit', type: :system do
     end
 
     context '正しい入力値' do
-      it '旅行プランの更新に成功すること' do
+      example '旅行プランの更新に成功すること' do
         within(".trip-picture") do
           fill_in 'trip[name]', with: 'testTrip編集'
           fill_in 'trip[content]', with: 'これはtestTrip編集です'
@@ -107,7 +107,7 @@ RSpec.describe 'Trip_edit', type: :system do
         expect(trip.reload.area).to eq 'オスロ'
       end
 
-      it "旅行メモが追加できること", js: true do
+      example "旅行メモが追加できること", js: true do
         within(".note-form") do
           link = find('.add_nested_fields_link')
           link.click
@@ -116,7 +116,7 @@ RSpec.describe 'Trip_edit', type: :system do
         end
       end
 
-      it "日付とその日のスケジュールが追加できること", js: true do
+      example "日付とその日のスケジュールが追加できること", js: true do
         within(".each-day-add") do
           click_on "日付追加"
         end
