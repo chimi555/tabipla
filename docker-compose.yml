@@ -1,0 +1,35 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/triplog
+      - public-data:/triplog/public
+    ports:
+      - "3001:3000"
+    depends_on:
+      - db
+      - chrome
+  nginx:
+    build: containers/nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/log:/var/log/nginx
+      - public-data:/triplog/public
+    depends_on:
+      - web
+  chrome:
+    image: selenium/standalone-chrome:3.141.59-dubnium
+    ports:
+      - 4444:4444
+
+volumes:
+  public-data:
+  postgresql-data:
+    driver: local

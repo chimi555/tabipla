@@ -1,0 +1,7 @@
+<div id="likebtn">
+  <% if current_user.already_liked?(trip) %> 
+    <%= render 'likes/unlike', trip: trip %>
+  <% else %>
+     <%= render 'likes/like', trip: trip %>
+  <% end %>
+</div>

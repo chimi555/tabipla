@@ -1,0 +1,48 @@
+<% if user_signed_in? %>
+  <div class="center">
+    <div class="top-imgarea">
+      <div class="top-img">
+        <%= image_tag "top01.jpg", class: "top-img" %>
+      </div>
+      <div class="top-tit" >
+        <h1>あなたの旅を共有しよう。</h1>
+      </div>   
+    </div>
+  </div>
+<% else %>
+  <div class="center">
+    <div class="top-imgarea">
+      <div class="top-img">
+        <%= image_tag "top01.jpg", class: "top-img" %>
+      </div>
+      <div class="top-tit" >
+        <h1>あなたの旅を共有しよう。</h1>
+        <div class="signup-btn">
+          <%= link_to signup_path do %>
+            新規登録
+          <% end %>
+        </div>
+      </div>   
+    </div>
+  </div>
+<% end %>
+<div class="search-box gray-box">
+  <div class="center">
+    <%= render "shared/search_form" %>
+  </div>
+</div>
+<div class="section">
+  <div class="container">
+    <div class="recent-trips">
+      <div class="section-inbox center">
+        <p class="page-tit">最新の旅行プラン</p>
+        <ol class="trips row">
+          <%= render @trip_recent %> 
+        </ol>
+        <%= link_to trips_path do %>
+          <p class="btn">MORE</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<%# noteフォーム %>
+<div class="form-out col-md-12 col-sm-12 col-xs-12">
+  <p class="form-tit">旅行メモ</p>
+  <div class="form-in">
+    <%= trip_f.nested_fields_for :notes, wrapper_tag: :div do |n| %>
+      <div class="each-form-out">
+        <span class="each-form-delete">
+          <%= n.remove_nested_fields_link do %>
+            <i class="fas fa-times"></i>
+          <% end %>
+        </span>
+        <span class="each-form-in">
+          <%= n.text_field :subject, placeholder: "タイトル(持ち物、集合場所、メンバー...etc)", class: "each-form form-control" %>
+        </span>
+        <span class="each-form-in">
+          <%= n.text_area :content, placeholder: "内容(パスポート・水着..、駅名...、メンバー名...etc)", class: "each-form form-control" %>
+        </span>
+      </div>
+    <% end %>
+    <span class="each-form-add">
+      <%= trip_f.add_nested_fields_link :notes do %>
+        <i class="fas fa-plus-circle"></i>
+      <% end %>
+    </span>
+  </div>
+</div>
