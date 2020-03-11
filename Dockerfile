@@ -5,6 +5,7 @@ RUN apt-get update \
     imagemagick \
     nodejs \
     fonts-ipafont \
+    vim \
     && rm -rf /var/lib/apt/lists/*
 RUN mkdir /myapp
 

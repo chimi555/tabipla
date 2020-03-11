@@ -16,20 +16,20 @@ RSpec.describe 'Trip_index', type: :system do
         visit trips_path(tag_id: tag.id)
       end
 
-      it '正しいタイトルが表示されること' do
+      example '正しいタイトルが表示されること' do
         expect(page).to have_title full_title(tag.tag_name)
       end
 
-      it '正しいカテゴリー名が表示されること' do
+      example '正しいカテゴリー名が表示されること' do
         expect(page).to have_content "すべての旅行プラン"
         expect(page).to have_content "カテゴリー：#{tag.tag_name}"
       end
 
-      it "該当カテゴリーに属した旅行プランが表示されること" do
+      example "該当カテゴリーに属した旅行プランが表示されること" do
         expect(page).to have_link href: trip_path(trip.id)
       end
 
-      it "該当カテゴリーに属していない旅行プランは表示されないこと" do
+      example "該当カテゴリーに属していない旅行プランは表示されないこと" do
         expect(page).not_to have_link href: trip_path(other_trip.id)
       end
     end
@@ -40,15 +40,15 @@ RSpec.describe 'Trip_index', type: :system do
         visit trips_path
       end
 
-      it '正しいタイトルが表示されること' do
+      example '正しいタイトルが表示されること' do
         expect(page).to have_title full_title("旅行プラン一覧")
       end
 
-      it '正しいページ名が表示されること' do
+      example '正しいページ名が表示されること' do
         expect(page).to have_content "すべての旅行プラン"
       end
 
-      it "全ての旅行プランが表示されること" do
+      example "全ての旅行プランが表示されること" do
         expect(page).to have_link href: trip_path(trip.id)
         expect(page).not_to have_link href: trip_path(other_trip.id)
       end

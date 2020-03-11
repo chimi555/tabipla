@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :guest_judge, only: [:password_edit, :password_update]
+  before_action :admin_judge, only: [:user_destroy]
 
   def show
     @user = User.find(params[:id])
@@ -19,9 +21,23 @@ class UsersController < ApplicationController
   def password_update
     if current_user.update_with_password(password_params)
       sign_in(current_user, bypass: true)
-      redirect_to current_user, notice: "パスワードを更新しました"
+      flash[:success] = "パスワードを更新しました"
+      redirect_to current_user
     else
-      render "password_edit", alert: "パスワードが更新できませんでした"
+      flash[:danger] = "パスワードが更新できませんでした"
+      render "password_edit"
+    end
+  end
+
+  def user_destroy
+    if current_user.admin?
+      @user = User.find(params[:id])
+      @user.destroy
+      flash[:success] = "ユーザーの削除に成功しました"
+      redirect_to users_path
+    else
+      flash[:danger] = "他人のアカウントは削除できません"
+      redirect_to root_path
     end
   end
 

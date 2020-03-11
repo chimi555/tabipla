@@ -10,13 +10,13 @@ RSpec.describe RelationshipsController, type: :controller do
         sign_in user
       end
 
-      it 'ユーザーをフォローできること' do
+      example 'ユーザーをフォローできること' do
         expect do
           post :create, params: { followed_id: other_user.id }
         end.to change(user.following, :count).by(1)
       end
 
-      it 'Ajaxによるフォローができること' do
+      example 'Ajaxによるフォローができること' do
         expect do
           post :create, params: { followed_id: other_user.id }, xhr: true
         end.to change(user.following, :count).by(1)
@@ -24,7 +24,7 @@ RSpec.describe RelationshipsController, type: :controller do
     end
 
     context 'ログインしていないユーザー' do
-      it 'ユーザーをフォローできず、ログインページへリダイレクトすること' do
+      example 'ユーザーをフォローできず、ログインページへリダイレクトすること' do
         expect do
           post :create, params: { followed_id: other_user.id }
         end.not_to change(Relationship, :count)
@@ -39,7 +39,7 @@ RSpec.describe RelationshipsController, type: :controller do
         sign_in user
       end
 
-      it 'ユーザーをアンフォローできること' do
+      example 'ユーザーをアンフォローできること' do
         user.follow(other_user)
         relationship = user.active_relationships.find_by(followed_id: other_user.id)
         expect do
@@ -47,7 +47,7 @@ RSpec.describe RelationshipsController, type: :controller do
         end.to change(user.following, :count).by(-1)
       end
 
-      it 'Ajaxによるアンフォローができること' do
+      example 'Ajaxによるアンフォローができること' do
         user.follow(other_user)
         relationship = user.active_relationships.find_by(followed_id: other_user.id)
         expect do
@@ -57,7 +57,7 @@ RSpec.describe RelationshipsController, type: :controller do
     end
 
     context 'ログインしていないユーザー' do
-      it 'ユーザーをアンフォローできず、ログインページへリダイレクトすること' do
+      example 'ユーザーをアンフォローできず、ログインページへリダイレクトすること' do
         user.follow(other_user)
         relationship = user.active_relationships.find_by(followed_id: other_user.id)
         expect do

@@ -14,27 +14,27 @@ RSpec.describe UsersController, type: :controller do
         get :show, params: { id: user.id }
       end
 
-      it 'レスポンスが正常に表示されること' do
+      example 'レスポンスが正常に表示されること' do
         expect(response).to have_http_status(:success)
       end
 
-      it 'showページが正常に読み込まれること' do
+      example 'showページが正常に読み込まれること' do
         expect(response).to render_template :show
       end
 
-      it ' インスタンス変数@userが存在する' do
+      example 'インスタンス変数@userが存在する' do
         expect(assigns(:user)).to eq user
       end
 
-      it ' インスタンス変数@followingが存在する' do
+      example 'インスタンス変数@followingが存在する' do
         expect(assigns(:following)).to eq user.following
       end
 
-      it ' インスタンス変数@followersが存在する' do
+      example 'インスタンス変数@followersが存在する' do
         expect(assigns(:followers)).to eq user.followers
       end
 
-      it ' インスタンス変数@user_likesが存在する' do
+      example 'インスタンス変数@user_likesが存在する' do
         expect(assigns(:user_likes)).to eq user.liked_trips_list
       end
     end
@@ -47,17 +47,17 @@ RSpec.describe UsersController, type: :controller do
         get :index
       end
 
-      it 'レスポンスが正常に表示されること' do
+      example 'レスポンスが正常に表示されること' do
         expect(response).to have_http_status(:success)
       end
 
-      it 'indexページが正常に読み込まれること' do
+      example 'indexページが正常に読み込まれること' do
         expect(response).to render_template :index
       end
     end
 
     context 'ログインしていないユーザー' do
-      it 'ログインページにリダイレクトされる' do
+      example 'ログインページにリダイレクトされる' do
         get :index
         expect(response).to have_http_status '302'
         expect(response).to redirect_to '/users/sign_in'

@@ -10,11 +10,11 @@ RSpec.describe TripsController, type: :controller do
       get :index
     end
 
-    it 'レスポンスが正常に表示されること' do
+    example 'レスポンスが正常に表示されること' do
       expect(response).to have_http_status(:success)
     end
 
-    it 'showページが正常に読み込まれること' do
+    example 'showページが正常に読み込まれること' do
       expect(response).to render_template :index
     end
   end
@@ -25,15 +25,15 @@ RSpec.describe TripsController, type: :controller do
         get :show, params: { id: trip.id }
       end
 
-      it 'レスポンスが正常に表示されること' do
+      example 'レスポンスが正常に表示されること' do
         expect(response).to have_http_status(:success)
       end
 
-      it 'showページが正常に読み込まれること' do
+      example 'showページが正常に読み込まれること' do
         expect(response).to render_template :show
       end
 
-      it ' インスタンス変数@tripが存在する' do
+      example 'インスタンス変数@tripが存在する' do
         expect(assigns(:trip)).to eq trip
       end
     end
@@ -45,11 +45,11 @@ RSpec.describe TripsController, type: :controller do
         get :show, format: :pdf, params: { id: trip.id }
       end
 
-      it 'レスポンスが正常に表示されること' do
+      example 'レスポンスが正常に表示されること' do
         expect(response).to have_http_status(:success)
       end
 
-      it ' インスタンス変数@tripが存在する' do
+      example 'インスタンス変数@tripが存在する' do
         expect(assigns(:trip)).to eq trip
       end
     end
@@ -62,17 +62,17 @@ RSpec.describe TripsController, type: :controller do
         get :new
       end
 
-      it 'レスポンスが正常に表示されること' do
+      example 'レスポンスが正常に表示されること' do
         expect(response).to have_http_status(:success)
       end
 
-      it 'indexページが正常に読み込まれること' do
+      example 'indexページが正常に読み込まれること' do
         expect(response).to render_template :new
       end
     end
 
     context 'ログインしていないユーザー' do
-      it 'ログインページにリダイレクトされる' do
+      example 'ログインページにリダイレクトされる' do
         get :new
         expect(response).to have_http_status '302'
         expect(response).to redirect_to '/users/sign_in'
@@ -88,7 +88,7 @@ RSpec.describe TripsController, type: :controller do
         sign_in user
       end
 
-      it '新しい旅行プランが登録できる' do
+      example '新しい旅行プランが登録できる' do
         trip_params = attributes_for(:trip, {
           name: "旅行プラン",
           content: "テスト旅行プランです。",
@@ -111,7 +111,7 @@ RSpec.describe TripsController, type: :controller do
     end
 
     context 'ログインしていないユーザー' do
-      it '新しい旅行プランが登録できない' do
+      example '新しい旅行プランが登録できない' do
         trip_params = attributes_for(:trip, {
           name: "旅行プラン",
           content: "テスト旅行プランです。",
@@ -144,17 +144,17 @@ RSpec.describe TripsController, type: :controller do
         get :edit, params: { id: trip.id }
       end
 
-      it 'レスポンスが正常に表示されること' do
+      example 'レスポンスが正常に表示されること' do
         expect(response).to have_http_status(:success)
       end
 
-      it 'editページが正常に読み込まれること' do
+      example 'editページが正常に読み込まれること' do
         expect(response).to render_template :edit
       end
     end
 
     context 'ログインしていないユーザー' do
-      it 'ログインページにリダイレクトされる' do
+      example 'ログインページにリダイレクトされる' do
         get :edit, params: { id: trip.id }
         expect(response).to redirect_to '/users/sign_in'
       end
@@ -165,7 +165,7 @@ RSpec.describe TripsController, type: :controller do
     context 'ログイン済ユーザー' do
       let!(:tag_list) { "北欧" }
 
-      it '自分の旅行プランを編集できる' do
+      example '自分の旅行プランを編集できる' do
         trip_params = attributes_for(:trip, {
           name: "旅行プラン",
           content: "テスト旅行プランです。",
@@ -189,7 +189,7 @@ RSpec.describe TripsController, type: :controller do
         redirect_to trip_path(trip)
       end
 
-      it '他人の旅行プランは編集できない' do
+      example '他人の旅行プランは編集できない' do
         trip_params = attributes_for(:trip, {
           name: "旅行プラン",
           content: "テスト旅行プランです。",
@@ -215,7 +215,7 @@ RSpec.describe TripsController, type: :controller do
     end
 
     context 'ログイン済ユーザー' do
-      it '旅行プランは編集できない' do
+      example '旅行プランは編集できない' do
         trip_params = attributes_for(:trip, {
           name: "旅行プラン",
           content: "テスト旅行プランです。",
@@ -243,7 +243,7 @@ RSpec.describe TripsController, type: :controller do
 
   describe '#destroy' do
     context 'ログイン済ユーザー' do
-      it '自分の旅行プランを削除できる' do
+      example '自分の旅行プランを削除できる' do
         sign_in user
         expect do
           delete :destroy, params: { id: trip.id }
@@ -251,7 +251,7 @@ RSpec.describe TripsController, type: :controller do
         redirect_to user_path(user)
       end
 
-      it '他人の旅行プランは削除できない' do
+      example '他人の旅行プランは削除できない' do
         sign_in other_user
         expect do
           delete :destroy, params: { id: trip.id }
@@ -262,7 +262,7 @@ RSpec.describe TripsController, type: :controller do
     end
 
     context 'ログインしていないユーザー' do
-      it '旅行プランは削除できない' do
+      example '旅行プランは削除できない' do
         expect do
           delete :destroy, params: { id: trip.id }
         end.not_to change(user.trips, :count)

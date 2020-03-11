@@ -8,5 +8,9 @@
         <%= user.user_name %>
       </p>
     <% end %>
+    <% if current_user.admin? && !current_user?(user) %>
+      <%= link_to "delete", user_destroy_user_path(user), method: :delete,
+                                  data: { confirm: "本当に削除しますか?" } %>
+    <% end %>
   </li>
 </div>

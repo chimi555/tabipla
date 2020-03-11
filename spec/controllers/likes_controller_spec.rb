@@ -11,13 +11,13 @@ RSpec.describe LikesController, type: :controller do
         sign_in user
       end
 
-      it 'お気に入り登録できること' do
+      example 'お気に入り登録できること' do
         expect do
           post :create, params: { trip_id: trip.id }
         end.to change(user.likes, :count).by(1)
       end
 
-      it 'Ajaxによるお気に入り登録ができること' do
+      example 'Ajaxによるお気に入り登録ができること' do
         expect do
           post :create, params: { trip_id: trip.id }, xhr: true
         end.to change(user.likes, :count).by(1)
@@ -25,7 +25,7 @@ RSpec.describe LikesController, type: :controller do
     end
 
     context 'ログインしていないユーザー' do
-      it 'お気に入り登録できないこと' do
+      example 'お気に入り登録できないこと' do
         expect do
           post :create, params: { trip_id: trip.id }
         end.not_to change(user.likes, :count)
@@ -39,14 +39,14 @@ RSpec.describe LikesController, type: :controller do
         sign_in user
       end
 
-      it 'お気に入り解除できること' do
+      example 'お気に入り解除できること' do
         like
         expect do
           delete :destroy, params: { id: like.id }
         end.to change(user.likes, :count).by(-1)
       end
 
-      it 'Ajaxによるお気に入り解除ができること' do
+      example 'Ajaxによるお気に入り解除ができること' do
         like
         expect do
           delete :destroy, params: { id: like.id }, xhr: true
@@ -55,7 +55,7 @@ RSpec.describe LikesController, type: :controller do
     end
 
     context 'ログインしていないユーザー' do
-      it 'お気に入り解除できないこと' do
+      example 'お気に入り解除できないこと' do
         like
         expect do
           delete :destroy, params: { id: like.id }

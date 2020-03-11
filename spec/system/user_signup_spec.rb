@@ -6,7 +6,7 @@ RSpec.describe 'Sign up', type: :system do
   end
 
   context '有効なユーザー' do
-    it '新規登録が成功すること', js: true do
+    example '新規登録が成功すること', js: true do
       expect do
         fill_in 'ユーザーネーム', with: 'ExampleUser_username'
         fill_in 'メールアドレス', with: 'example@example.com'
@@ -17,7 +17,7 @@ RSpec.describe 'Sign up', type: :system do
       expect(page).to have_content 'アカウント登録が完了しました。'
     end
 
-    it '新規登録に失敗すること' do
+    example '新規登録に失敗すること' do
       expect do
         fill_in 'ユーザーネーム', with: ''
         fill_in 'メールアドレス', with: 'example@example.com'

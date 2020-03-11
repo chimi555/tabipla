@@ -14,11 +14,11 @@ RSpec.describe 'Likes', type: :system do
         visit trip_path(trip.id)
       end
 
-      it '行きたい！ボタンが表示されること' do
+      example '行きたい！ボタンが表示されること' do
         expect(page).to have_button "行きたい！"
       end
 
-      it '行きたい登録でき、行きたい済ボタンに変わること' do
+      example '行きたい登録でき、行きたい済ボタンに変わること' do
         click_button "行きたい！"
         expect(user.likes.count).to eq 1
         expect(page).to have_button "行きたい済"
@@ -32,11 +32,11 @@ RSpec.describe 'Likes', type: :system do
         visit trip_path(liked_trip.id)
       end
 
-      it '行きたい済ボタンが表示されること' do
+      example '行きたい済ボタンが表示されること' do
         expect(page).to have_button "行きたい済"
       end
 
-      it '行きたい登録解除でき、行きたい！ボタンに変わること' do
+      example '行きたい登録解除でき、行きたい！ボタンに変わること' do
         click_button "行きたい済"
         expect(user.likes.count).to eq 0
         expect(page).to have_button "行きたい！"

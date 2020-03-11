@@ -17,4 +17,16 @@ class ApplicationController < ActionController::Base
       :account_update, keys: %i(user_name email password image image_cache remove_image profile)
     )
   end
+
+  # テストユーザーかどうか確認
+  def guest_judge
+    return unless current_user.guest?
+    flash[:info] = '申し訳ありません。テストユーザーは編集できません。'
+    redirect_to user_path(current_user.id)
+  end
+
+  # 管理者かどうか確認
+  def admin_judge
+    redirect_to(root_path) unless current_user.admin?
+  end
 end
