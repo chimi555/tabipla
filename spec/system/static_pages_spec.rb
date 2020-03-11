@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'StaticPages', type: :system do
   let(:user) { create(:user) }
-  let!(:test_user) { create(:user, user_name: "テストユーザー", email:"trilog@example.com", password:"trilog") }
+  let!(:test_user) { create(:user, :guest) }
   let!(:trips) { create_list(:trip, 7) }
 
   describe "topページのレイアウト" do
