@@ -7,16 +7,18 @@ RUN apt-get update \
     fonts-ipafont \
     vim \
     && rm -rf /var/lib/apt/lists/*
-RUN mkdir /myapp
+    
+RUN mkdir /triplog
 
-WORKDIR /myapp
+WORKDIR /triplog
 
-COPY Gemfile /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
+COPY Gemfile /triplog/Gemfile
+COPY Gemfile.lock /triplog/Gemfile.lock
 
 RUN bundle install
 
-COPY . /myapp
+COPY . /triplog
+RUN mkdir -p tmp/sockets
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
