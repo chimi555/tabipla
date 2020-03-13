@@ -8,16 +8,16 @@ RUN apt-get update \
     vim \
     && rm -rf /var/lib/apt/lists/*
     
-RUN mkdir /triplog
+RUN mkdir /app
 
-WORKDIR /triplog
+WORKDIR /app
 
-COPY Gemfile /triplog/Gemfile
-COPY Gemfile.lock /triplog/Gemfile.lock
+COPY Gemfile /app/Gemfile
+COPY Gemfile.lock /app/Gemfile.lock
 
 RUN bundle install
 
-COPY . /triplog
+COPY . /app
 RUN mkdir -p tmp/sockets
 
 # Add a script to be executed every time the container starts.
