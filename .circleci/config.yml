@@ -13,7 +13,7 @@ workflows:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
           dockerfile: ./containers/nginx/Dockerfile
-          repo: nginx
+          repo: tabipla-ecs-nginx
           tag: "${CIRCLE_SHA1}"
           filters:
             branches:
@@ -34,8 +34,8 @@ workflows:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
-          dockerfile: ./docker/rails/Dockerfile
-          repo: rails
+          dockerfile: .Dockerfile
+          repo: tabipla-ecs-web
           tag: "${CIRCLE_SHA1}"
           filters:
             branches:
