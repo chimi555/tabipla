@@ -13,7 +13,6 @@ workflows:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
           dockerfile: 'containers/nginx/Dockerfile'
-          path: 'containers/nginx/'
           repo: tabipla-ecs-nginx
           tag: "${CIRCLE_SHA1}"
           filters:
