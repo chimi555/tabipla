@@ -21,9 +21,9 @@ workflows:
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
-          family: 'tabipla-ecs-task' # ECSのタスク定義名
-          cluster-name: '${arn:aws:ecs:ap-northeast-1:987307228326:container-instance/e1071e0c-46f9-4dc9-93fb-75c5b9adddef}'  #ECSのクラスターのARN
-          service-name: 'tabipla-ecs-service'  #サービス名
+          family: 'tabipla-ecs-task' 
+          cluster-name: '${arn:aws:ecs:ap-northeast-1:987307228326:container-instance/e1071e0c-46f9-4dc9-93fb-75c5b9adddef}'
+          service-name: 'tabipla-ecs-service'  
           container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
   # Railsのデプロイ
   rails-deploy:
@@ -43,7 +43,7 @@ workflows:
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
-          family: tabipla-ecs-task' # ECSのタスク定義名
-          cluster-name: '${arn:aws:ecs:ap-northeast-1:987307228326:container-instance/e1071e0c-46f9-4dc9-93fb-75c5b9adddef}' #ECSのクラスターのARN
-          service-name: 'tabipla-ecs-service' #サービス名
+          family: tabipla-ecs-task'
+          cluster-name: '${arn:aws:ecs:ap-northeast-1:987307228326:container-instance/e1071e0c-46f9-4dc9-93fb-75c5b9adddef}'
+          service-name: 'tabipla-ecs-service'
           container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
