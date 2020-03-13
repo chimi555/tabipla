@@ -25,9 +25,10 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/.ssh
 
 /.env
 
-/public/uploads
+/public/uploads/*
 
 /nginx/log

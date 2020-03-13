@@ -16,7 +16,8 @@ services:
       - db
       - chrome
   nginx:
-    build: containers/nginx
+    build:      
+      context: containers/nginx
     ports:
       - "80:80"
     volumes:
