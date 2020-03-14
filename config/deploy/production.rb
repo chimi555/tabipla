@@ -60,5 +60,8 @@
 #     # password: "please use keys"
 #   }
 
-server '3.113.49.127', user: 'chinami', roles: %w{app db web} 
-set :ssh_options, keys: '~/.ssh/tabipla_aws_rsa' 
+role :app, 'chinami@3.113.49.127'
+role :web, 'chinami@3.113.49.127'
+role :db, 'chinami@3.113.49.127'
+
+set :ssh_options, keys: '~/.ssh/triplog_key_rsa' 
