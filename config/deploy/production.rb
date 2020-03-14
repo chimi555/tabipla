@@ -60,8 +60,11 @@
 #     # password: "please use keys"
 #   }
 
-role :app, 'chinami@3.113.49.127'
-role :web, 'chinami@3.113.49.127'
-role :db, 'chinami@3.113.49.127'
-
-set :ssh_options, keys: '~/.ssh/triplog_key_rsa' 
+server '3.113.49.127',
+   user: "chinami",
+   roles: %w{web db app},
+   ssh_options: {
+       user: "chinami",
+       keys: %w(~/triplog/.ssh/tabipla.pem),
+       forward_agent: true
+   }
