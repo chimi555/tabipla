@@ -61,3 +61,4 @@
 #   }
 
 server '3.113.49.127', user: 'chinami', roles: %w{app db web} 
+set :ssh_options, keys: '~/.ssh/tabipla_aws_rsa' 
