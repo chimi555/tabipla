@@ -53,6 +53,10 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
 end
 
 group :development do
@@ -72,7 +76,8 @@ group :test do
 end
 
 group :production, :staging do
-    gem 'unicorn'
+  gem 'unicorn'
+>>>>>>> 4e641acead7c3ba7bf70c5c78c5f1351d8ecd58b
 end
 
 gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)
