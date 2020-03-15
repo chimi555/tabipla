@@ -15,16 +15,6 @@ services:
     depends_on:
       - db
       - chrome
-  nginx:
-    build:      
-      context: containers/nginx
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/log:/var/log/nginx
-      - public-data:/app/public
-    depends_on:
-      - web
   chrome:
     image: selenium/standalone-chrome:3.141.59-dubnium
     ports:
