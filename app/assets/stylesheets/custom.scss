@@ -28,6 +28,10 @@ ul, ol{
   padding-inline-start: 0px;
 }
 
+a{
+  word-break: break-all;
+}
+
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -115,7 +119,6 @@ ul, ol{
   background-color: rgba(0,0,0,0.7);
   border-color: rgba(0,0,0,0.7);
 }
-
 
 .test-btn{
   display: inline-block;
