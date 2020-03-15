@@ -16,7 +16,7 @@ pid $pid
 preload_app true
 
 before_fork do |server, worker|
-  defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.connection.disconnect!
   old_pid = "#{server.config[:pid]}.oldbin"
   if old_pid != server.pid
     begin
@@ -27,5 +27,5 @@ before_fork do |server, worker|
 end
 
 after_fork do |server, worker|
-  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.establish_connection
 end
