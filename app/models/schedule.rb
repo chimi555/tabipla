@@ -5,5 +5,4 @@ class Schedule < ApplicationRecord
   default_scope -> { order(id: :asc) }
   # バリデーション
   validates :place, length: { maximum: 30 }
-  validates :memo, length: { maximum: 140 }
 end
