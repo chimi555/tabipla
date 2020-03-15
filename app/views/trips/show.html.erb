@@ -92,12 +92,12 @@
           <div class="trip-show-schedule">
             <% day.schedules.each do |schedule| %>
               <div class="trip-schedule-each row">  
-                <div class="col-md-2 col-sm-2 col-xs-2">
+                <div class="col-md-2 col-sm-2 col-xs-4">
                   <div class="trip-schedule-time">
                     <%= schedule.time.strftime("%H:%M") %>
                   </div>
                 </div>
-                <div class="col-md-10 col-sm-10 col-xs-10 trip-schedule-right">
+                <div class="col-md-10 col-sm-10 col-xs-8 trip-schedule-right">
                   <span class="trip-schedule-action">
                     <%= image_tag('action/' + schedule.action + '.png', class: "img-responsive") %>
                   </span>

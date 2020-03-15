@@ -167,6 +167,10 @@ header {
   background-color: #4e6681;
 }
 
+.navbar-toggler{
+  display: none;
+}
+
 #logo{
   float: left;
   padding: 15px 8px 0 0;
@@ -935,4 +939,111 @@ footer {
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
+}
+
+@media (max-width: 768px) {
+  body{
+    padding-top: 90px;
+  }
+
+  .top-imgarea{
+    position: relative;
+    .top-tit{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%,-50%);
+      -webkit-transform: translate(-50%,-50%);
+      transform: translate(-50%,-50%);
+      h1{
+        font-size: 1.5em;
+      }
+    }
+  }
+
+  h1{
+    font-size: 1.5em;
+    margin-bottom: 30px;
+  }
+  
+  h2{
+    font-size: 1em;
+    font-weight: normal;
+    color: #777;
+  }
+  p{
+    font-size: 0.8em;
+    line-height: 1em;
+  }
+
+  .form-wide {
+    max-width: 300px;
+  }
+
+  .navbar-collapse{
+    border-top: none;
+    box-shadow: none;
+  }
+
+  .navbar-collapse.in {
+    overflow-y: visible;
+  }
+
+  header{
+    position: relative;
+    .header-nav {
+      padding-top: 60px;
+    }
+    #Navber{
+      float: right;
+    }
+    .navbar-toggler{
+      position: absolute;
+      top: 40px;
+      right: 30px;
+      color: #fff;
+      display: block;
+      i{
+        font-size: 18px;
+      }
+    }
+  }
+
+  /* user */
+  .user-info-box{
+    margin: 50px 20px;
+    .user-left {
+      text-align: center;
+      padding-right: 0px;
+    }
+    .user-right {
+      text-align: center;
+      padding-left: 0px;
+    }
+  }
+
+  /* trip */
+  .tab_item {
+    height: 40px;
+  }
+
+  .trip-show-out{
+    .trip-show-in {
+      border: dashed 2px #ffc870;
+      border-radius: 3px;
+      padding: 10px;
+    }
+  }
+
+  .trip-show-btn{
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 545px) {
+  header{
+    .header-nav {
+      padding-top: 20px;
+    }
+  }
 }

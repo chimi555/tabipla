@@ -30,23 +30,19 @@
 <div class="tabs">
   <input id="mytrip" type="radio" name="tab_item" checked>
   <label class="tab_item" for="mytrip">
-    <span>MyTrip</span>
-    <span class="count"><%= @user.trips.count %></span>
+    <p>MyTrip</br><span class="count"><%= @user.trips.count %></span></p>
   </label>
   <input id="like_list" type="radio" name="tab_item">
   <label class="tab_item" for="like_list">
-    <span>行きたいリスト</span>
-    <span class="count"><%= @user_likes.count %></span>
+    <p>行きたいリスト</br><span class="count"><%= @user_likes.count %></span></p>
   </label>
   <input id="following_list" type="radio" name="tab_item">
   <label class="tab_item" for="following_list">
-    <span>フォロー中</span>
-    <span class="count"><%= @user.following.count %></span>
+    <p>フォロー中</br><span class="count"><%= @user.following.count %></span></p>
   </label>
   <input id="followers_list" type="radio" name="tab_item">
   <label class="tab_item" for="followers_list">
-    <span>フォロワー</span>
-    <span class="followers-count"><%= @user.followers.count %></span>
+    <p>フォロワー</br><span class="followers-count"><%= @user.followers.count %></span></p>
   </label>
   <div class="tab_content" id="mytrip_content">
     <div class="tab_content_description">
