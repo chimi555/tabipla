@@ -17,11 +17,11 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.12'
-gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
+gem 'rails', '~> 5.2.4'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'net-ssh', '>= 5.2.0'
+
 # jquery
 gem 'jquery-rails'
 # jquery ui
@@ -78,7 +78,6 @@ end
 
 group :production, :staging do
   gem 'unicorn'
->>>>>>> 4e641acead7c3ba7bf70c5c78c5f1351d8ecd58b
 end
 
 group :production do

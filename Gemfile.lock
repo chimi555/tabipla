@@ -214,12 +214,9 @@ GEM
       coffee-rails (>= 3.2.1)
       jquery-rails
       rails (>= 3.2.0)
-<<<<<<< HEAD
-=======
     net-scp (2.0.0)
       net-ssh (>= 2.6.5, < 6.0.0)
     net-ssh (5.2.0)
->>>>>>> 4e641acead7c3ba7bf70c5c78c5f1351d8ecd58b
     nio4r (2.5.2)
     nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
@@ -435,12 +432,11 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mini_magick
   nested_form_fields
-  net-ssh (>= 5.2.0)
   omniauth
   omniauth-facebook
   pg (>= 0.18, < 2.0)
   puma (~> 3.12)
-  rails (~> 5.2.4, >= 5.2.4.1)
+  rails (~> 5.2.4)
   rails-controller-testing
   ransack
   rspec-rails
