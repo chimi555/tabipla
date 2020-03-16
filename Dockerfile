@@ -3,21 +3,22 @@ FROM ruby:2.5
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     imagemagick \
+    postgresql-client \
     nodejs \
     fonts-ipafont \
     vim \
     && rm -rf /var/lib/apt/lists/*
     
-RUN mkdir /app
+RUN mkdir /triplog
 
-WORKDIR /app
+WORKDIR /triplog
 
-COPY Gemfile /app/Gemfile
-COPY Gemfile.lock /app/Gemfile.lock
+COPY Gemfile /triplog/Gemfile
+COPY Gemfile.lock /triplog/Gemfile.lock
 
 RUN bundle install
 
-COPY . /app
+COPY . /triplog
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
