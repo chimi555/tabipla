@@ -1,49 +1,33 @@
-version: 2.1
-orbs:
-  aws-ecr: circleci/aws-ecr@6.7.0
-  aws-ecs: circleci/aws-ecs@1.1.0
-workflows:
-  # Nginxのデプロイ
-  nginx-deploy:
-    jobs:
-      - aws-ecr/build-and-push-image:
-          account-url: AWS_ECR_ACCOUNT_URL
-          region: AWS_REGION
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          create-repo: true
-          dockerfile: 'containers/nginx/Dockerfile'
-          repo: tabipla-ecs-nginx
-          tag: "${CIRCLE_SHA1}"
-          filters:
-            branches:
-              only: master
-      - aws-ecs/deploy-service-update:
-          requires:
-            - aws-ecr/build-and-push-image
-          family: 'tabipla-ecs-task' 
-          cluster-name: '${arn:aws:ecs:ap-northeast-1:987307228326:container-instance/e1071e0c-46f9-4dc9-93fb-75c5b9adddef}'
-          service-name: 'tabipla-ecs-service'  
-          container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
-  # Railsのデプロイ
-  rails-deploy:
-    jobs:
-      - aws-ecr/build-and-push-image:
-          account-url: AWS_ECR_ACCOUNT_URL
-          region: AWS_REGION
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          create-repo: true
-          dockerfile: "Dockerfile"
-          repo: tabipla-ecs-web
-          tag: "${CIRCLE_SHA1}"
-          filters:
-            branches:
-              only: master
-      - aws-ecs/deploy-service-update:
-          requires:
-            - aws-ecr/build-and-push-image
-          family: tabipla-ecs-task'
-          cluster-name: '${arn:aws:ecs:ap-northeast-1:987307228326:container-instance/e1071e0c-46f9-4dc9-93fb-75c5b9adddef}'
-          service-name: 'tabipla-ecs-service'
-          container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
+version: 2
+jobs:
+  build:
+    machine:
+      image: circleci/classic:edge
+    steps:
+      - checkout
+      - run:
+          name: database.ymlの再設定
+          command: |
+            rm ./config/database.yml
+            mv ./config/database.ci.yml ./config/database.yml
+      - run:
+          name: docker-compose build
+          command: docker-compose build
+      - run:
+          name: docker-compose up
+          command: docker-compose up -d
+      - run:
+          name: sleep for waiting launch db
+          command: sleep 2
+      - run:
+          name: setup db
+          command: docker-compose run web bundle exec rails db:create db:migrate RAILS_ENV=test
+      - run:
+          name: RSpec
+          command: docker-compose run web bin/rspec
+      - run:
+          name: Rubocop
+          command: docker-compose run web bundle exec rubocop
+      - run:
+          name: docker-compose down
+          command: docker-compose down
