@@ -3,7 +3,7 @@ default: &default
   encoding: unicode
   host: db
   username: postgres
-  password: 
+  password: password
   pool: 5
 
 development:
@@ -12,6 +12,7 @@ development:
 
 test:
   <<: *default
+  host: <%= ENV.fetch("POSTGRES_HOST") { 'db' } %>
   database: myapp_test
 
 production:

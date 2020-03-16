@@ -13,12 +13,6 @@ RSpec.describe Schedule, type: :model do
       schedule.valid?
       expect(schedule.errors[:place]).to include('は30文字以内で入力してください')
     end
-
-    example 'メモが141文字以上は無効であること' do
-      schedule = build(:schedule, memo: "a" * 141)
-      schedule.valid?
-      expect(schedule.errors[:memo]).to include('は140文字以内で入力してください')
-    end
   end
 
   context 'アソシエーションのテスト' do
