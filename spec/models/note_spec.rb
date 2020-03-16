@@ -13,12 +13,6 @@ RSpec.describe Note, type: :model do
       note.valid?
       expect(note.errors[:subject]).to include('は30文字以内で入力してください')
     end
-
-    example '旅行メモ内容が141文字以上は無効であること' do
-      note = build(:note, content: "a" * 141)
-      note.valid?
-      expect(note.errors[:content]).to include('は140文字以内で入力してください')
-    end
   end
 
   context 'アソシエーションのテスト' do
