@@ -13,7 +13,7 @@ module ApplicationHelper
   end
 
   def full_title(page_title = '')
-    base_title = 'Trilog'
+    base_title = 'tabipla'
     if page_title.blank?
       base_title
     else
