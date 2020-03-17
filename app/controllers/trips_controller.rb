@@ -1,6 +1,7 @@
 class TripsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :edit, :update, :destroy, :new]
   before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :set_search, only: [:index]
 
   def index
     if params[:tag_id]

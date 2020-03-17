@@ -3,12 +3,11 @@
   <p class="form-tit">スケジュール</p>
   <%# dayフォーム %>
   <div class="form-in">
-    <% i = 1 %>
     <%= trip_f.nested_fields_for :days, wrapper_tag: :div do |day| %>
       <div class="eachday-form">
         <div class=eachday-form-date>
           <span class="each-form-in">
-            <span class="date-count">【<%= i %>日目】</span>
+            <span class="date-count">【日付】</span>
             <%= day.date_select :date %>
           </span>
           <span class="each-day-delete">
@@ -20,10 +19,9 @@
         <%# 個別スケジュールフォーム %>
         <%= render "schedule_form", day: day %>
       </div>
-      <% i += 1 %>
     <% end %>
     <span class="each-day-add">
-      <%= trip_f.add_nested_fields_link :days do %>
+      <%= trip_f.add_nested_fields_link :days, class: 'add' do %>
         <i class="fas fa-plus-circle"></i>日付追加
       <% end %>
     </span>

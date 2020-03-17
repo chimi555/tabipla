@@ -25,15 +25,15 @@ RSpec.describe ApplicationHelper, type: :helper do
 
   describe '#full_title' do
     example 'nilだった時、basetitleのみ返すこと' do
-      expect(full_title(nil)).to eq 'Trilog'
+      expect(full_title(nil)).to eq 'tabipla'
     end
 
     example 'emptyだった時、basetitleのみ返すこと' do
-      expect(full_title('')).to eq 'Trilog'
+      expect(full_title('')).to eq 'tabipla'
     end
 
     example '正しいfulltitleを返すこと' do
-      expect(full_title('Test')).to eq 'Test-Trilog'
+      expect(full_title('Test')).to eq 'Test-tabipla'
     end
   end
 end
