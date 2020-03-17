@@ -59,3 +59,9 @@
     </div>
   </div>
 <% end %>
+
+<%= javascript_tag do %>
+var Trip = {
+  all_tag_list: <%= raw @all_tag_list %>
+};
+<% end %>

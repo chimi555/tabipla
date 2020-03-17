@@ -2,6 +2,7 @@ $(document).on 'turbolinks:load', ->
   $('#trip-tags').tagit
     fieldName: 'tag_list'
     singleField: true
+    availableTags: Trip.all_tag_list
   $('#trip-tags').tagit()
   tag_string = $("#tag_hidden").val()
   try

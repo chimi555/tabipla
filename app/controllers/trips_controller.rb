@@ -2,6 +2,7 @@ class TripsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :edit, :update, :destroy, :new]
   before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :set_search, only: [:index]
+  before_action :set_available_tags, only: [:edit, :new]
 
   def index
     if params[:tag_id]
@@ -95,5 +96,9 @@ class TripsController < ApplicationController
   def correct_user
     @trip = current_user.trips.find_by(id: params[:id])
     redirect_to root_url if @trip.nil?
+  end
+
+  def set_available_tags
+    @all_tag_list = Tag.all.pluck(:tag_name)
   end
 end
