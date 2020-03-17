@@ -667,6 +667,10 @@ input[name="tab_item"] {
   }
 }
 
+.ui-helper-hidden-accessible{
+  display: none;
+}
+
 /*trip_show*/
 #main{
   margin: 15px 0;
