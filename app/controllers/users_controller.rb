@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @trips = @user.trips.page(params[:page]).per(9)
     @following = @user.following.page(params[:page]).per(9)
     @followers = @user.followers.page(params[:page]).per(9)
-    @user_likes = current_user.liked_trips_list.page(params[:page]).per(9)
+    @user_likes = @user.liked_trips_list.page(params[:page]).per(9)
   end
 
   def index
