@@ -6,7 +6,9 @@ RSpec.describe 'Users', type: :system do
   let(:test_user) { create(:user, :guest) }
   let(:admin_user) { create(:user, :admin) }
   let(:liked_trip) { create(:trip) }
+  let(:otherliked_trip) { create(:trip) }
   let(:like) { create(:like, trip: liked_trip, user: user) }
+  let(:other_like) { create(:like, trip: otherliked_trip, user: other_user) }
 
   describe "ユーザー編集ページ" do
     describe "一般ユーザー" do
@@ -177,6 +179,7 @@ RSpec.describe 'Users', type: :system do
       context '行きたい登録済の旅行プランがあるとき' do
         before do
           like
+          other_like
           visit user_path(user)
           find('label[for=like_list]').click
         end
@@ -196,18 +199,41 @@ RSpec.describe 'Users', type: :system do
           expect(page).to have_content "行きたい！登録済の旅行プランはまだありません"
         end
       end
+
+      context '他人のページの行きたいリスト' do
+        before do
+          like
+          other_like
+          visit user_path(other_user)
+          find('label[for=like_list]').click
+        end
+
+        example 'そのページ所有ユーザーの行きたい済みリストが表示されること' do
+          expect(page).to have_link href: trip_path(otherliked_trip.id)
+        end
+
+        example '自分の行きたい済みリストはが表示されないこと' do
+          expect(page).not_to have_link href: trip_path(liked_trip.id)
+        end
+      end
     end
 
     describe "フォロー中" do
       context 'フォロー済ユーザーがいるとき' do
         before do
           user.follow(other_user)
-          visit user_path(user)
-          find('label[for=following_list]').click
         end
 
         example 'フォロー済のユーザーが表示されること' do
+          visit user_path(user)
+          find('label[for=following_list]').click
           expect(page).to have_link href: user_path(other_user.id)
+        end
+
+        example 'フォロー相手のページではフォロワーに表示されていること' do
+          visit user_path(other_user)
+          find('label[for=followers_list]').click
+          expect(page).to have_link href: user_path(user.id)
         end
       end
 
@@ -227,12 +253,18 @@ RSpec.describe 'Users', type: :system do
       context 'フォローされているユーザーがいるとき' do
         before do
           other_user.follow(user)
-          visit user_path(user)
-          find('label[for=followers_list]').click
         end
 
         example 'フォロワーが表示されること' do
+          visit user_path(user)
+          find('label[for=followers_list]').click
           expect(page).to have_link href: user_path(other_user.id)
+        end
+
+        example 'フォロワーのページではフォロー中に表示されること' do
+          visit user_path(other_user)
+          find('label[for=following_list]').click
+          expect(page).to have_link href: user_path(user.id)
         end
       end
 
