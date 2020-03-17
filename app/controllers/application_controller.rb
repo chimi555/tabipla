@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_search
   MAX_OF_DISPLAY_RECENT_TRIPS = 6
 
   def set_search
