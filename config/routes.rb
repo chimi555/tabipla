@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations',
     registrations: 'users/registrations',
     sessions: 'users/sessions',
-    omniauth_callbacks: 'users/omniauth_callbacks',
   }
   devise_scope :user do
     get '/signup', to: 'users/registrations#new'

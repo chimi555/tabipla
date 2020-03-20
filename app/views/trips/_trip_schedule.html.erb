@@ -1,0 +1,39 @@
+<p class="trip-show-tit"><i class="fas fa-clock"></i>スケジュール</p>
+<div class="trip-show-in">
+  <% trip.days.includes([:schedules]).each.with_index(1) do |day, i| %>
+    <div class="trip-show-day">
+      <% unless day.date.nil? %>
+        <span class="date-count">
+          【<%= i %>日目】
+        </span>
+        <div class="day-date">
+          <%= day.date.strftime("%Y年%m月%d日") %>
+        </div>
+      <% end %>
+    </div>
+    <div class="trip-show-schedule">
+      <% day.schedules.each do |schedule| %>
+        <div class="trip-schedule-each row">  
+          <div class="col-md-2 col-sm-2 col-xs-4">
+            <div class="trip-schedule-time">
+              <%= schedule.time.strftime("%H:%M") %>
+            </div>
+          </div>
+          <div class="col-md-10 col-sm-10 col-xs-8 trip-schedule-right">
+            <span class="trip-schedule-action">
+              <%= image_tag('action/' + schedule.action + '.png', class: "img-responsive") %>
+            </span>
+            <div class="trip-schedule-info">
+              <p class="trip-schedule-place">
+                <%= schedule.place %>
+              </p>
+              <p class="trip-schedule-memo">
+                <%= simple_format(text_url_to_link(h(schedule.memo)).html_safe) %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>  
+</div>

@@ -1,0 +1,15 @@
+<p class="trip-show-tit"><i class="fas fa-pencil-alt"></i>旅行メモ</p>
+<div class="trip-show-in">
+  <div class="trip-show-note">
+    <% trip.notes.each do |note| %>
+      <div class="row trip-note-each">
+        <span class="col-md-12 trip-note-subject">
+          <%= note.subject %>
+        </span>
+        <div class="col-md-12 trip-note-content">
+          <%= simple_format(text_url_to_link(h(note.content)).html_safe) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

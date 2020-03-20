@@ -46,7 +46,7 @@ https://www.tabipla.xyz
   - 画像リサイズ(mini_magick)
   - デフォルト画像の表示
 * 旅行プラン 投稿/削除/編集 機能
-  - 多階層構造
+  - 多階層構造同時投稿
   - 動的フォーム(nested_form_fieldsを使用)
   - タグ付け機能(Toxi法,フロントにはtag-it.jsを使用)
 * PDF出力機能（wicked_pdfを使用）

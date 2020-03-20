@@ -18,39 +18,7 @@
         </div>
       </div>
       <div class="col-md-4 col-sm-12 col-xs-12">
-        <div class="trip-show-info trip-show-first">
-          <p class="trip-show-info-tit">ユーザーinfo</p>
-          <div class="trip-show-user">
-            <%= link_to @trip.user do  %>
-              <span class="user-img"><%= image_tag @trip.user.image.thumb50.to_s, class: "img-responsive" %></span>
-              <span class="user-username"><%= @trip.user.user_name %></span>
-            <% end %>
-          </div>
-        </div>
-        <div class="trip-show-info trip-show-second">
-          <p class="trip-show-info-tit">旅行info</p>
-          <div class="trip-show-eachinfo">
-            <span class="trip-show-eachinfo-tit">国名：</span>
-            <span class="trip-show-eachinfo-text"><%= @trip.country_name%></span>
-          </div>
-          <div class="trip-show-eachinfo">
-            <span class="trip-show-eachinfo-tit">エリア：</span>
-            <%= @trip.area %>
-          </div>
-          <div class="trip-show-tag">
-            <% unless @trip.tags.blank? %>
-              <span class="trip-show-eachinfo-tit">カテゴリータグ：</span>
-              <ul>
-                <% @trip.tags.each do |tag| %>
-                  <li>
-                    <%= link_to tag.tag_name, trips_path(tag_id: tag.id) %>, 
-                  </li>
-                <% end %>
-              </ul>
-            <% end %>
-            </p>
-          </div>
-        </div>
+        <%= render "trip_info", trip: @trip %>
       </div>
     </div>
     <% if user_signed_in? %>
@@ -59,62 +27,10 @@
       </div>
     <% end %>
     <div class="trip-show-out">
-      <p class="trip-show-tit"><i class="fas fa-pencil-alt"></i>旅行メモ</p>
-      <div class="trip-show-in">
-        <div class="trip-show-note">
-          <% @trip.notes.each do |note| %>
-            <div class="row trip-note-each">
-              <span class="col-md-12 trip-note-subject">
-                <%= note.subject %>
-              </span>
-              <div class="col-md-12 trip-note-content">
-                <%= text_url_to_link(h(note.content)).html_safe %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
+      <%= render "trip_note", trip: @trip %>
     </div>
     <div class="trip-show-out">
-      <p class="trip-show-tit"><i class="fas fa-clock"></i>スケジュール</p>
-      <div class="trip-show-in">
-        <% @trip.days.includes([:schedules]).each.with_index(1) do |day, i| %>
-          <div class="trip-show-day">
-            <% unless day.date.nil? %>
-              <span class="date-count">
-                【<%= i %>日目】
-              </span>
-              <div class="day-date">
-                <%= day.date.strftime("%Y年%m月%d日") %>
-              </div>
-            <% end %>
-          </div>
-          <div class="trip-show-schedule">
-            <% day.schedules.each do |schedule| %>
-              <div class="trip-schedule-each row">  
-                <div class="col-md-2 col-sm-2 col-xs-4">
-                  <div class="trip-schedule-time">
-                    <%= schedule.time.strftime("%H:%M") %>
-                  </div>
-                </div>
-                <div class="col-md-10 col-sm-10 col-xs-8 trip-schedule-right">
-                  <span class="trip-schedule-action">
-                    <%= image_tag('action/' + schedule.action + '.png', class: "img-responsive") %>
-                  </span>
-                  <div class="trip-schedule-info">
-                    <p class="trip-schedule-place">
-                      <%= schedule.place %>
-                    </p>
-                    <p class="trip-schedule-memo">
-                      <%= text_url_to_link(h(schedule.memo)).html_safe %>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        <% end %>  
-      </div>
+       <%= render "trip_schedule", trip: @trip %>
     </div>
     <% if user_signed_in? %>
       <div class="pdf-area">
