@@ -35,7 +35,7 @@
     <% if user_signed_in? %>
       <div class="pdf-area">
         <span class="pdf-btn">
-          <%= link_to trip_path(@trip.id, format: :pdf) do %>
+          <%= link_to trip_path(@trip.id, format: :pdf), target: "_blank" do %>
             <i class="fas fa-file-pdf"></i>PDFに書き出す
           <% end %>
         </span>
