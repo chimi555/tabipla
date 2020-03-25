@@ -33,7 +33,7 @@ https://www.tabipla.xyz
 
 ### フロント
 
-* SASS
+* SCSS
 * Bootstrap4
 * JQuery
 
