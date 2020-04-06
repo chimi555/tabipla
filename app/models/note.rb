@@ -5,4 +5,5 @@ class Note < ApplicationRecord
   default_scope -> { order(id: :asc) }
   # バリデーション
   validates :subject, length: { maximum: 30 }
+  validates :trip_id, presence: true
 end
