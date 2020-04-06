@@ -13,6 +13,9 @@ https://www.tabipla.xyz
 ゲストユーザーのみプロフィール情報を編集不可に設定しています。ご了承ください。</br>
 非ログイン状態の場合は、旅行プラン検索、閲覧のみ可能です。</br>
 
+## テーブル設計図
+
+[テーブル設計図](https://github.com/chimi555/tabipla/files/4433447/tabipla_ER.pdf)
 
 ## 使用技術
 
