@@ -1,6 +1,6 @@
 class TripsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :edit, :update, :destroy, :new]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :set_trip, only: [:edit, :update, :destroy]
   before_action :set_search, only: [:index]
   before_action :set_available_tags, only: [:edit, :new]
 
@@ -54,12 +54,10 @@ class TripsController < ApplicationController
   end
 
   def edit
-    @trip = Trip.find(params[:id])
     @tag_list = @trip.tags.pluck(:tag_name).join(",")
   end
 
   def update
-    @trip = Trip.find(params[:id])
     tag_list = params[:tag_list].split(",")
     if @trip.update_attributes(trip_params)
       @trip.save_tags(tag_list)
@@ -93,10 +91,10 @@ class TripsController < ApplicationController
     )
   end
 
-  def correct_user
-    @trip = current_user.trips.find_by(id: params[:id])
+  def set_trip
+    @trip = current_user.trips.find(params[:id])
     redirect_to root_url if @trip.nil?
-  end
+   end
 
   def set_available_tags
     @all_tag_list = Tag.all.pluck(:tag_name)
