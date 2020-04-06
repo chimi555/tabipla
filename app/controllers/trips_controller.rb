@@ -94,7 +94,7 @@ class TripsController < ApplicationController
   def set_trip
     @trip = current_user.trips.find(params[:id])
     redirect_to root_url if @trip.nil?
-   end
+  end
 
   def set_available_tags
     @all_tag_list = Tag.all.pluck(:tag_name)
