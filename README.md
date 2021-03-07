@@ -7,7 +7,7 @@
 
 ## URL
 
-https://www.tabipla.xyz
+https://tabipla.herokuapp.com/
 
 ヘッダーのテストログインをクリックで、ゲストアカウントとしてログインできます。</br>
 ゲストユーザーのみプロフィール情報を編集不可に設定しています。ご了承ください。</br>
@@ -30,7 +30,7 @@ https://www.tabipla.xyz
 
 ### インフラ
 
-* AWS(VPC, EC2, RDS for postgreSQL, S3, Route 53, Elastic IP, ALB, ACM)
+* Heroku
 * Nginx
 * Unicorn
 
@@ -63,8 +63,3 @@ https://www.tabipla.xyz
 * テストユーザー機能（guestユーザーとしてログイン可、プロフィール編集不可制限）
 
 
-## 今後実装予定の機能
-
-issueをご覧ください。
-
-https://github.com/chimi555/triplog/issues
